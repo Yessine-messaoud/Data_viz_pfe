@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <Description>&quot;Extract&quot;.Sales!data_BA25E1A1DB47436182C97DFA3F70A878_dataset-paginated generated in local mode without external datasource.</Description>
+  <CustomProperties>
+    <CustomProperty>
+      <Name>ReportName</Name>
+      <Value>&quot;Extract&quot;.Sales!data_BA25E1A1DB47436182C97DFA3F70A878_dataset-paginated</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>AbstractSpecId</Name>
+      <Value>663127cc-aded-5254-9171-5f1d0fb36dd3</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>ThemeName</Name>
+      <Value>tableau-imported</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>PageSummary</Name>
+      <Value>Customer Details: 1. CD_TopByCity&amp;amp;Prod [barChart] =&gt; x=sales_data.Calculation_1259319095894155266 | y=sales_data.City | color=- | size=- | tooltip=-
+Product Details: 1. PD_KPIs [card] =&gt; x=sales_data.Measure Names | y=sales_data.Profit | color=- | size=- | tooltip=-
+2. PD_Matrix [tableEx] =&gt; x=sales_data.Date | y=product_data.Product | color=- | size=- | tooltip=-
+3. PD_TopProdOrder [barChart] =&gt; x=sales_data.:Measure Names | y=sales_data.Profit | color=- | size=- | tooltip=-
+4. PD_TopProdProfit [barChart] =&gt; x=sales_data.:Measure Names | y=sales_data.Profit | color=- | size=- | tooltip=-
+Sales Overview: 1. SO_KPIs [card] =&gt; x=sales_data.Measure Names | y=sales_data.Profit | color=- | size=- | tooltip=-
+2. SO_Sales vs Profit [lineChart] =&gt; x=sales_data.Date | y=(sum(sales_data.Sales Amount)+ sum(sales_data.Calculation_1259319095595331584)) | color=- | size=- | tooltip=-
+3. SO_SalesCountry [filledMap] =&gt; x=sales_data.:Measure Names | y=sales_data.Profit | color=- | size=- | tooltip=-
+4. SO_SalesProduct [barChart] =&gt; x=sales_data.sum | y=sales_data.Category | color=- | size=- | tooltip=-
+5. SO_TopCustomers [barChart] =&gt; x=sales_data.:Measure Names | y=customer_data.Customer | color=- | size=- | tooltip=-
+6. SO_TopProduct [barChart] =&gt; x=sales_data.:Measure Names | y=product_data.Product | color=- | size=- | tooltip=-</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>MeasureSummary</Name>
+      <Value>Sum Profit=SUM(sales_data[Profit]) | Sum Return on Sales=SUM(sales_data[Return on Sales]) | Sum Total Sales=SUM(sales_data[Total Sales]) | Sum Avg. Sales Order Value=SUM(sales_order_data[Avg. Sales Order Value]) | Sum # Sales Orders=SUM(sales_order_data[# Sales Orders]) | Sum Avg. Sales per Customer=SUM(customer_data[Avg. Sales per Customer]) | Sum Avg. Items per Order=SUM(sales_data[Avg. Items per Order]) | Sum CustomerKey (Customer!data)=SUM(customer_data[CustomerKey (Customer!data)]) | Sum # Items Ordered=SUM(sales_data[# Items Ordered]) | Sum ProductKey (Product!data)=SUM(product_data[ProductKey (Product!data)]) | Sum ResellerKey (Reseller!data)=SUM(reseller_data[ResellerKey (Reseller!data)]) | Sum Sales Amount=SUM(sales_data[Sales Amount]) | Sum SalesOrderLineKey (Sales Order!data)=SUM(sales_order_data[SalesOrderLineKey (Sales Order!data)]) | Sum SalesTerritoryKey (Sales Territory!data)=SUM(sales_territory_data[SalesTerritoryKey (Sales Territory!data)]) | Profit=[Profit] | Return on Sales=SUM(sales_data[Calculation_1259319095595331584]) / [Sum Sales Amount] | Total Sales=SUM(sales_data[Sales Amount]) | Avg. Sales Order Value=[Sum Total Sales]/[Sum # Sales Orders] | # Sales Orders=DISTINCTCOUNT([Sales Order]) | Avg. Items per Order=SUM([Order Quantity (copy)_1259319095912017923])/DISTINCTCOUNT([Sales Order]) | Top Product (Orders)=&quot;Top Product (Orders)&quot; | City (copy)=sales_data[City] | Date (copy)=sales_data[Date] | # Items Ordered=SUM(sales_data[# Items Ordered]) | Net Profit=[Sales Amount] - [Total Product Cost] - [Operating Expenses] | Gross Margin %=DIVIDE([Profit], [Sales Amount]) | Customer Lifetime Value=SUM([Sales Amount]) / DISTINCTCOUNT([Customer ID]) | Order Fulfillment Rate=DIVIDE([# Items Shipped], [# Items Ordered]) | Average Order Processing Time=AVERAGE([Order Date] - [Ship Date])</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>ThemePalette</Name>
+      <Value>#1f77b4, #ff7f0e, #2ca02c, #d62728</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>ExecutionMode</Name>
+      <Value>LocalNoDataSource</Value>
+    </CustomProperty>
+    <CustomProperty>
+      <Name>DatasetsPerTable</Name>
+      <Value>Dataset_customer_data, Dataset_product_data, Dataset_reseller_data, Dataset_sales_order_data, Dataset_sales_territory_data, Dataset_sales_data, Dataset_excel_direct_0l6n75j0kki3ah1gat4x10sxcpc4_data, Dataset_adventureworks_sales_data, Dataset__Extract__Sales_Order_data_6D3A7473E50142E88BB2F503A905B9B2, Dataset__Extract__Sales_Territory_data_84E2961FC39D4F58A802D9AFA3CA3C92, Dataset__Extract__Sales_data_BA25E1A1DB47436182C97DFA3F70A878, Dataset__Extract__Reseller_data_41AC542E72E44589B9C8472B2DD4E54C, Dataset__Extract__Customer_data_49F8E714B7464486911A5B00FB9A5CDE, Dataset__Extract__Product_data_EB213F305CB547E193ED37036EDBE89B</Value>
+    </CustomProperty>
+  </CustomProperties>
+
+
+  <ReportSections>
+    <ReportSection>
+      <Body>
+
+        <ReportItems>
+          <Textbox Name="tbTitle">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>&quot;Extract&quot;.Sales!data_BA25E1A1DB47436182C97DFA3F70A878_dataset - Paginated Report</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.1in</Top>
+            <Left>0.2in</Left>
+            <Height>0.5in</Height>
+            <Width>9.5in</Width>
+            <Style>
+              <Border><Style>None</Style></Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="tbSummary">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Dataset: &quot;Extract&quot;.Sales!data_BA25E1A1DB47436182C97DFA3F70A878_dataset
+Fact table: &quot;Extract&quot;.Sales!data_BA25E1A1DB47436182C97DFA3F70A878
+Pages: 3
+Visuals: 11
+Measures: 29
+Page names: Customer Details, Product Details, Sales Overview</Value>
+                    <Style>
+                      <FontSize>10pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.7in</Top>
+            <Left>0.2in</Left>
+            <Height>1.7in</Height>
+            <Width>9.5in</Width>
+            <Style>
+              <Border><Style>Solid</Style></Border>
+              <PaddingLeft>4pt</PaddingLeft>
+              <PaddingRight>4pt</PaddingRight>
+              <PaddingTop>4pt</PaddingTop>
+              <PaddingBottom>4pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="tbFirstPage">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>First page details
+1. CD_TopByCity&amp;amp;Prod [barChart] =&gt; x=sales_data.Calculation_1259319095894155266 | y=sales_data.City | color=- | size=- | tooltip=-</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>2.55in</Top>
+            <Left>0.2in</Left>
+            <Height>3.4in</Height>
+            <Width>9.5in</Width>
+            <Style>
+              <Border><Style>Solid</Style></Border>
+              <PaddingLeft>4pt</PaddingLeft>
+              <PaddingRight>4pt</PaddingRight>
+              <PaddingTop>4pt</PaddingTop>
+              <PaddingBottom>4pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="tbMeasures">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Measure preview
+1. Sum Profit = SUM(sales_data[Profit])
+2. Sum Return on Sales = SUM(sales_data[Return on Sales])
+3. Sum Total Sales = SUM(sales_data[Total Sales])
+4. Sum Avg. Sales Order Value = SUM(sales_order_data[Avg. Sales Order Value])
+5. Sum # Sales Orders = SUM(sales_order_data[# Sales Orders])
+6. Sum Avg. Sales per Customer = SUM(customer_data[Avg. Sales per Customer])
+7. Sum Avg. Items per Order = SUM(sales_data[Avg. Items per Order])
+8. Sum CustomerKey (Customer!data) = SUM(customer_data[CustomerKey (Customer!data)])
+9. Sum # Items Ordered = SUM(sales_data[# Items Ordered])
+10. Sum ProductKey (Product!data) = SUM(product_data[ProductKey (Product!data)])
+11. Sum ResellerKey (Reseller!data) = SUM(reseller_data[ResellerKey (Reseller!data)])
+12. Sum Sales Amount = SUM(sales_data[Sales Amount])</Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>6.1in</Top>
+            <Left>0.2in</Left>
+            <Height>3.7in</Height>
+            <Width>9.5in</Width>
+            <Style>
+              <Border><Style>Solid</Style></Border>
+              <PaddingLeft>4pt</PaddingLeft>
+              <PaddingRight>4pt</PaddingRight>
+              <PaddingTop>4pt</PaddingTop>
+              <PaddingBottom>4pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          
+        </ReportItems>
+        <Height>11in</Height>
+      </Body>
+      <Width>10in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.6in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.4in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+        </PageFooter>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+</Report>

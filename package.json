@@ -1,0 +1,26 @@
+{
+  "name": "coeur-viz-agent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test dist/tests/**/*.test.js",
+    "build": "tsc",
+    "demo:abstract": "npm run build && node dist/src/demo/run-abstract-visualization-demo.js",
+    "demo:visual": "npm run build && node dist/src/demo/generate-simple-visual.js",
+    "demo:full": "npm run build && node dist/src/demo/run-full-pipeline-demo.js",
+    "demo:rdl:ssms": "npm run build && node dist/src/demo/run-sqlserver-rdl-demo.js",
+    "demo": "npm run demo:full"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "fast-xml-parser": "^5.3.0",
+    "neo4j-driver": "^5.28.1"
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0"
+  }
+}

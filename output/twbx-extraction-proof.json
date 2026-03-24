@@ -1,0 +1,36 @@
+{
+  "inputWorkbook": "template_adventurework.twbx",
+  "mode": "twbx",
+  "hyperExtracted": true,
+  "twbPath": "AdventureWorks Sales Dashboard.twb",
+  "dataFiles": [
+    {
+      "path": "Data/TableauTemp/TEMP_0a2nocv1v203sf1akxp890wfkamv.hyper",
+      "type": "hyper",
+      "sizeBytes": 7208960,
+      "head5": [
+        "{\"Channel\":\"Reseller\",\"SalesOrderLineKey\":43907015,\"Sales Order\":\"SO43907\",\"Sales Order Line\":\"SO43907 - 15\"}",
+        "{\"Channel\":\"Reseller\",\"SalesOrderLineKey\":43907016,\"Sales Order\":\"SO43907\",\"Sales Order Line\":\"SO43907 - 16\"}",
+        "{\"Channel\":\"Reseller\",\"SalesOrderLineKey\":43907017,\"Sales Order\":\"SO43907\",\"Sales Order Line\":\"SO43907 - 17\"}",
+        "{\"Channel\":\"Reseller\",\"SalesOrderLineKey\":43907018,\"Sales Order\":\"SO43907\",\"Sales Order Line\":\"SO43907 - 18\"}",
+        "{\"Channel\":\"Reseller\",\"SalesOrderLineKey\":43907019,\"Sales Order\":\"SO43907\",\"Sales Order Line\":\"SO43907 - 19\"}"
+      ]
+    },
+    {
+      "path": "Image/cycle-logo-9.png",
+      "type": "other",
+      "sizeBytes": 545507,
+      "head5": [
+        "byte1: 0x89",
+        "byte2: 0x50",
+        "byte3: 0x4e",
+        "byte4: 0x47",
+        "byte5: 0x0d"
+      ]
+    }
+  ],
+  "notes": [
+    "For binary files (.hyper/.other), head(5) is displayed as first 5 bytes in hex.",
+    "For .csv files, head(5) is displayed as first 5 lines."
+  ]
+}
