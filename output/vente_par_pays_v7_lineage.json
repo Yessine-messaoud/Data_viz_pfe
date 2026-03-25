@@ -1,0 +1,114 @@
+{
+  "tables": [
+    {
+      "id": "('Extract', 'Extract')",
+      "name": "('Extract', 'Extract')",
+      "source_name": "",
+      "schema": "dbo",
+      "columns": [
+        {
+          "name": "Country",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "Pays"
+        },
+        {
+          "name": "Region",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "R\u00e9gion"
+        },
+        {
+          "name": "SalesGroup",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "Groupe de Ventes"
+        },
+        {
+          "name": "OrderYear",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "Ann\u00e9e de Commande"
+        },
+        {
+          "name": "TotalSales",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Ventes Totales"
+        },
+        {
+          "name": "TotalTax",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Taxes Totales"
+        },
+        {
+          "name": "TotalFreight",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Fret Total"
+        },
+        {
+          "name": "TotalQuantity",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Quantit\u00e9 Totale"
+        },
+        {
+          "name": "OrderCount",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Nombre de Commandes"
+        }
+      ],
+      "is_date_table": false,
+      "row_count": 41
+    }
+  ],
+  "joins": [
+    {
+      "id": "join_0",
+      "left_table": "federated.0data1",
+      "right_table": "federated.0data1",
+      "left_col": "id",
+      "right_col": "id",
+      "type": "INNER",
+      "pbi_cardinality": "ManyToOne",
+      "source_xml_ref": ""
+    },
+    {
+      "id": "join_1",
+      "left_table": "federated.0data1",
+      "right_table": "federated.0data1",
+      "left_col": "id",
+      "right_col": "id",
+      "type": "INNER",
+      "pbi_cardinality": "ManyToOne",
+      "source_xml_ref": ""
+    },
+    {
+      "id": "join_2",
+      "left_table": "federated.0data1",
+      "right_table": "federated.0data1",
+      "left_col": "id",
+      "right_col": "id",
+      "type": "INNER",
+      "pbi_cardinality": "ManyToOne",
+      "source_xml_ref": ""
+    }
+  ],
+  "columns_used": [],
+  "measures": [],
+  "filters_applied": [],
+  "transformations": [],
+  "visual_column_map": {}
+}

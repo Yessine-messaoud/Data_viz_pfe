@@ -1,0 +1,373 @@
+{
+  "id": "42c24e60-22e1-4bae-a477-fd2d965568fa",
+  "version": "2.0.0",
+  "created_at": "2026-03-24T16:51:06.878069+00:00",
+  "source_fingerprint": "52e82604bb993639999b829ecfb7af80220e1cbd60d796127d4df4092a86339d",
+  "dashboard_spec": {
+    "pages": [
+      {
+        "id": "Ventes par Pays",
+        "name": "Ventes par Pays",
+        "visuals": []
+      }
+    ],
+    "global_filters": [],
+    "theme": {
+      "name": "tableau-imported"
+    }
+  },
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "('Extract', 'Extract')",
+        "name": "('Extract', 'Extract')",
+        "source_name": "",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesGroup",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderYear",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalSales",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalTax",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalFreight",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalQuantity",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderCount",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 41
+      }
+    ],
+    "measures": [
+      {
+        "name": "Ventes Moyennes par Commande",
+        "expression": "DIVIDE([TotalSales], [OrderCount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalSales / OrderCount"
+      },
+      {
+        "name": "Marge Totale",
+        "expression": "[TotalSales] - ([TotalTax] + [TotalFreight])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalSales - (TotalTax + TotalFreight)"
+      },
+      {
+        "name": "Quantit\u00e9 Moyenne par Commande",
+        "expression": "DIVIDE([TotalQuantity], [OrderCount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalQuantity / OrderCount"
+      },
+      {
+        "name": "Taux de Taxe",
+        "expression": "DIVIDE([TotalTax], [TotalSales])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalTax / TotalSales"
+      },
+      {
+        "name": "Fret par Commande",
+        "expression": "DIVIDE([TotalFreight], [OrderCount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalFreight / OrderCount"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "Country"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "Region"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "SalesGroup"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "OrderYear"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "TotalSales"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "TotalTax"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "TotalFreight"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "TotalQuantity"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "OrderCount"
+      }
+    ],
+    "hierarchies": [
+      {
+        "name": "Calendrier",
+        "table": "('Extract', 'Extract')",
+        "levels": [
+          "OrderYear",
+          "Quarter",
+          "Month",
+          "Date"
+        ]
+      }
+    ],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "('Extract', 'Extract')",
+    "grain": "row"
+  },
+  "data_lineage": {
+    "tables": [
+      {
+        "id": "('Extract', 'Extract')",
+        "name": "('Extract', 'Extract')",
+        "source_name": "",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesGroup",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderYear",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalSales",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalTax",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalFreight",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TotalQuantity",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderCount",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 41
+      }
+    ],
+    "joins": [
+      {
+        "id": "join_0",
+        "left_table": "federated.0data1",
+        "right_table": "federated.0data1",
+        "left_col": "id",
+        "right_col": "id",
+        "type": "INNER",
+        "pbi_cardinality": "ManyToOne",
+        "source_xml_ref": ""
+      },
+      {
+        "id": "join_1",
+        "left_table": "federated.0data1",
+        "right_table": "federated.0data1",
+        "left_col": "id",
+        "right_col": "id",
+        "type": "INNER",
+        "pbi_cardinality": "ManyToOne",
+        "source_xml_ref": ""
+      },
+      {
+        "id": "join_2",
+        "left_table": "federated.0data1",
+        "right_table": "federated.0data1",
+        "left_col": "id",
+        "right_col": "id",
+        "type": "INNER",
+        "pbi_cardinality": "ManyToOne",
+        "source_xml_ref": ""
+      }
+    ],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "rdl_datasets": [
+    {
+      "name": "('Extract', 'Extract')",
+      "query": "SELECT * FROM ('Extract', 'Extract')",
+      "connection_ref": "DataSource1",
+      "fields": [
+        {
+          "name": "Country",
+          "data_field": "Country",
+          "rdl_type": "String"
+        },
+        {
+          "name": "Region",
+          "data_field": "Region",
+          "rdl_type": "String"
+        },
+        {
+          "name": "SalesGroup",
+          "data_field": "SalesGroup",
+          "rdl_type": "String"
+        },
+        {
+          "name": "OrderYear",
+          "data_field": "OrderYear",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TotalSales",
+          "data_field": "TotalSales",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TotalTax",
+          "data_field": "TotalTax",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TotalFreight",
+          "data_field": "TotalFreight",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TotalQuantity",
+          "data_field": "TotalQuantity",
+          "rdl_type": "String"
+        },
+        {
+          "name": "OrderCount",
+          "data_field": "OrderCount",
+          "rdl_type": "String"
+        }
+      ]
+    }
+  ],
+  "build_log": [
+    {
+      "level": "info",
+      "message": "AbstractSpec v2 built",
+      "timestamp": "2026-03-24T16:51:06.879069+00:00"
+    }
+  ],
+  "warnings": []
+}

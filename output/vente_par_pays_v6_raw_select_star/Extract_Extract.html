@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Raw SELECT * - (&#x27;Extract&#x27;, &#x27;Extract&#x27;)</title>
+    <style>
+        body { font-family: Segoe UI, Arial, sans-serif; margin: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 6px; font-size: 12px; }
+        th { background: #f2f2f2; position: sticky; top: 0; }
+        .meta { color: #444; margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+    <h1>SELECT * - (&#x27;Extract&#x27;, &#x27;Extract&#x27;)</h1>
+    <p class="meta">Rows: 41 | Columns: 9</p>
+    <table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Country</th>
+      <th>Region</th>
+      <th>SalesGroup</th>
+      <th>OrderYear</th>
+      <th>TotalSales</th>
+      <th>TotalTax</th>
+      <th>TotalFreight</th>
+      <th>TotalQuantity</th>
+      <th>OrderCount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Australia</td>
+      <td>Australia</td>
+      <td>Pacific</td>
+      <td>2010</td>
+      <td>20909</td>
+      <td>1672</td>
+      <td>522</td>
+      <td>6</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Australia</td>
+      <td>Australia</td>
+      <td>Pacific</td>
+      <td>2011</td>
+      <td>2563732</td>
+      <td>205098</td>
+      <td>64093</td>
+      <td>786</td>
+      <td>786</td>
+    </tr>
+    <tr>
+      <td>Australia</td>
+      <td>Australia</td>
+      <td>Pacific</td>
+      <td>2012</td>
+      <td>2128407</td>
+      <td>170272</td>
+      <td>53210</td>
+      <td>1167</td>
+      <td>1130</td>
+    </tr>
+    <tr>
+      <td>Australia</td>
+      <td>Australia</td>
+      <td>Pacific</td>
+      <td>2013</td>
+      <td>4339443</td>
+      <td>347155</td>
+      <td>108486</td>
+      <td>11054</td>
+      <td>4640</td>
+    </tr>
+    <tr>
+      <td>Australia</td>
+      <td>Australia</td>
+      <td>Pacific</td>
+      <td>2014</td>
+      <td>8507</td>
+      <td>680</td>
+      <td>212</td>
+      <td>332</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>2010</td>
+      <td>3578</td>
+      <td>286</td>
+      <td>89</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>2011</td>
+      <td>571571</td>
+      <td>45725</td>
+      <td>14289</td>
+      <td>170</td>
+      <td>170</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>307604</td>
+      <td>24608</td>
+      <td>7690</td>
+      <td>172</td>
+      <td>169</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>1085632</td>
+      <td>86850</td>
+      <td>27141</td>
+      <td>6863</td>
+      <td>2856</td>
+    </tr>
+    <tr>
+      <td>Canada</td>
+      <td>Canada</td>
+      <td>North America</td>
+      <td>2014</td>
+      <td>9457</td>
+      <td>756</td>
+      <td>236</td>
+      <td>414</td>
+      <td>179</td>
+    </tr>
+    <tr>
+      <td>France</td>
+      <td>France</td>
+      <td>Europe</td>
+      <td>2010</td>
+      <td>3399</td>
+      <td>271</td>
+      <td>84</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>France</td>
+      <td>France</td>
+      <td>Europe</td>
+      <td>2011</td>
+      <td>410845</td>
+      <td>32867</td>
+      <td>10271</td>
+      <td>140</td>
+      <td>140</td>
+    </tr>
+    <tr>
+      <td>France</td>
+      <td>France</td>
+      <td>Europe</td>
+      <td>2012</td>
+      <td>648065</td>
+      <td>51845</td>
+      <td>16201</td>
+      <td>373</td>
+      <td>359</td>
+    </tr>
+    <tr>
+      <td>France</td>
+      <td>France</td>
+      <td>Europe</td>
+      <td>2013</td>
+      <td>1578511</td>
+      <td>126280</td>
+      <td>39463</td>
+      <td>4880</td>
+      <td>1917</td>
+    </tr>
+    <tr>
+      <td>France</td>
+      <td>France</td>
+      <td>Europe</td>
+      <td>2014</td>
+      <td>3195</td>
+      <td>255</td>
+      <td>79</td>
+      <td>164</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <td>Germany</td>
+      <td>Germany</td>
+      <td>Europe</td>
+      <td>2011</td>
+      <td>520500</td>
+      <td>41640</td>
+      <td>13012</td>
+      <td>175</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <td>Germany</td>
+      <td>Germany</td>
+      <td>Europe</td>
+      <td>2012</td>
+      <td>608657</td>
+      <td>48692</td>
+      <td>15216</td>
+      <td>368</td>
+      <td>339</td>
+    </tr>
+    <tr>
+      <td>Germany</td>
+      <td>Germany</td>
+      <td>Europe</td>
+      <td>2013</td>
+      <td>1761876</td>
+      <td>140950</td>
+      <td>44047</td>
+      <td>4937</td>
+      <td>1909</td>
+    </tr>
+    <tr>
+      <td>Germany</td>
+      <td>Germany</td>
+      <td>Europe</td>
+      <td>2014</td>
+      <td>3277</td>
+      <td>262</td>
+      <td>81</td>
+      <td>145</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <td>United Kingdom</td>
+      <td>United Kingdom</td>
+      <td>Europe</td>
+      <td>2010</td>
+      <td>699</td>
+      <td>55</td>
+      <td>17</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>United Kingdom</td>
+      <td>United Kingdom</td>
+      <td>Europe</td>
+      <td>2011</td>
+      <td>550591</td>
+      <td>44047</td>
+      <td>13764</td>
+      <td>175</td>
+      <td>175</td>
+    </tr>
+    <tr>
+      <td>United Kingdom</td>
+      <td>United Kingdom</td>
+      <td>Europe</td>
+      <td>2012</td>
+      <td>712700</td>
+      <td>57016</td>
+      <td>17817</td>
+      <td>423</td>
+      <td>405</td>
+    </tr>
+    <tr>
+      <td>United Kingdom</td>
+      <td>United Kingdom</td>
+      <td>Europe</td>
+      <td>2013</td>
+      <td>2124007</td>
+      <td>169920</td>
+      <td>53100</td>
+      <td>6135</td>
+      <td>2377</td>
+    </tr>
+    <tr>
+      <td>United Kingdom</td>
+      <td>United Kingdom</td>
+      <td>Europe</td>
+      <td>2014</td>
+      <td>3713</td>
+      <td>297</td>
+      <td>92</td>
+      <td>172</td>
+      <td>73</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southwest</td>
+      <td>North America</td>
+      <td>2010</td>
+      <td>11433</td>
+      <td>914</td>
+      <td>285</td>
+      <td>4</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northwest</td>
+      <td>North America</td>
+      <td>2010</td>
+      <td>3399</td>
+      <td>271</td>
+      <td>84</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southwest</td>
+      <td>North America</td>
+      <td>2011</td>
+      <td>1531228</td>
+      <td>122498</td>
+      <td>38280</td>
+      <td>481</td>
+      <td>481</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northwest</td>
+      <td>North America</td>
+      <td>2011</td>
+      <td>927056</td>
+      <td>74164</td>
+      <td>23176</td>
+      <td>289</td>
+      <td>289</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southwest</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>810222</td>
+      <td>64817</td>
+      <td>20255</td>
+      <td>520</td>
+      <td>497</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Central</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>2071</td>
+      <td>165</td>
+      <td>51</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southeast</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>3637</td>
+      <td>290</td>
+      <td>90</td>
+      <td>3</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northeast</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>2049</td>
+      <td>163</td>
+      <td>51</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northwest</td>
+      <td>North America</td>
+      <td>2012</td>
+      <td>619068</td>
+      <td>49525</td>
+      <td>15476</td>
+      <td>369</td>
+      <td>365</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Central</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>929</td>
+      <td>74</td>
+      <td>23</td>
+      <td>19</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northeast</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>4483</td>
+      <td>358</td>
+      <td>112</td>
+      <td>26</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southwest</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>3356890</td>
+      <td>268551</td>
+      <td>83922</td>
+      <td>10889</td>
+      <td>4319</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northwest</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>2091249</td>
+      <td>167299</td>
+      <td>52281</td>
+      <td>7965</td>
+      <td>3242</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southeast</td>
+      <td>North America</td>
+      <td>2013</td>
+      <td>8526</td>
+      <td>682</td>
+      <td>213</td>
+      <td>33</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southeast</td>
+      <td>North America</td>
+      <td>2014</td>
+      <td>74</td>
+      <td>5</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Northwest</td>
+      <td>North America</td>
+      <td>2014</td>
+      <td>9091</td>
+      <td>727</td>
+      <td>227</td>
+      <td>369</td>
+      <td>161</td>
+    </tr>
+    <tr>
+      <td>United States</td>
+      <td>Southwest</td>
+      <td>North America</td>
+      <td>2014</td>
+      <td>8376</td>
+      <td>670</td>
+      <td>209</td>
+      <td>371</td>
+      <td>172</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
