@@ -107,6 +107,21 @@ Construire un pipeline Python complet qui convertit un fichier Tableau TWBX vers
 - [x] Ajouter logs de phase lisibles.
 - [x] Ajouter documentation d execution locale.
 
+## Sprint 11 - Semantique Avancee + Graph + Securite (P1/P2)
+- [x] Creer ontologie JSON metier (overrideable).
+- [x] Implementer OntologyLoader robuste (merge + validation schema).
+- [x] Implementer moteur mapping hybride avec scoring et fallback deterministe.
+- [x] Integrer driver Neo4j officiel avec configuration par variables d environnement.
+- [x] Implementer SemanticGraph CRUD + modelisation noeuds/relations.
+- [x] Refactor entrypoint phase 2 via orchestrateur dedie.
+- [x] Brancher la phase 2 au pipeline principal.
+- [x] Exporter semantic_model JSON incluant artefacts phase 2.
+- [x] Verifier compatibilite phase 3 / phase 5.
+- [x] Ecrire tests unitaires mapping/ontology/graph + test integration Neo4j local (conditionnel).
+- [x] Ajouter exemple usage dataset.
+- [x] Mettre a jour README technique.
+- [x] Revue securite cle API (suppression hardcode, lecture env).
+
 ## Checklist de Verification Finale
 - [x] Pipeline execute de la phase 0 a 6 sans erreur bloquante.
 - [x] AbstractSpecValidator score acceptable et can_proceed true.

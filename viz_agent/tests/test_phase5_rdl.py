@@ -10,6 +10,8 @@ from viz_agent.models.abstract_spec import (
     DashboardSpec,
     DataBinding,
     DataLineageSpec,
+    Measure,
+    MeasureRef,
     SemanticModel,
     TableRef,
     VisualSpec,
@@ -150,3 +152,79 @@ def test_rdl_generator_adds_fallback_item_when_no_visuals() -> None:
 
     assert "<ReportItems>" in xml
     assert "<Textbox Name=\"tbNoVisuals\">" in xml
+
+
+def test_rdl_generator_resolves_measure_label_and_sets_decimal_for_sum_fields() -> None:
+    dataset = RDLDataset(
+        name="('Extract', 'Extract')",
+        query="SELECT * FROM ('Extract', 'Extract')",
+        connection_ref="DataSource1",
+        fields=[
+            RDLField(name="Country", data_field="Country", rdl_type="String"),
+            RDLField(name="TotalSales", data_field="TotalSales", rdl_type="String"),
+            RDLField(name="TotalTax", data_field="TotalTax", rdl_type="String"),
+            RDLField(name="TotalFreight", data_field="TotalFreight", rdl_type="String"),
+            RDLField(name="TotalQuantity", data_field="TotalQuantity", rdl_type="String"),
+            RDLField(name="OrderCount", data_field="OrderCount", rdl_type="String"),
+        ],
+    )
+
+    visual = VisualSpec(
+        id="Ventes_par_pays",
+        source_worksheet="Ventes par pays",
+        type="chart",
+        title="Ventes par pays",
+        data_binding=DataBinding(
+            axes={
+                "x": ColumnRef(table="('Extract', 'Extract')", column="Country"),
+                "y": MeasureRef(name="Ventes Totales"),
+            },
+            measures=[MeasureRef(name="Ventes Totales")],
+        ),
+    )
+
+    spec = AbstractSpec(
+        dashboard_spec=DashboardSpec(pages=[DashboardPage(id="p1", name="Ventes", visuals=[visual])]),
+        semantic_model=SemanticModel(
+            entities=[
+                TableRef(
+                    id="t1",
+                    name="('Extract', 'Extract')",
+                    columns=[
+                        ColumnDef(name="Country", pbi_type="text", role="dimension"),
+                        ColumnDef(name="TotalSales", pbi_type="text", role="measure", label="Ventes Totales"),
+                    ],
+                )
+            ],
+            measures=[
+                Measure(
+                    name="Ventes Totales",
+                    expression="SUM(('Extract', 'Extract').TotalSales)",
+                    tableau_expression="TotalSales",
+                )
+            ],
+            fact_table="('Extract', 'Extract')",
+        ),
+        data_lineage=DataLineageSpec(
+            tables=[
+                TableRef(
+                    id="t1",
+                    name="('Extract', 'Extract')",
+                    columns=[ColumnDef(name="Country"), ColumnDef(name="TotalSales")],
+                )
+            ]
+        ),
+        rdl_datasets=[dataset],
+    )
+
+    layout_builder = RDLLayoutBuilder()
+    pages = layout_builder.compute_pagination(spec.dashboard_spec.pages)
+    layouts = {"Ventes": layout_builder.compute_layout(MagicMock(), spec.dashboard_spec.pages[0].visuals)}
+
+    xml = RDLGenerator().generate(spec, layouts, pages)
+
+    assert "<Y>=Sum(Fields!TotalSales.Value)</Y>" in xml
+    assert "<Group Name=\"grp_Country\">" in xml
+    assert "<GroupExpression>=Fields!Country.Value</GroupExpression>" in xml
+    assert "<Field Name=\"TotalSales\">" in xml and "<rd:TypeName>Decimal</rd:TypeName>" in xml
+    assert "<Field Name=\"OrderCount\">" in xml and "<rd:TypeName>Integer</rd:TypeName>" in xml

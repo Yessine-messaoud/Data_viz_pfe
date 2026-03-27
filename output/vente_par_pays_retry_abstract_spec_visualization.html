@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abstract Spec - Viz Agent</title>
+    <style>
+        :root {
+            --bg: #f5f4ef;
+            --card: #ffffff;
+            --ink: #1c1c1a;
+            --muted: #5b5b56;
+            --line: #dfddd3;
+            --accent: #0d7a5f;
+        }
+        body {
+            margin: 0;
+            font-family: Segoe UI, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top right, #efe8d1, var(--bg));
+        }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        .header { margin-bottom: 18px; }
+        .header h1 { margin: 0 0 8px; }
+        .header p { margin: 0; color: var(--muted); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 14px 0 24px; }
+        .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+        .kpi .label { color: var(--muted); font-size: 12px; }
+        .kpi .value { font-size: 24px; font-weight: 700; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+        h2 { margin-top: 0; }
+        ul { margin-top: 8px; }
+        .page { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+        pre {
+            background: #141414;
+            color: #dbf8d3;
+            border-radius: 10px;
+            padding: 12px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .badge {
+            display: inline-block;
+            margin-left: 8px;
+            background: #def4ec;
+            color: var(--accent);
+            border: 1px solid #badfd3;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <h1>Abstract Spec</h1>
+            <p>Version 2.0.0 <span class="badge">e261e57a-a6e9-4bc7-b389-5f85504d90ac</span></p>
+        </header>
+
+        <section class="grid">
+            <article class="kpi"><div class="label">Pages</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Visuals</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Tables</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Measures</div><div class="value">7</div></article>
+        </section>
+
+        <section class="card">
+            <h2>Pages et Visuals</h2>
+            <section class='page'><h3>Ventes par Pays</h3><p>1 visual(s)</p><ul><li><strong>Ventes par pays</strong> (chart) - source: Ventes par pays</li></ul></section>
+        </section>
+
+        <section class="card">
+            <h2>Tables</h2>
+            <ul><li>(&#x27;Extract&#x27;, &#x27;Extract&#x27;) (9 colonne(s))</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>Measures</h2>
+            <ul><li>Ventes Totales</li><li>Taxes Totales</li><li>Fret Total</li><li>Quantité Totale</li><li>Nombre de Commandes</li><li>Moyenne des Ventes par Commande</li><li>Marge sur Ventes</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>JSON Complet</h2>
+            <pre>{
+  &quot;id&quot;: &quot;e261e57a-a6e9-4bc7-b389-5f85504d90ac&quot;,
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;created_at&quot;: &quot;2026-03-26T15:16:44.965010+00:00&quot;,
+  &quot;source_fingerprint&quot;: &quot;b1997f385940ef70696493aab435702301ab68223d5108e0e0e131a7b2b20f28&quot;,
+  &quot;dashboard_spec&quot;: {
+    &quot;pages&quot;: [
+      {
+        &quot;id&quot;: &quot;Ventes par Pays&quot;,
+        &quot;name&quot;: &quot;Ventes par Pays&quot;,
+        &quot;visuals&quot;: [
+          {
+            &quot;id&quot;: &quot;Ventes par pays&quot;,
+            &quot;source_worksheet&quot;: &quot;Ventes par pays&quot;,
+            &quot;type&quot;: &quot;chart&quot;,
+            &quot;title&quot;: &quot;Ventes par pays&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;federated.0data1&quot;,
+                  &quot;column&quot;: &quot;Country&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;TotalSales&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;TotalSales&quot;
+                }
+              ],
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          }
+        ]
+      }
+    ],
+    &quot;global_filters&quot;: [],
+    &quot;theme&quot;: {
+      &quot;name&quot;: &quot;tableau-imported&quot;
+    }
+  },
+  &quot;semantic_model&quot;: {
+    &quot;entities&quot;: [
+      {
+        &quot;id&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;name&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;source_name&quot;: &quot;&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;Country&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Pays&quot;
+          },
+          {
+            &quot;name&quot;: &quot;Region&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;R\u00e9gion&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesGroup&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Groupe de Ventes&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderYear&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Ann\u00e9e de Commande&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalSales&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Ventes Totales&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalTax&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Taxes Totales&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalFreight&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Fret Total&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Quantit\u00e9 Totale&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderCount&quot;,
+            &quot;pbi_type&quot;: &quot;int64&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Nombre de Commandes&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 41
+      }
+    ],
+    &quot;measures&quot;: [
+      {
+        &quot;name&quot;: &quot;Ventes Totales&quot;,
+        &quot;expression&quot;: &quot;SUM((&#x27;Extract&#x27;, &#x27;Extract&#x27;).TotalSales)&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TotalSales&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Taxes Totales&quot;,
+        &quot;expression&quot;: &quot;SUM((&#x27;Extract&#x27;, &#x27;Extract&#x27;).TotalTax)&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TotalTax&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Fret Total&quot;,
+        &quot;expression&quot;: &quot;SUM((&#x27;Extract&#x27;, &#x27;Extract&#x27;).TotalFreight)&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TotalFreight&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Quantit\u00e9 Totale&quot;,
+        &quot;expression&quot;: &quot;SUM((&#x27;Extract&#x27;, &#x27;Extract&#x27;).TotalQuantity)&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TotalQuantity&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Nombre de Commandes&quot;,
+        &quot;expression&quot;: &quot;SUM((&#x27;Extract&#x27;, &#x27;Extract&#x27;).OrderCount)&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;OrderCount&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Moyenne des Ventes par Commande&quot;,
+        &quot;expression&quot;: &quot;DIVIDE([Ventes Totales], [Nombre de Commandes])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;calculated&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Marge sur Ventes&quot;,
+        &quot;expression&quot;: &quot;DIVIDE([Ventes Totales] - ([Taxes Totales] + [Fret Total]), [Ventes Totales])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;calculated&quot;
+      }
+    ],
+    &quot;dimensions&quot;: [
+      {
+        &quot;table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;column&quot;: &quot;Country&quot;
+      },
+      {
+        &quot;table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;column&quot;: &quot;Region&quot;
+      },
+      {
+        &quot;table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;column&quot;: &quot;SalesGroup&quot;
+      },
+      {
+        &quot;table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;column&quot;: &quot;OrderYear&quot;
+      }
+    ],
+    &quot;hierarchies&quot;: [
+      {
+        &quot;name&quot;: &quot;Hi\u00e9rarchie Temporelle&quot;,
+        &quot;table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;levels&quot;: [
+          &quot;Ann\u00e9e de Commande&quot;,
+          &quot;Trimestre&quot;,
+          &quot;Mois&quot;,
+          &quot;Date&quot;
+        ]
+      }
+    ],
+    &quot;relationships&quot;: [],
+    &quot;glossary&quot;: [],
+    &quot;fact_table&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+    &quot;grain&quot;: &quot;row&quot;
+  },
+  &quot;data_lineage&quot;: {
+    &quot;tables&quot;: [
+      {
+        &quot;id&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;name&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+        &quot;source_name&quot;: &quot;&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;Country&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Pays&quot;
+          },
+          {
+            &quot;name&quot;: &quot;Region&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;R\u00e9gion&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesGroup&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Groupe de Ventes&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderYear&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Ann\u00e9e de Commande&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalSales&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Ventes Totales&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalTax&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Taxes Totales&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalFreight&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Fret Total&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TotalQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Quantit\u00e9 Totale&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderCount&quot;,
+            &quot;pbi_type&quot;: &quot;int64&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Nombre de Commandes&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 41
+      }
+    ],
+    &quot;joins&quot;: [
+      {
+        &quot;id&quot;: &quot;join_0&quot;,
+        &quot;left_table&quot;: &quot;federated.0data1&quot;,
+        &quot;right_table&quot;: &quot;federated.0data1&quot;,
+        &quot;left_col&quot;: &quot;id&quot;,
+        &quot;right_col&quot;: &quot;id&quot;,
+        &quot;type&quot;: &quot;INNER&quot;,
+        &quot;pbi_cardinality&quot;: &quot;ManyToOne&quot;,
+        &quot;source_xml_ref&quot;: &quot;&quot;
+      }
+    ],
+    &quot;columns_used&quot;: [],
+    &quot;measures&quot;: [],
+    &quot;filters_applied&quot;: [],
+    &quot;transformations&quot;: [],
+    &quot;visual_column_map&quot;: {}
+  },
+  &quot;rdl_datasets&quot;: [
+    {
+      &quot;name&quot;: &quot;(&#x27;Extract&#x27;, &#x27;Extract&#x27;)&quot;,
+      &quot;query&quot;: &quot;SELECT st.SalesTerritoryCountry AS Country, st.SalesTerritoryRegion AS Region, st.SalesTerritoryGroup AS SalesGroup, d.CalendarYear AS OrderYear, SUM(f.SalesAmount) AS TotalSales, SUM(f.TaxAmt) AS TotalTax, SUM(f.Freight) AS TotalFreight, SUM(f.OrderQuantity) AS TotalQuantity, COUNT(*) AS OrderCount FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimDate AS d ON f.OrderDateKey = d.DateKey GROUP BY st.SalesTerritoryCountry, st.SalesTerritoryRegion, st.SalesTerritoryGroup, d.CalendarYear&quot;,
+      &quot;connection_ref&quot;: &quot;DataSource1&quot;,
+      &quot;fields&quot;: [
+        {
+          &quot;name&quot;: &quot;Country&quot;,
+          &quot;data_field&quot;: &quot;Country&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;Region&quot;,
+          &quot;data_field&quot;: &quot;Region&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;SalesGroup&quot;,
+          &quot;data_field&quot;: &quot;SalesGroup&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;OrderYear&quot;,
+          &quot;data_field&quot;: &quot;OrderYear&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TotalSales&quot;,
+          &quot;data_field&quot;: &quot;TotalSales&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TotalTax&quot;,
+          &quot;data_field&quot;: &quot;TotalTax&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TotalFreight&quot;,
+          &quot;data_field&quot;: &quot;TotalFreight&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TotalQuantity&quot;,
+          &quot;data_field&quot;: &quot;TotalQuantity&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;OrderCount&quot;,
+          &quot;data_field&quot;: &quot;OrderCount&quot;,
+          &quot;rdl_type&quot;: &quot;Integer&quot;
+        }
+      ]
+    }
+  ],
+  &quot;build_log&quot;: [
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;AbstractSpec v2 built&quot;,
+      &quot;timestamp&quot;: &quot;2026-03-26T15:16:44.966100+00:00&quot;
+    }
+  ],
+  &quot;warnings&quot;: []
+}</pre>
+        </section>
+    </div>
+</body>
+</html>

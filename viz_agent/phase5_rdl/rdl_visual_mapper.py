@@ -8,9 +8,108 @@ from lxml import etree
 
 
 class RDLVisualMapper:
-    def __init__(self, llm_client=None, use_llm: bool = True):
+    def __init__(self, llm_client=None, use_llm: bool = True, semantic_model=None):
         self.llm = llm_client
         self.use_llm = use_llm
+        self.semantic_model = semantic_model
+        self.measure_alias_map = self._build_measure_alias_map(semantic_model)
+
+    def _normalize_identifier(self, value: str) -> str:
+        return re.sub(r"[^A-Za-z0-9]", "", str(value or "")).lower()
+
+    def _extract_column_from_expression(self, expression: str) -> str | None:
+        text = str(expression or "").strip()
+        if not text:
+            return None
+
+        # Handles common generated patterns like SUM(('Extract','Extract').TotalSales)
+        match = re.search(r"\.\s*([A-Za-z_][A-Za-z0-9_]*)\s*\)", text)
+        if match:
+            return match.group(1)
+        return None
+
+    def _build_measure_alias_map(self, semantic_model) -> dict[str, str]:
+        alias_map: dict[str, str] = {}
+        if semantic_model is None:
+            return alias_map
+
+        for entity in getattr(semantic_model, "entities", []) or []:
+            for col in getattr(entity, "columns", []) or []:
+                if getattr(col, "role", "") != "measure":
+                    continue
+                col_name = str(getattr(col, "name", "") or "").strip()
+                col_label = str(getattr(col, "label", "") or "").strip()
+                if col_name:
+                    alias_map[col_name] = col_name
+                    alias_map[self._normalize_identifier(col_name)] = col_name
+                if col_label:
+                    alias_map[col_label] = col_name
+                    alias_map[self._normalize_identifier(col_label)] = col_name
+
+        for measure in getattr(semantic_model, "measures", []) or []:
+            measure_name = str(getattr(measure, "name", "") or "").strip()
+            source_name = str(getattr(measure, "tableau_expression", "") or "").strip()
+            inferred = self._extract_column_from_expression(str(getattr(measure, "expression", "") or ""))
+
+            technical_name = source_name if source_name and source_name != "calculated" else inferred
+            if not technical_name:
+                continue
+
+            alias_map[technical_name] = technical_name
+            alias_map[self._normalize_identifier(technical_name)] = technical_name
+
+            if measure_name:
+                alias_map[measure_name] = technical_name
+                alias_map[self._normalize_identifier(measure_name)] = technical_name
+
+        return alias_map
+
+    def _resolve_field_name(self, candidate: str, dataset) -> str | None:
+        field_names = [str(getattr(field, "name", "") or "") for field in getattr(dataset, "fields", [])]
+        if not field_names:
+            return None
+
+        direct = str(candidate or "").strip()
+        if direct and direct in field_names:
+            return direct
+
+        mapped = self.measure_alias_map.get(direct) or self.measure_alias_map.get(self._normalize_identifier(direct))
+        if mapped and mapped in field_names:
+            return mapped
+
+        normalized_fields = {self._normalize_identifier(name): name for name in field_names}
+        candidate_norm = self._normalize_identifier(direct)
+        if candidate_norm and candidate_norm in normalized_fields:
+            return normalized_fields[candidate_norm]
+
+        if mapped:
+            mapped_norm = self._normalize_identifier(mapped)
+            if mapped_norm in normalized_fields:
+                return normalized_fields[mapped_norm]
+
+        return None
+
+    def _resolve_y_field_name(self, visual, dataset) -> str | None:
+        axis_y = visual.data_binding.axes.get("y") if hasattr(visual.data_binding, "axes") else None
+        candidates: list[str] = []
+        if axis_y is not None:
+            if hasattr(axis_y, "column"):
+                candidates.append(str(axis_y.column))
+            if hasattr(axis_y, "name"):
+                candidates.append(str(axis_y.name))
+
+        for measure_ref in getattr(visual.data_binding, "measures", []) or []:
+            if hasattr(measure_ref, "name"):
+                candidates.append(str(measure_ref.name))
+
+        candidates.append("TotalSales")
+
+        for candidate in candidates:
+            resolved = self._resolve_field_name(candidate, dataset)
+            if resolved:
+                return resolved
+
+        return None
 
     def _safe_name(self, value: str, fallback: str) -> str:
         # RDL Name attributes must be XML-friendly and stable.
@@ -120,9 +219,9 @@ class RDLVisualMapper:
             ds_node.text = self._dataset_name(dataset)
 
         if expected_tag == "Chart":
-            self._ensure_chart_minimum(element, visual)
+            self._ensure_chart_minimum(element, visual, dataset)
 
-    def _ensure_chart_minimum(self, chart, visual) -> None:
+    def _ensure_chart_minimum(self, chart, visual, dataset) -> None:
         self._normalize_chart_hierarchy(chart, "ChartCategoryHierarchy")
         self._normalize_chart_hierarchy(chart, "ChartSeriesHierarchy")
 
@@ -160,6 +259,23 @@ class RDLVisualMapper:
             if label.text is None or not str(label.text).strip():
                 label.text = "=\"Category\""
 
+            group = member.find("Group")
+            if group is None:
+                axis_x = visual.data_binding.axes.get("x") if hasattr(visual.data_binding, "axes") else None
+                if axis_x is not None and hasattr(axis_x, "column"):
+                    group_field = str(axis_x.column)
+                    group_expr = f"=Fields!{group_field}.Value"
+                    group_name = self._safe_name(f"grp_{group_field}", "grp_Category")
+                else:
+                    group_expr = "=Fields!Country.Value"
+                    group_name = "grp_Country"
+
+                group = etree.SubElement(member, "Group")
+                group.set("Name", group_name)
+                expressions = etree.SubElement(group, "GroupExpressions")
+                expression = etree.SubElement(expressions, "GroupExpression")
+                expression.text = group_expr
+
         for member in chart.findall(".//ChartSeriesHierarchy//ChartMember"):
             label = member.find("Label")
             if label is None:
@@ -187,13 +303,15 @@ class RDLVisualMapper:
         values = point.find("ChartDataPointValues")
         if values is None:
             values = etree.SubElement(point, "ChartDataPointValues")
-        if values.find("Y") is None:
+        y_val = values.find("Y")
+        if y_val is None:
             y_val = etree.SubElement(values, "Y")
-            axis_y = visual.data_binding.axes.get("y") if hasattr(visual.data_binding, "axes") else None
-            if axis_y is not None and hasattr(axis_y, "column"):
-                y_val.text = f"=Sum(Fields!{axis_y.column}.Value)"
-            else:
-                y_val.text = "=0"
+
+        y_field_name = self._resolve_y_field_name(visual, dataset)
+        if y_field_name:
+            y_val.text = f"=Sum(Fields!{y_field_name}.Value)"
+        elif y_val.text is None or not str(y_val.text).strip() or str(y_val.text).strip() == "=0":
+            y_val.text = "=Sum(Fields!TotalSales.Value)"
 
         if chart_series.find("Type") is None:
             chart_type = etree.SubElement(chart_series, "Type")
@@ -238,7 +356,7 @@ class RDLVisualMapper:
         ds_name = etree.SubElement(chart, "DataSetName")
         ds_name.text = self._dataset_name(dataset)
 
-        self._ensure_chart_minimum(chart, visual)
+        self._ensure_chart_minimum(chart, visual, dataset)
 
         return chart
 
@@ -311,7 +429,8 @@ class RDLVisualMapper:
 
         if visual.data_binding.measures:
             measure = visual.data_binding.measures[0]
-            value.text = f"=Sum(Fields!{measure.name}.Value)"
+            resolved_measure = self._resolve_field_name(str(measure.name), dataset) or str(measure.name)
+            value.text = f"=Sum(Fields!{resolved_measure}.Value)"
         else:
             value.text = "=0"
 

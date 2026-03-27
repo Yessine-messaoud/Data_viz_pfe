@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from dataclasses import asdict, is_dataclass
 import getpass
 import html
 import json
@@ -13,7 +14,7 @@ from viz_agent.phase0_data.csv_loader import CSVLoader
 from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
 from viz_agent.phase0_data.hyper_extractor import HyperExtractor
 from viz_agent.phase1_parser.tableau_parser import TableauParser
-from viz_agent.phase2_semantic.hybrid_semantic_layer import HybridSemanticLayer
+from viz_agent.phase2_semantic.phase2_orchestrator import Phase2SemanticOrchestrator
 from viz_agent.phase3_spec.abstract_spec_builder import AbstractSpecBuilder
 from viz_agent.phase3b_validator.abstract_spec_validator import AbstractSpecValidator
 from viz_agent.phase4_transform.calc_field_translator import CalcFieldTranslator
@@ -62,6 +63,21 @@ def _matching_dashboard_for_page(workbook, page_name: str):
         if dashboard.name == page_name:
             return dashboard
     return workbook.dashboards[0] if workbook.dashboards else None
+
+
+def _to_jsonable(value):
+    if isinstance(value, dict):
+        return {k: _to_jsonable(v) for k, v in value.items()}
+    if isinstance(value, (list, tuple, set)):
+        return [_to_jsonable(v) for v in value]
+    if is_dataclass(value):
+        return asdict(value)
+    if hasattr(value, "model_dump"):
+        try:
+            return value.model_dump(mode="json")
+        except TypeError:
+            return value.model_dump()
+    return value
 
 def _slugify_name(value: str) -> str:
     safe = re.sub(r"[^A-Za-z0-9._-]+", "_", value).strip("_")
@@ -309,12 +325,20 @@ async def run_pipeline(twbx_path: str, output_path: str) -> None:
     print("[Phase 2] Hybrid semantic layer...")
     intent = {"action": "export_rdl"}
     try:
-        semantic_model, lineage = HybridSemanticLayer().enrich(workbook, intent)
+        semantic_model, lineage, phase2_artifacts = Phase2SemanticOrchestrator().run(workbook, intent)
         print("  mistral semantic_enrichment: SUCCESS")
     except Exception as exc:
         print(f"  mistral semantic_enrichment: FAILED ({exc})")
         raise
     print(f"  fact_table={semantic_model.fact_table}, measures={len(semantic_model.measures)}")
+
+    semantic_model_path = output_file.with_name(f"{output_file.stem}_semantic_model.json")
+    semantic_model_payload = {
+        "semantic_model": semantic_model.model_dump(mode="json"),
+        "phase2_artifacts": phase2_artifacts,
+    }
+    semantic_model_path.write_text(json.dumps(_to_jsonable(semantic_model_payload), indent=2), encoding="utf-8")
+    print(f"  semantic model: {semantic_model_path}")
 
     print("[Phase 3] AbstractSpec build + validation...")
     spec = AbstractSpecBuilder.build(workbook, intent, semantic_model, lineage)
@@ -395,6 +419,7 @@ async def run_pipeline(twbx_path: str, output_path: str) -> None:
 
     print("\nPipeline complete")
     print(f"  raw select* index: {raw_index}")
+    print(f"  semantic model: {semantic_model_path}")
     print(f"  abstract spec: {abstract_spec_path}")
     print(f"  visualization: {abstract_visualization_path}")
     print(f"  rdl: {output_file}")

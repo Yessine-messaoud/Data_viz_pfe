@@ -55,6 +55,44 @@ def test_rdl_dataset_mapper_builds_dataset_per_table() -> None:
     assert datasets[0].query.upper().startswith("SELECT")
 
 
+def test_rdl_dataset_mapper_extract_query_sets_sum_decimal_and_count_integer() -> None:
+    registry = DataSourceRegistry()
+    registry.register(
+        "extract_source",
+        ResolvedDataSource(
+            name="extract_source",
+            source_type="hyper",
+            frames={"('Extract', 'Extract')": pd.DataFrame({"Country": ["FR"], "TotalSales": [100], "OrderCount": [1]})},
+        ),
+    )
+
+    lineage = DataLineageSpec(
+        tables=[
+            TableRef(
+                id="t_extract",
+                name="('Extract', 'Extract')",
+                columns=[
+                    ColumnDef(name="Country", pbi_type="text"),
+                    ColumnDef(name="TotalSales", pbi_type="text"),
+                    ColumnDef(name="TotalTax", pbi_type="text"),
+                    ColumnDef(name="TotalFreight", pbi_type="text"),
+                    ColumnDef(name="TotalQuantity", pbi_type="text"),
+                    ColumnDef(name="OrderCount", pbi_type="text"),
+                ],
+            )
+        ]
+    )
+
+    datasets = RDLDatasetMapper.build(registry, lineage)
+
+    fields_by_name = {field.name: field.rdl_type for field in datasets[0].fields}
+    assert fields_by_name["TotalSales"] == "Decimal"
+    assert fields_by_name["TotalTax"] == "Decimal"
+    assert fields_by_name["TotalFreight"] == "Decimal"
+    assert fields_by_name["TotalQuantity"] == "Decimal"
+    assert fields_by_name["OrderCount"] == "Integer"
+
+
 def test_calc_field_translator_retries_until_valid_expression() -> None:
     model = SemanticModel(entities=[TableRef(id="t1", name="sales_data", columns=[ColumnDef(name="SalesAmount")])])
     fake_llm = FakeMistralTranslatorClient(["Not valid", "=Sum(Fields!SalesAmount.Value)"])

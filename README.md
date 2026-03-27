@@ -93,6 +93,11 @@ Variables d environnement:
 - `MISTRAL_MODEL` (defaut: `mistral-small-latest`)
 - `MISTRAL_BASE_URL` (defaut: `https://api.mistral.ai/v1`)
 - `VIZ_AGENT_RDL_CONNECTION_STRING` (connexion SQL du rapport)
+- `VIZ_AGENT_ONTOLOGY_PATH` (optionnel, chemin JSON ontologie metier)
+- `VIZ_AGENT_SEMANTIC_GRAPH_ENABLED` (optionnel, active export Neo4j)
+- `VIZ_AGENT_NEO4J_URI` (defaut: `bolt://localhost:7687`)
+- `VIZ_AGENT_NEO4J_USER` (defaut: `neo4j`)
+- `VIZ_AGENT_NEO4J_PASSWORD` (obligatoire si graphe active)
 
 Connexion RDL par defaut:
 
@@ -137,9 +142,17 @@ Pour une sortie `X.rdl`, le pipeline produit:
 
 - `X.rdl`
 - `X_lineage.json`
+- `X_semantic_model.json`
 - `X_abstract_spec.json`
 - `X_abstract_spec_visualization.html`
 - dossier `X_raw_select_star/` (index + CSV/HTML des tables extraites)
+
+Le fichier `X_semantic_model.json` contient:
+
+- `semantic_model`: modele semantique consolide (mesures, dimensions, fact table)
+- `phase2_artifacts.ontology`: ontologie chargee (base + override)
+- `phase2_artifacts.mappings`: mapping colonnes -> termes metier
+- `phase2_artifacts.graph`: noeuds/relations graph et statut de persistence Neo4j
 
 Exemple ouverture visualisation:
 
@@ -179,3 +192,5 @@ Config pytest: [version_py/pytest.ini](version_py/pytest.ini)
 ## 10) Documentation complementaire
 
 - Guide local detaille: [version_py/README_LOCAL_RUN.md](version_py/README_LOCAL_RUN.md)
+- Documentation phase 2 semantique: [version_py/README_PHASE2.md](version_py/README_PHASE2.md)
+- Exemple dataset: [version_py/examples/dataset_usage_example.md](version_py/examples/dataset_usage_example.md)

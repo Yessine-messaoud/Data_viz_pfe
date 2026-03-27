@@ -38,6 +38,11 @@ Si `MISTRAL_API_KEY` n est pas definie, le programme la demandera en mode securi
 - `MISTRAL_MODEL` (defaut: `mistral-small-latest`)
 - `MISTRAL_BASE_URL` (defaut: `https://api.mistral.ai/v1`)
 - `VIZ_AGENT_RDL_CONNECTION_STRING` (connexion SQL du rapport RDL)
+- `VIZ_AGENT_ONTOLOGY_PATH` (override JSON ontologie metier)
+- `VIZ_AGENT_SEMANTIC_GRAPH_ENABLED` (active persistence Neo4j si true/1)
+- `VIZ_AGENT_NEO4J_URI` (defaut: `bolt://localhost:7687`)
+- `VIZ_AGENT_NEO4J_USER` (defaut: `neo4j`)
+- `VIZ_AGENT_NEO4J_PASSWORD` (obligatoire si graphe active)
 
 Valeur par defaut de la connexion RDL:
 
@@ -56,6 +61,7 @@ Note: les cles de credentials (`User ID`, `Password`, `Integrated Security`, etc
 ## Sorties
 - Rapport pagine RDL: fichier passe dans `--output`
 - Lineage JSON: meme nom avec suffixe `_lineage.json`
+- Semantic model JSON: meme nom avec suffixe `_semantic_model.json`
 - Abstract Spec JSON: meme nom avec suffixe `_abstract_spec.json`
 - Visualisation HTML du spec: meme nom avec suffixe `_abstract_spec_visualization.html`
 

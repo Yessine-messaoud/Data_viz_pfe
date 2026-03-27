@@ -20,6 +20,7 @@ class RDLGenerator:
 
     def generate(self, spec, layouts: dict[str, dict], rdl_pages: list) -> str:
         self._assign_rdl_dataset_names(spec.rdl_datasets)
+        self._harmonize_measure_identifiers(spec)
 
         root = etree.Element(
             "Report",
@@ -42,7 +43,7 @@ class RDLGenerator:
         body = etree.SubElement(report_section, "Body")
         report_items = etree.SubElement(body, "ReportItems")
 
-        mapper = RDLVisualMapper(llm_client=self.llm, use_llm=True)
+        mapper = RDLVisualMapper(llm_client=self.llm, use_llm=True, semantic_model=spec.semantic_model)
         appended_items = 0
         for page in rdl_pages:
             page_layout = layouts.get(page.name, {})
@@ -87,6 +88,31 @@ class RDLGenerator:
 
         return etree.tostring(root, pretty_print=True, xml_declaration=True, encoding="UTF-8").decode("utf-8")
 
+    def _harmonize_measure_identifiers(self, spec) -> None:
+        # Keep dashboard measure refs aligned with semantic model technical identifiers.
+        alias_to_technical: dict[str, str] = {}
+        for measure in getattr(spec.semantic_model, "measures", []) or []:
+            label_name = str(getattr(measure, "name", "") or "").strip()
+            technical = str(getattr(measure, "tableau_expression", "") or "").strip()
+            if not technical or technical == "calculated":
+                continue
+            if label_name:
+                alias_to_technical[label_name] = technical
+
+        for page in getattr(spec.dashboard_spec, "pages", []) or []:
+            for visual in getattr(page, "visuals", []) or []:
+                axes = getattr(visual.data_binding, "axes", {}) or {}
+                axis_y = axes.get("y")
+                if axis_y is not None and hasattr(axis_y, "name"):
+                    axis_name = str(getattr(axis_y, "name", "") or "").strip()
+                    if axis_name in alias_to_technical:
+                        axis_y.name = alias_to_technical[axis_name]
+
+                for measure_ref in getattr(visual.data_binding, "measures", []) or []:
+                    m_name = str(getattr(measure_ref, "name", "") or "").strip()
+                    if m_name in alias_to_technical:
+                        measure_ref.name = alias_to_technical[m_name]
+
     def _add_metadata(self, root, spec):
         description = etree.SubElement(root, "Description")
         description.text = f"Genere par VizAgent v2 le {datetime.now().isoformat()}"
@@ -120,7 +146,10 @@ class RDLGenerator:
             ds_name = etree.SubElement(query, "DataSourceName")
             ds_name.text = "DataSource1"
             cmd = etree.SubElement(query, "CommandText")
-            cmd.text = self._normalize_command_text(getattr(dataset, "query", ""))
+            normalized_query = self._normalize_command_text(getattr(dataset, "query", ""))
+            cmd.text = normalized_query
+            sum_aliases = self._extract_sum_aliases(normalized_query)
+            count_aliases = self._extract_count_aliases(normalized_query)
 
             fields_el = etree.SubElement(ds_el, "Fields")
             for field in dataset.fields:
@@ -129,7 +158,32 @@ class RDLGenerator:
                 data_field = etree.SubElement(f_el, "DataField")
                 data_field.text = field.data_field
                 type_name = etree.SubElement(f_el, f"{{{RD_NAMESPACE}}}TypeName")
-                type_name.text = field.rdl_type
+                if field.name in sum_aliases:
+                    type_name.text = "Decimal"
+                elif field.name in count_aliases:
+                    type_name.text = "Integer"
+                else:
+                    type_name.text = field.rdl_type
+
+    def _extract_sum_aliases(self, query: str) -> set[str]:
+        return set(
+            match.group(1)
+            for match in re.finditer(
+                r"SUM\s*\([^\)]*\)\s+AS\s+([A-Za-z_][A-Za-z0-9_]*)",
+                str(query or ""),
+                flags=re.IGNORECASE,
+            )
+        )
+
+    def _extract_count_aliases(self, query: str) -> set[str]:
+        return set(
+            match.group(1)
+            for match in re.finditer(
+                r"COUNT\s*\([^\)]*\)\s+AS\s+([A-Za-z_][A-Za-z0-9_]*)",
+                str(query or ""),
+                flags=re.IGNORECASE,
+            )
+        )
 
     def _add_parameters(self, root, spec):
         if not spec.dashboard_spec.global_filters:
