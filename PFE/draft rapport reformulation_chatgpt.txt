@@ -1,0 +1,83 @@
+draft rapport reformulation_chatgpt
+
+Introduction Générale (version améliorée)
+
+De nos jours, les organisations génèrent et stockent des volumes massifs de données provenant de sources multiples et hétérogènes. Ces données constituent une ressource stratégique essentielle pour l’aide à la décision. Dans ce contexte, les outils de Business Intelligence (BI) jouent un rôle fondamental en facilitant la visualisation, l’analyse et l’interprétation des données, permettant ainsi aux entreprises d’exploiter efficacement leur patrimoine informationnel.
+
+Transformer ces données brutes en indicateurs pertinents, en tableaux de bord visuels ergonomiques et en insights exploitables représente un levier majeur pour comprendre l’état actuel d’un système. Cela permet notamment d’identifier les tendances, de détecter les anomalies et d’analyser les relations entre les différentes variables, améliorant ainsi la qualité et la rapidité des prises de décision.
+
+Avec l’émergence de l’intelligence artificielle, et plus particulièrement des modèles de langage de grande taille (LLMs), de nouvelles solutions innovantes ont vu le jour. Ces technologies permettent d’automatiser plusieurs étapes du pipeline analytique, telles que l’analyse des données, la génération de visualisations, ou encore l’assistance à la prise de décision à travers des interfaces conversationnelles intelligentes, notamment via des copilotes et des agents IA.
+
+C’est dans ce contexte que s’inscrit ce projet, réalisé au sein de l’entreprise TALAN, qui vise à automatiser le cycle de vie de la visualisation des données. L’objectif principal est de concevoir un agent intelligent capable d’interagir avec l’utilisateur en langage naturel afin de simplifier la création, la transformation et la migration de tableaux de bord BI entre différents outils.
+
+Pour relever ce défi, nous avons conçu et développé un agent de visualisation intelligent permettant :
+
+d’interagir avec les utilisateurs via une interface conversationnelle,
+de générer automatiquement des dashboards à partir de sources de données,
+et d’assurer la conversion de documents BI entre différents outils, avec ou sans modification.
+
+Ce rapport de projet de fin d’études est structuré en plusieurs chapitres complémentaires. Le premier chapitre présente le cadre général du projet, incluant l’organisme d’accueil, la problématique, la solution proposée ainsi que la méthodologie adoptée. Les chapitres suivants détaillent la conception, la réalisation et l’évaluation de la solution développée.
+
+Chapitre 1 — Présentation du projet (amélioré)
+1.2 Présentation du projet
+1.2.1 Cadre du projet
+
+Ce projet a été réalisé au sein de l’entreprise TALAN dans le cadre du projet de fin d’études, en vue de l’obtention du diplôme national d’ingénieur en sciences appliquées et technologies, spécialité Data Science.
+
+Intitulé “AI-Powered Data Visualizer”, ce travail a été mené au sein du département Data & IA de TALAN, en réponse aux besoins spécifiques de l’équipe BI. L’objectif est d’optimiser et d’automatiser le processus de conception et de gestion des tableaux de bord décisionnels.
+
+1.2.2 Problématique
+
+Malgré la puissance des outils de Business Intelligence et l’intégration croissante des technologies d’intelligence artificielle, les solutions existantes présentent plusieurs limites.
+
+D’une part, elles restent souvent complexes et nécessitent un certain niveau d’expertise technique, notamment en manipulation et préparation des données. Cela rend leur utilisation difficile pour les profils non spécialisés et limite leur adoption à grande échelle.
+
+D’autre part, la création de visualisations repose encore largement sur des processus manuels, ce qui entraîne :
+
+une faible autonomie des utilisateurs,
+une interaction limitée avec les données,
+et une complexité accrue dans la conception des tableaux de bord.
+
+Par ailleurs, lors d’un changement d’outil BI ou d’une migration entre plateformes, la reconstruction des dashboards doit généralement être effectuée manuellement, ce qui représente un coût important en temps et en ressources.
+
+Dans ce contexte, la problématique principale de ce projet peut être formulée comme suit :
+
+Comment automatiser le processus de création et de migration des tableaux de bord BI tout en permettant une interaction intuitive et efficace avec les données ?
+
+1.2.3 Solution proposée
+
+Afin de répondre aux défis identifiés, nous proposons la conception d’un agent intelligent de visualisation des données basé sur l’intelligence artificielle.
+
+Cet agent permet à l’utilisateur, à partir de sources de données et éventuellement de documents BI existants, d’exprimer ses besoins en langage naturel via une interface conversationnelle.
+
+Les principales fonctionnalités offertes sont :
+
+Conversion d’un document BI d’un outil vers un autre sans modification
+Conversion avec adaptation des visualisations selon les préférences utilisateur
+Génération de tableaux de bord à partir de zéro (from scratch)
+
+L’agent assure plusieurs fonctions clés :
+
+Détection de l’intention utilisateur
+Extraction et compréhension des données à travers une couche sémantique intelligente
+Transformation de l’intention en une représentation visuelle abstraite
+Génération et export du dashboard dans l’outil cible
+
+Cette solution vise à automatiser l’ensemble du cycle de vie de conception et de migration des tableaux de bord BI, tout en améliorant l’accessibilité et l’efficacité des outils décisionnels.
+
+1.3 Méthodologie du projet
+
+Dans le domaine du développement logiciel, l’adoption d’une méthodologie est essentielle pour structurer et organiser les différentes phases du projet. Elle permet de modéliser le système avant sa mise en œuvre, d’en comprendre les composants et d’assurer sa cohérence globale.
+
+Dans le cadre de ce projet, nous avons opté pour la méthodologie Scrum, une approche agile particulièrement adaptée aux environnements dynamiques où les besoins évoluent fréquemment.
+
+Scrum repose sur une organisation en sprints, qui sont des cycles de développement courts et itératifs. À la fin de chaque sprint, une version fonctionnelle du produit est livrée, permettant une validation progressive avec les parties prenantes, notamment l’équipe BI.
+
+Cette approche présente plusieurs avantages :
+
+une grande flexibilité face aux changements,
+une amélioration continue du produit,
+une détection rapide des problèmes,
+et une communication renforcée au sein de l’équipe.
+
+Les réunions quotidiennes (Daily Scrum) favorisent la coordination, tandis que les rétrospectives permettent d’optimiser les pratiques de développement au fil du projet.

@@ -1,0 +1,57 @@
+draft rapport
+Introduction Générale 
+1 Présentation générale du projet
+1.1 Présentation de l’organisme d’accueil TALAN
+1.2 Présentation du projet 
+1.2.1 Cadre du projet 
+1.2.3 Problématique du projet
+1.2.4 Solution proposée
+1.3 Méthodologie du projet
+1.3.1 Répartition des rôles 
+1.3.2 Fonctionnement de la méthodologie 
+1.4 Planification du projet
+1.5 Conclusion 
+
+
+Intro
+les organisations generent de nos jours des quantités massives de data stockés, ces données proviennent de plusieurs sources et sont indispensable pour l'aide a la decision. c'est la ou intervient les outils BI qui aident a la visualisation et la comprehension de ces donnees et permettent aux entreprises d'exploiter ces données pour améliorer leurs décisions
+Transformer ces données en insights et tableaux de bords visuels ergonomique, détaillé et preécis (straight to the point) sont l'un des meilleurs moyens pour faciliter la comprehension l'etat actuel, a travers l'identification des tendances, des anomalies et les relations entre les données de facon visuel ce qui ameliore la qualite des decision
+
+Grace à l'emmergence de l'intelligence artificielle les outils technologiques modernes ont introduits des solutions modernes base sur l'IA et les LLMs de facon qu'on automatise des etapes du pipeline comme l'analyse des donnees, l'assistance analytique, la generation automatique de visualisation, des conversations intelligentes et ceci est grace au copilotes, agents IA 
+
+c'est dans ce contexxte que TALAN s'inscrit dans la dynamique de l'automatisation  du cycle de visualisation des donnees par ambition de faciliter et ameliorer la visualisation des donnees et faciliter le process dans le but d'une meilleur orientation decisionnelle
+ pour relever ce defi, nous avons concu et developpe un agent de visualisation qui permette une interaction directe avec l'utilisateur avec le langage naturel avec des options de conversion d'un documents BI en un autre outil BI soit avec changement soit sans changement ou meme de concevoir un document bi par l'outil preferé et a partir d'une source de donnee personnelle
+Ce rapport de projet de fin d'etude s'articule autour de cinq chapitres complementaire. Le premier presente le cadre general du projet, l'organisme d'accueil ainsi que la problematique, la solution proposée suite a une analyse de l'existant et la methodologie adopte. le deuxieme …
+1.
+1.1 supposé donnée
+1.21: Ce projet, realise au sein de TALAN, s'inscrit dans le cadre du projet de fin d'études en vues de l'obtention du diplôme national d'ingenieur en science applique et technologique specialité data science intitulé AI-Powered Data Visiualiser ce travail a été mene dans le cadre du departement data&IA de TALAN en réponse aux besoins spécifique de l'equipe BI pour optimiser et automatiser le process de création des dashboards BI..
+1.2.2:
+
+malgres la puissance des outils BI et l'integration solide de l'IA, les solutions existantes sont souvent complexes et necesseite un minimum de connaissance et pour des objectifs complexes c'est dedie pour des experts. Donc si on a une mauvaise exploitation de ces donnees on vas recevoir des decisions maladresse.Et meme si on possede des minimum de connaissances de creation des visuels on doit disposer aussi des expertises en manipulation des donnees puisque on interagit directement et manuellement avec les donnees. Par consequent le traitement devient manuel, non autonome, difficile d'interagir avec les donnees et complexes 
+Et on plus que ca Si une entreprise décide de changer ou migrer d'un outil BI vers un autre ou un expert décide de changer d'outil ou de converser une template a son outil dont il est faut on doit refaire tous le pipeline manuellement. la question se pose alors clairement : comment automatiser le process BI et assurer une conversion fiable entre les outils BI pour assurer des decisions pertinent et facile a generer?
+
+1.2.3
+ Pour repondre aux defis lies a la conception des outils BI, il est essentiel de comprendre le fonctionnement simplifié de l'agent visualisation.nous proposons que  L'utilisateur , apartir  des artefacts (documents si existants et source dedonnees),demande a travers une interface et a travers son langage naturel une intention:
+-conversion d'un document entre d'un outil vers autre sans modification
+-conversion d'un document entre d'un outil vers autre en précisant les visuels prefere
+-concepter un dashboard from scratch
+l'agents assure:
+-une detection de l'intetion de l'utilisateur
+-une extraction intelligente des donnees :parser les donnees et les comprendre avec une couche semantique intelligente 
+-une generation de l'intention en une forme visuel abstraite
+-L'export de la visualisation abstraite au format demande 
+cette solution vise a automatiser l'ensemble de cycle de vie de conception et migration des dashboards power bi en meme temps
+1.3
+Tout equipe du domaine s'appuie sur une methodologie qui sert de cadre pour planifier la realisation des applications. elle consiste a modelise le système avant sa mise en oeuvre afin de bien comprendre son fonctionnement ses modules et d'en assurer la coherence
+dans ce projet nous avons choisi scrum une methode agile particulièrement adapte aux environnement ou les besoins peuvent evoluer. son approche  flexible,
+collaborative et itérative en fait un cadre de travail efficace.
+Scrum s’organise autour de sprints, des cycles courts et réguliers au cours desquels
+des fonctionnalités utilisables sont livrées progressivement. Les revues de sprint
+permettent de vérifier en continu la conformité du produit aux attentes du client qui est l'equipe BI,
+tandis que la brièveté des cycles facilite la détection rapide des obstacles et leur
+correction sans attendre la fin du projet. Les réunions quotidiennes renforcent la
+communication au sein de l’équipe, et les rétrospectives favorisent une amélioration
+continue.
+1.3.1 le reste du chapitre va etre genere ulterieremnt
+
+

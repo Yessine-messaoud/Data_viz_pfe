@@ -1,0 +1,60 @@
+{
+  "entities": [
+    "Sales",
+    "Product",
+    "Customer",
+    "Geography",
+    "Time",
+    "Reseller",
+    "Promotion"
+  ],
+  "metrics": [
+    "Revenue",
+    "Quantity",
+    "Profit",
+    "Discount",
+    "Tax"
+  ],
+  "terms": [
+    {
+      "name": "Sales",
+      "aliases": ["Sale", "Orders", "Order", "SalesAmount"]
+    },
+    {
+      "name": "Product",
+      "aliases": ["Item", "SKU", "Model", "Category", "Subcategory"]
+    },
+    {
+      "name": "Customer",
+      "aliases": ["Client", "Buyer", "Consumer", "CustomerKey"]
+    },
+    {
+      "name": "Geography",
+      "aliases": ["Country", "Region", "City", "Territory"]
+    },
+    {
+      "name": "Time",
+      "aliases": ["Date", "Year", "Quarter", "Month", "Day"]
+    },
+    {
+      "name": "Revenue",
+      "aliases": ["Turnover", "SalesAmount", "Net Sales"]
+    },
+    {
+      "name": "Quantity",
+      "aliases": ["Qty", "Units", "Order Quantity"]
+    },
+    {
+      "name": "Profit",
+      "aliases": ["Margin", "Gross Profit", "Net Profit"]
+    },
+    {
+      "name": "Discount",
+      "aliases": ["Discount Amount", "Promo Discount"]
+    },
+    {
+      "name": "Tax",
+      "aliases": ["Tax Amount", "VAT"]
+    }
+  ]
+}

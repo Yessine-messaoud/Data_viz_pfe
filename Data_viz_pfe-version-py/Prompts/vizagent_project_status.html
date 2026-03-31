@@ -1,0 +1,133 @@
+
+<style>
+.phase-card { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 14px 16px; margin-bottom: 10px; }
+.phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; white-space: nowrap; }
+.badge-ok     { background: var(--color-background-success); color: var(--color-text-success); }
+.badge-warn   { background: var(--color-background-warning); color: var(--color-text-warning); }
+.badge-danger { background: var(--color-background-danger);  color: var(--color-text-danger);  }
+.badge-info   { background: var(--color-background-info);    color: var(--color-text-info);    }
+.phase-name { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.phase-sub  { font-size: 12px; color: var(--color-text-secondary); }
+.issue-list { margin: 4px 0 0 0; padding: 0; list-style: none; }
+.issue-list li { font-size: 12px; color: var(--color-text-secondary); padding: 2px 0; padding-left: 14px; position: relative; }
+.issue-list li::before { content: "—"; position: absolute; left: 0; color: var(--color-text-tertiary); }
+.score-bar-wrap { height: 5px; background: var(--color-border-tertiary); border-radius: 4px; margin-top: 8px; }
+.score-bar { height: 5px; border-radius: 4px; transition: width .4s; }
+.section-title { font-size: 11px; font-weight: 500; color: var(--color-text-tertiary); letter-spacing: .06em; text-transform: uppercase; margin: 18px 0 8px; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 18px; }
+.metric { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 12px; text-align: center; }
+.metric-val { font-size: 22px; font-weight: 500; color: var(--color-text-primary); }
+.metric-lbl { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+</style>
+
+<div style="padding: 4px 0;">
+
+<div class="section-title">Vue d'ensemble</div>
+<div class="summary-grid">
+  <div class="metric"><div class="metric-val" style="color:#1D9E75">3</div><div class="metric-lbl">Phases stables</div></div>
+  <div class="metric"><div class="metric-val" style="color:#BA7517">2</div><div class="metric-lbl">En cours</div></div>
+  <div class="metric"><div class="metric-val" style="color:#E24B4A">1</div><div class="metric-lbl">À refactorer</div></div>
+  <div class="metric"><div class="metric-val">6</div><div class="metric-lbl">Phases totales</div></div>
+</div>
+
+<div class="section-title">État par phase</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-warn">À refactorer</span>
+    <span class="phase-name">Phase 0 — Extraction</span>
+  </div>
+  <div class="phase-sub">Hyper/CSV, registre sources, export brut</div>
+  <ul class="issue-list">
+    <li>Extraction partielle — colonnes non utilisées dans visuels ignorées</li>
+    <li>Pas de support mode Live (connexion SQL directe)</li>
+    <li>Pas de MetadataModel normalisé Pydantic</li>
+    <li>Prompt de refactoring produit → travail à venir</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:35%;background:#BA7517"></div></div>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-ok">Stable</span>
+    <span class="phase-name">Phase 1 — Parsing Workbook</span>
+  </div>
+  <div class="phase-sub">Worksheets, dashboards, calculs Tableau</div>
+  <ul class="issue-list">
+    <li>Parsing .twbx/.twb documenté et fonctionnel</li>
+    <li>README_PHASE1 non référencé → documentation incomplète</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:75%;background:#1D9E75"></div></div>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-info">En cours</span>
+    <span class="phase-name">Phase 2 — Semantic Agent</span>
+  </div>
+  <div class="phase-sub">Graphe sémantique, LLM + règles, ontologie</div>
+  <ul class="issue-list">
+    <li>Architecture 3 voies documentée (Fast path / LLM / Cache)</li>
+    <li>Bug connu : incohérence nommage mesures (TotalSales vs Ventes Totales)</li>
+    <li>Neo4j optionnel mais non testé en prod selon le README</li>
+    <li>Dépend de Mistral — pas de fallback LLM alternatif</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:60%;background:#378ADD"></div></div>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-ok">Stable</span>
+    <span class="phase-name">Phase 3 — Specification Agent</span>
+  </div>
+  <div class="phase-sub">AbstractSpec JSON universel</div>
+  <ul class="issue-list">
+    <li>AbstractSpec v2 produite et validée (source_fingerprint, build_log)</li>
+    <li>Bug résiduel : dashboard_spec.axes.y non aligné sur semantic_model</li>
+    <li>Validateur Phase 3b présent mais portée non documentée</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:70%;background:#1D9E75"></div></div>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-info">En cours</span>
+    <span class="phase-name">Phase 4 — Transformation Agent</span>
+  </div>
+  <div class="phase-sub">Mapping AbstractSpec → modèle outil (RDL, PBIX…)</div>
+  <ul class="issue-list">
+    <li>Mapping RDL implémenté mais 3 bugs critiques identifiés</li>
+    <li>rdl_type String sur mesures numériques (non corrigé dans rdl_datasets)</li>
+    <li>ChartCategoryHierarchy sans Group → graphique vide</li>
+    <li>PBIX/TWBX non encore implémentés</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:50%;background:#378ADD"></div></div>
+</div>
+
+<div class="phase-card">
+  <div class="phase-header">
+    <span class="badge badge-ok">Stable</span>
+    <span class="phase-name">Phase 6 — Export Agent</span>
+  </div>
+  <div class="phase-sub">RDL, lineage, HTML viz, CSV raw</div>
+  <ul class="issue-list">
+    <li>Artefacts multiples produits (rdl, lineage.json, spec.json, html viz)</li>
+    <li>Ancien phase5_rdl migré → architecture cohérente</li>
+    <li>Erreur connue : désérialisation chart dans Report Builder (cas edge)</li>
+  </ul>
+  <div class="score-bar-wrap"><div class="score-bar" style="width:78%;background:#1D9E75"></div></div>
+</div>
+
+<div class="section-title">Risques transverses</div>
+<div class="phase-card">
+  <ul class="issue-list" style="margin:0">
+    <li>Dépendance unique Mistral — aucun fallback LLM configuré</li>
+    <li>SQL Server local uniquement (localhost\SQLEXPRESS) — non portable cloud</li>
+    <li>Phase 5 absente dans le pipeline (saut Phase 4 → Phase 6)</li>
+    <li>Tests présents mais couverture non mesurée — pas de CI/CD mentionné</li>
+    <li>Credentials SQL dans la connection string — pas de gestion secrets (vault)</li>
+  </ul>
+</div>
+
+</div>

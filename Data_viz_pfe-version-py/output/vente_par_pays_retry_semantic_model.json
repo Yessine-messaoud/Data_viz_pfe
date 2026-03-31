@@ -1,0 +1,866 @@
+{
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "('Extract', 'Extract')",
+        "name": "('Extract', 'Extract')",
+        "source_name": "",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays"
+          },
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "R\u00e9gion"
+          },
+          {
+            "name": "SalesGroup",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Groupe de Ventes"
+          },
+          {
+            "name": "OrderYear",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Ann\u00e9e de Commande"
+          },
+          {
+            "name": "TotalSales",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Ventes Totales"
+          },
+          {
+            "name": "TotalTax",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Taxes Totales"
+          },
+          {
+            "name": "TotalFreight",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Fret Total"
+          },
+          {
+            "name": "TotalQuantity",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Quantit\u00e9 Totale"
+          },
+          {
+            "name": "OrderCount",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Nombre de Commandes"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 41
+      }
+    ],
+    "measures": [
+      {
+        "name": "Ventes Totales",
+        "expression": "SUM(('Extract', 'Extract').TotalSales)",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalSales"
+      },
+      {
+        "name": "Taxes Totales",
+        "expression": "SUM(('Extract', 'Extract').TotalTax)",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalTax"
+      },
+      {
+        "name": "Fret Total",
+        "expression": "SUM(('Extract', 'Extract').TotalFreight)",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalFreight"
+      },
+      {
+        "name": "Quantit\u00e9 Totale",
+        "expression": "SUM(('Extract', 'Extract').TotalQuantity)",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TotalQuantity"
+      },
+      {
+        "name": "Nombre de Commandes",
+        "expression": "SUM(('Extract', 'Extract').OrderCount)",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "OrderCount"
+      },
+      {
+        "name": "Moyenne des Ventes par Commande",
+        "expression": "DIVIDE([Ventes Totales], [Nombre de Commandes])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "calculated"
+      },
+      {
+        "name": "Marge sur Ventes",
+        "expression": "DIVIDE([Ventes Totales] - ([Taxes Totales] + [Fret Total]), [Ventes Totales])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "calculated"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "Country"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "Region"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "SalesGroup"
+      },
+      {
+        "table": "('Extract', 'Extract')",
+        "column": "OrderYear"
+      }
+    ],
+    "hierarchies": [
+      {
+        "name": "Hi\u00e9rarchie Temporelle",
+        "table": "('Extract', 'Extract')",
+        "levels": [
+          "Ann\u00e9e de Commande",
+          "Trimestre",
+          "Mois",
+          "Date"
+        ]
+      }
+    ],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "('Extract', 'Extract')",
+    "grain": "row"
+  },
+  "phase2_artifacts": {
+    "ontology": {
+      "entities": [
+        "Sales",
+        "Product",
+        "Customer",
+        "Geography",
+        "Time",
+        "Reseller",
+        "Promotion"
+      ],
+      "metrics": [
+        "Revenue",
+        "Quantity",
+        "Profit",
+        "Discount",
+        "Tax"
+      ],
+      "terms": [
+        {
+          "name": "Sales",
+          "aliases": [
+            "Sale",
+            "Orders",
+            "Order",
+            "SalesAmount"
+          ]
+        },
+        {
+          "name": "Product",
+          "aliases": [
+            "Item",
+            "SKU",
+            "Model",
+            "Category",
+            "Subcategory"
+          ]
+        },
+        {
+          "name": "Customer",
+          "aliases": [
+            "Client",
+            "Buyer",
+            "Consumer",
+            "CustomerKey"
+          ]
+        },
+        {
+          "name": "Geography",
+          "aliases": [
+            "Country",
+            "Region",
+            "City",
+            "Territory"
+          ]
+        },
+        {
+          "name": "Time",
+          "aliases": [
+            "Date",
+            "Year",
+            "Month",
+            "Quarter",
+            "Day"
+          ]
+        },
+        {
+          "name": "Revenue",
+          "aliases": [
+            "SalesAmount",
+            "Turnover",
+            "Net Sales"
+          ]
+        },
+        {
+          "name": "Quantity",
+          "aliases": [
+            "Qty",
+            "Units",
+            "Order Quantity"
+          ]
+        },
+        {
+          "name": "Profit",
+          "aliases": [
+            "Margin",
+            "Gross Profit",
+            "Net Profit"
+          ]
+        },
+        {
+          "name": "Discount",
+          "aliases": [
+            "Discount Amount",
+            "Promo Discount"
+          ]
+        },
+        {
+          "name": "Tax",
+          "aliases": [
+            "Tax Amount",
+            "VAT"
+          ]
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "column": "Country",
+        "mapped_business_term": "Geographic Region",
+        "confidence": 0.95,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Geography",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Geographic Region",
+            "score": 0.95
+          }
+        }
+      },
+      {
+        "column": "Region",
+        "mapped_business_term": "Geographic Segment",
+        "confidence": 0.85,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Geography",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Geographic Segment",
+            "score": 0.85
+          }
+        }
+      },
+      {
+        "column": "SalesGroup",
+        "mapped_business_term": "Sales Team",
+        "confidence": 0.9,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Sales Team",
+            "score": 0.75
+          }
+        }
+      },
+      {
+        "column": "OrderYear",
+        "mapped_business_term": "Sales",
+        "confidence": 0.8,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Sales",
+            "score": 0.5
+          }
+        }
+      },
+      {
+        "column": "TotalSales",
+        "mapped_business_term": "Sales",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "TotalTax",
+        "mapped_business_term": "Tax",
+        "confidence": 0.9,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Tax",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Tax",
+            "score": 0.5
+          }
+        }
+      },
+      {
+        "column": "TotalFreight",
+        "mapped_business_term": null,
+        "confidence": 0.0,
+        "method": "unmapped",
+        "details": {
+          "heuristic": {
+            "term": null,
+            "score": 0.0
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "TotalQuantity",
+        "mapped_business_term": "Quantity",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Quantity",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "OrderCount",
+        "mapped_business_term": "Order Volume",
+        "confidence": 0.85,
+        "method": "heuristic+llm",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": "Order Volume",
+            "score": 0.85
+          }
+        }
+      }
+    ],
+    "column_profiles": {
+      "('Extract', 'Extract')": [
+        {
+          "name": "Country",
+          "inferred_dtype": "large_string[pyarrow]",
+          "role": "dimension",
+          "distinct_count": 6,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Australia",
+            "Australia",
+            "Australia"
+          ]
+        },
+        {
+          "name": "Region",
+          "inferred_dtype": "large_string[pyarrow]",
+          "role": "dimension",
+          "distinct_count": 10,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Australia",
+            "Australia",
+            "Australia"
+          ]
+        },
+        {
+          "name": "SalesGroup",
+          "inferred_dtype": "large_string[pyarrow]",
+          "role": "dimension",
+          "distinct_count": 3,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Pacific",
+            "Pacific",
+            "Pacific"
+          ]
+        },
+        {
+          "name": "OrderYear",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 5,
+          "null_ratio": 0.0,
+          "sample_values": [
+            2010,
+            2011,
+            2012
+          ]
+        },
+        {
+          "name": "TotalSales",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 40,
+          "null_ratio": 0.0,
+          "sample_values": [
+            20909,
+            2563732,
+            2128407
+          ]
+        },
+        {
+          "name": "TotalTax",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 40,
+          "null_ratio": 0.0,
+          "sample_values": [
+            1672,
+            205098,
+            170272
+          ]
+        },
+        {
+          "name": "TotalFreight",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 39,
+          "null_ratio": 0.0,
+          "sample_values": [
+            522,
+            64093,
+            53210
+          ]
+        },
+        {
+          "name": "TotalQuantity",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 32,
+          "null_ratio": 0.0,
+          "sample_values": [
+            6,
+            786,
+            1167
+          ]
+        },
+        {
+          "name": "OrderCount",
+          "inferred_dtype": "int64[pyarrow]",
+          "role": "measure",
+          "distinct_count": 35,
+          "null_ratio": 0.0,
+          "sample_values": [
+            6,
+            786,
+            1130
+          ]
+        }
+      ]
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "table:__Extract____Extract__",
+          "label": "Table",
+          "name": "('Extract', 'Extract')",
+          "schema": "dbo"
+        },
+        {
+          "id": "column:__Extract____Extract__.Country",
+          "label": "Column",
+          "name": "Country",
+          "table": "('Extract', 'Extract')",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.Region",
+          "label": "Column",
+          "name": "Region",
+          "table": "('Extract', 'Extract')",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.SalesGroup",
+          "label": "Column",
+          "name": "SalesGroup",
+          "table": "('Extract', 'Extract')",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.OrderYear",
+          "label": "Column",
+          "name": "OrderYear",
+          "table": "('Extract', 'Extract')",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.TotalSales",
+          "label": "Column",
+          "name": "TotalSales",
+          "table": "('Extract', 'Extract')",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.TotalTax",
+          "label": "Column",
+          "name": "TotalTax",
+          "table": "('Extract', 'Extract')",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.TotalFreight",
+          "label": "Column",
+          "name": "TotalFreight",
+          "table": "('Extract', 'Extract')",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.TotalQuantity",
+          "label": "Column",
+          "name": "TotalQuantity",
+          "table": "('Extract', 'Extract')",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "column:__Extract____Extract__.OrderCount",
+          "label": "Column",
+          "name": "OrderCount",
+          "table": "('Extract', 'Extract')",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Ventes_Totales",
+          "label": "Measure",
+          "name": "Ventes Totales",
+          "expression": "SUM(('Extract', 'Extract').TotalSales)"
+        },
+        {
+          "id": "measure:Taxes_Totales",
+          "label": "Measure",
+          "name": "Taxes Totales",
+          "expression": "SUM(('Extract', 'Extract').TotalTax)"
+        },
+        {
+          "id": "measure:Fret_Total",
+          "label": "Measure",
+          "name": "Fret Total",
+          "expression": "SUM(('Extract', 'Extract').TotalFreight)"
+        },
+        {
+          "id": "measure:Quantit\u00e9_Totale",
+          "label": "Measure",
+          "name": "Quantit\u00e9 Totale",
+          "expression": "SUM(('Extract', 'Extract').TotalQuantity)"
+        },
+        {
+          "id": "measure:Nombre_de_Commandes",
+          "label": "Measure",
+          "name": "Nombre de Commandes",
+          "expression": "SUM(('Extract', 'Extract').OrderCount)"
+        },
+        {
+          "id": "measure:Moyenne_des_Ventes_par_Commande",
+          "label": "Measure",
+          "name": "Moyenne des Ventes par Commande",
+          "expression": "DIVIDE([Ventes Totales], [Nombre de Commandes])"
+        },
+        {
+          "id": "measure:Marge_sur_Ventes",
+          "label": "Measure",
+          "name": "Marge sur Ventes",
+          "expression": "DIVIDE([Ventes Totales] - ([Taxes Totales] + [Fret Total]), [Ventes Totales])"
+        },
+        {
+          "id": "term:Sales",
+          "label": "BusinessTerm",
+          "name": "Sales"
+        },
+        {
+          "id": "term:Product",
+          "label": "BusinessTerm",
+          "name": "Product"
+        },
+        {
+          "id": "term:Customer",
+          "label": "BusinessTerm",
+          "name": "Customer"
+        },
+        {
+          "id": "term:Geography",
+          "label": "BusinessTerm",
+          "name": "Geography"
+        },
+        {
+          "id": "term:Time",
+          "label": "BusinessTerm",
+          "name": "Time"
+        },
+        {
+          "id": "term:Revenue",
+          "label": "BusinessTerm",
+          "name": "Revenue"
+        },
+        {
+          "id": "term:Quantity",
+          "label": "BusinessTerm",
+          "name": "Quantity"
+        },
+        {
+          "id": "term:Profit",
+          "label": "BusinessTerm",
+          "name": "Profit"
+        },
+        {
+          "id": "term:Discount",
+          "label": "BusinessTerm",
+          "name": "Discount"
+        },
+        {
+          "id": "term:Tax",
+          "label": "BusinessTerm",
+          "name": "Tax"
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.Country",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.Region",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.SalesGroup",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.OrderYear",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.TotalSales",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.TotalTax",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.TotalFreight",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.TotalQuantity",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:__Extract____Extract__",
+          "target_id": "column:__Extract____Extract__.OrderCount",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:federated.0data1",
+          "target_id": "table:federated.0data1",
+          "type": "JOINS_TO",
+          "join_type": "INNER",
+          "left_col": "id",
+          "right_col": "id"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.Country",
+          "target_id": "term:Geographic_Region",
+          "type": "MAPPED_TO",
+          "confidence": 0.95,
+          "method": "heuristic+llm"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.Region",
+          "target_id": "term:Geographic_Segment",
+          "type": "MAPPED_TO",
+          "confidence": 0.85,
+          "method": "heuristic+llm"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.SalesGroup",
+          "target_id": "term:Sales_Team",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic+llm"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.OrderYear",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic+llm"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.TotalSales",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.TotalTax",
+          "target_id": "term:Tax",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic+llm"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.TotalQuantity",
+          "target_id": "term:Quantity",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:__Extract____Extract__.OrderCount",
+          "target_id": "term:Order_Volume",
+          "type": "MAPPED_TO",
+          "confidence": 0.85,
+          "method": "heuristic+llm"
+        }
+      ],
+      "persisted": false,
+      "error": ""
+    }
+  }
+}

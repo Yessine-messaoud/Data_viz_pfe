@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xsi:schemaLocation="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/ReportDefinition.xsd">
+  <Description>Genere par VizAgent v2 le 2026-03-25T10:51:16.984190</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW2022</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Extract____Extract">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT * FROM [Extract].[Extract]</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Country">
+          <DataField>Country</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="Region">
+          <DataField>Region</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="SalesGroup">
+          <DataField>SalesGroup</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="OrderYear">
+          <DataField>OrderYear</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="TotalSales">
+          <DataField>TotalSales</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="TotalTax">
+          <DataField>TotalTax</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="TotalFreight">
+          <DataField>TotalFreight</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="TotalQuantity">
+          <DataField>TotalQuantity</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="OrderCount">
+          <DataField>OrderCount</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Ventes_par_pays">
+            <Left>0.2500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>Extract____Extract</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!Country.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Series"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="series_Ventes_par_pays">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=0</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default"/>
+            </ChartAreas>
+          </Chart>
+          <Chart Name="Part_de_march__par_pays">
+            <Left>3.7500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>Extract____Extract</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Category"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Series"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="series_Part_de_march__par_pays">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=0</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default"/>
+            </ChartAreas>
+          </Chart>
+          <Chart Name="volution_des_ventes_par_pays">
+            <Left>7.2500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>Extract____Extract</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!OrderYear.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Series"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="series__volution_des_ventes_par_pays">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=0</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default"/>
+            </ChartAreas>
+          </Chart>
+        </ReportItems>
+        <Height>6.5in</Height>
+      </Body>
+      <Width>10.5in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+</Report>
