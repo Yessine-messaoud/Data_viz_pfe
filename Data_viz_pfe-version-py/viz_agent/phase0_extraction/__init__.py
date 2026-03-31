@@ -1,5 +1,5 @@
 """Phase 0 extraction package for universal metadata catalog."""
 
-from viz_agent.phase0_extraction.models import Column, MetadataModel, Relationship, Table
-
-__all__ = ["Column", "Table", "Relationship", "MetadataModel"]
+# Keep package import lightweight; concrete models/readers are imported directly
+# by callers from their submodules.
+__all__: list[str] = []

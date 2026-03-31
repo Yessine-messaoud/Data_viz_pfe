@@ -37,3 +37,19 @@ class AgentFactory:
             raise ValueError(f"Unknown agent type: {agent_type}")
         self._agents_cache[agent_type] = agent
         return agent
+
+    def get_agent(self, agent_name: str) -> Any:
+        """Backward-compatible accessor used by legacy orchestrator code."""
+        alias_map = {
+            "data_extraction": AgentType.DATA_EXTRACTION,
+            "parsing": AgentType.PARSING,
+            "semantic_reasoning": AgentType.SEMANTIC_REASONING,
+            "specification": AgentType.SPECIFICATION,
+            "transformation": AgentType.TRANSFORMATION,
+            "export": AgentType.EXPORT,
+            # Legacy alias used in orchestrator.
+            "phase5_rdl": AgentType.EXPORT,
+        }
+        if agent_name not in alias_map:
+            raise ValueError(f"Unknown agent name: {agent_name}")
+        return self.create(alias_map[agent_name])

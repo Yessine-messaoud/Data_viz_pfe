@@ -1,10 +1,11 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import pytest
 
-from viz_agent.main import _ensure_mistral_api_key
+from viz_agent.main import _detect_intent_type, _ensure_mistral_api_key
 
 
 def test_ensure_mistral_api_key_uses_env(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -18,3 +19,8 @@ def test_ensure_mistral_api_key_fails_if_missing(monkeypatch: pytest.MonkeyPatch
 
     with pytest.raises(RuntimeError, match="Mistral API key is required"):
         _ensure_mistral_api_key()
+
+
+def test_detect_intent_type_for_tableau_conversion() -> None:
+    intent = _detect_intent_type(Path("input/workbook.twb"), Path("output/report.rdl"))
+    assert intent == "conversion"

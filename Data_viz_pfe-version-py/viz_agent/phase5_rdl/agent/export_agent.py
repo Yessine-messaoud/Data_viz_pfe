@@ -42,3 +42,14 @@ class ExportAgent:
         # Lineage
         result["lineage"] = self.lineage_tracker.capture(model, target_format)
         return result
+
+    def run(self, step: Dict[str, Any]) -> Dict[str, Any]:
+        """Legacy orchestrator compatibility (`agent.run(step)`)."""
+        model = step.get("inputs", {}).get("artifacts", {})
+        result = self.export(model, ExportFormat.RDL)
+        validation = result.get("validation") or {}
+        status = "passed"
+        if isinstance(validation, dict) and validation.get("error"):
+            status = "failed"
+        result["validation_status"] = status
+        return result

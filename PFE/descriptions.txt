@@ -1,0 +1,10 @@
+je suis en train de developper le coeur d'un agent de visualisation de donnees:
+il recoit comme inout un artefact: document BI pour le moment on travaille avec rdl et tableau seulement et la source de donnees si existantes et l'intention de faire une conversion totale vers un autre format,
+ une conversion avec mdoifaction ou build from scratch  , 
+ on passe par la phase 0 l'extraction des donnees disponibles toutes et 
+ taguer celles qui sont utilisés pour extraire les metadatas comme nom des tables, nom des colonnes,
+ types, echantillions etc et faire un enrichissement comme column profiling distinct_count and null_ratio , normaliser les types vers une forme universelle
+ detecter le relation et les cles des tables, creer un registre pour les data source cree un metadata catalogue, 
+  faire une phase 1  de parsing du code twb, ou rdl et extraire les metadats comme les dashboards, les visuels, les filtres etc
+ on fait passer tous ces metadats vers une couche semantique qui premieremnt detecte les metadata simples a comprendre avec un profiling pour passer avec un fast path ast parsing et heuristique simple, les deja traites verifier le cache pour un chemin plus court
+ les complexes passent par un llm path pour la resolution des cas complexes avec une option 

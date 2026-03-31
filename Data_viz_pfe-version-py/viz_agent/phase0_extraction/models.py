@@ -49,7 +49,7 @@ class MetadataModel(BaseModel):
 
     model_config = ConfigDict(extra="forbid", strict=True)
 
-    source_type: Literal["hyper", "live_sql", "rdl_live"]
+    source_type: Literal["hyper", "csv", "live_sql", "rdl_live"]
     source_path: str
     tables: list[Table]
     relationships: list[Relationship]

@@ -9,22 +9,7 @@ import json
 import os
 import re
 from pathlib import Path
-
-from viz_agent.phase0_data.csv_loader import CSVLoader
-from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
-from viz_agent.phase0_data.hyper_extractor import HyperExtractor
-from viz_agent.phase1_parser.tableau_parser import TableauParser
-from viz_agent.phase2_semantic.phase2_orchestrator import Phase2SemanticOrchestrator
-from viz_agent.phase3_spec.abstract_spec_builder import AbstractSpecBuilder
-from viz_agent.phase3b_validator.abstract_spec_validator import AbstractSpecValidator
-from viz_agent.phase4_transform.calc_field_translator import CalcFieldTranslator
-from viz_agent.phase4_transform.rdl_dataset_mapper import RDLDatasetMapper
-from viz_agent.phase5_rdl.rdl_generator import RDLGenerator
-from viz_agent.phase5_rdl.rdl_layout_builder import RDLLayoutBuilder
-from viz_agent.phase5_rdl.rdl_validator_pipeline import RDLValidatorPipeline
-from viz_agent.phase6_lineage.lineage_service import LineageQueryService
-from viz_agent.validators.expression_validator import ExpressionValidator
-
+from typing import Any
 
 def _ensure_mistral_api_key() -> str:
     api_key = os.getenv("MISTRAL_API_KEY", "").strip()
@@ -38,24 +23,71 @@ def _ensure_mistral_api_key() -> str:
     return entered
 
 
-def _register_data_sources(twbx_path: str) -> DataSourceRegistry:
+def _register_data_sources(tableau_path: str) -> DataSourceRegistry:
+    from viz_agent.phase0_data.csv_loader import CSVLoader
+    from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
+    from viz_agent.phase0_data.hyper_extractor import HyperExtractor
+
     registry = DataSourceRegistry()
+    input_path = Path(tableau_path)
+    suffix = input_path.suffix.lower()
 
-    hyper_frames = HyperExtractor().extract_from_twbx(twbx_path)
-    for hyper_name, tables in hyper_frames.items():
-        registry.register(
-            hyper_name,
-            ResolvedDataSource(name=hyper_name, source_type="hyper", frames=tables),
-        )
+    if suffix == ".twbx":
+        hyper_frames = HyperExtractor().extract_from_twbx(tableau_path)
+        for hyper_name, tables in hyper_frames.items():
+            registry.register(
+                hyper_name,
+                ResolvedDataSource(name=hyper_name, source_type="hyper", frames=tables),
+            )
 
-    csv_frames = CSVLoader().extract_from_twbx(twbx_path)
-    if csv_frames:
+        csv_frames = CSVLoader().extract_from_twbx(tableau_path)
+        if csv_frames:
+            registry.register(
+                "csv_sources",
+                ResolvedDataSource(name="csv_sources", source_type="csv", frames=csv_frames),
+            )
+    elif suffix == ".twb":
+        # TWB is plain XML and does not embed Hyper/CSV extracts.
         registry.register(
-            "csv_sources",
-            ResolvedDataSource(name="csv_sources", source_type="csv", frames=csv_frames),
+            input_path.name,
+            ResolvedDataSource(name=input_path.name, source_type="tableau_xml", frames={}),
         )
+    else:
+        raise ValueError("Input must be a .twb or .twbx file")
 
     return registry
+
+
+def _detect_intent_type(input_path: Path, output_path: Path) -> str:
+    output_ext = output_path.suffix.lower()
+    input_ext = input_path.suffix.lower()
+
+    if input_ext in {".twbx", ".twb"} and output_ext == ".rdl":
+        return "conversion"
+    if output_ext in {".json", ".yaml", ".yml"}:
+        return "analysis"
+    return "generation"
+
+
+def _build_structured_intent(
+    input_path: Path,
+    output_path: Path,
+    intent_type_override: str | None = None,
+    constraints: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    intent_type = intent_type_override or _detect_intent_type(input_path, output_path)
+    constraints = constraints or {}
+
+    return {
+        "type": intent_type,
+        "action": "export_rdl",
+        "constraints": constraints,
+        "pipeline_target": "tableau_to_rdl",
+        "artifacts": {
+            "input_format": input_path.suffix.lower().lstrip("."),
+            "output_format": output_path.suffix.lower().lstrip("."),
+        },
+    }
 
 
 def _matching_dashboard_for_page(workbook, page_name: str):
@@ -295,12 +327,30 @@ def _build_spec_visualization_html(spec) -> str:
 """
 
 
-async def run_pipeline(twbx_path: str, output_path: str) -> None:
+async def run_pipeline(
+    twbx_path: str,
+    output_path: str,
+    *,
+    intent_type: str | None = None,
+    intent_constraints: dict[str, Any] | None = None,
+) -> None:
     input_path = Path(twbx_path)
     if not input_path.exists():
         raise FileNotFoundError(f"Input file not found: {twbx_path}")
-    if input_path.suffix.lower() != ".twbx":
-        raise ValueError("Input must be a .twbx file")
+    if input_path.suffix.lower() not in {".twbx", ".twb"}:
+        raise ValueError("Input must be a .twb or .twbx file")
+
+    from viz_agent.phase1_parser.tableau_parser import TableauParser
+    from viz_agent.phase2_semantic.phase2_orchestrator import Phase2SemanticOrchestrator
+    from viz_agent.phase3_spec.abstract_spec_builder import AbstractSpecBuilder
+    from viz_agent.phase3b_validator.abstract_spec_validator import AbstractSpecValidator
+    from viz_agent.phase4_transform.calc_field_translator import CalcFieldTranslator
+    from viz_agent.phase4_transform.rdl_dataset_mapper import RDLDatasetMapper
+    from viz_agent.phase5_rdl.rdl_generator import RDLGenerator
+    from viz_agent.phase5_rdl.rdl_layout_builder import RDLLayoutBuilder
+    from viz_agent.phase5_rdl.rdl_validator_pipeline import RDLValidatorPipeline
+    from viz_agent.phase6_lineage.lineage_service import LineageQueryService
+    from viz_agent.validators.expression_validator import ExpressionValidator
 
     output_file = Path(output_path)
     output_file.parent.mkdir(parents=True, exist_ok=True)
@@ -323,7 +373,13 @@ async def run_pipeline(twbx_path: str, output_path: str) -> None:
     print(f"  worksheets={len(workbook.worksheets)}, dashboards={len(workbook.dashboards)}")
 
     print("[Phase 2] Hybrid semantic layer...")
-    intent = {"action": "export_rdl"}
+    intent = _build_structured_intent(
+        input_path,
+        output_file,
+        intent_type_override=intent_type,
+        constraints=intent_constraints,
+    )
+    print(f"  intent_type={intent.get('type')}, target={intent.get('pipeline_target')}")
     try:
         semantic_model, lineage, phase2_artifacts = Phase2SemanticOrchestrator().run(workbook, intent)
         print("  mistral semantic_enrichment: SUCCESS")
@@ -427,12 +483,37 @@ async def run_pipeline(twbx_path: str, output_path: str) -> None:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="VizAgent v2 - Tableau .twbx to RDL")
-    parser.add_argument("--input", required=True, help="Path to input .twbx file")
+    parser = argparse.ArgumentParser(description="VizAgent v2 - Tableau (.twb/.twbx) to RDL")
+    parser.add_argument("--input", required=True, help="Path to input .twb or .twbx file")
     parser.add_argument("--output", default="output.rdl", help="Path to output .rdl file")
+    parser.add_argument(
+        "--intent-type",
+        choices=["conversion", "generation", "analysis", "optimization"],
+        default=None,
+        help="Override detected intent type for orchestration metadata.",
+    )
+    parser.add_argument(
+        "--intent-constraints",
+        default="{}",
+        help='JSON object of intent constraints (example: \'{"strict_mode": true}\').',
+    )
     args = parser.parse_args()
 
-    asyncio.run(run_pipeline(args.input, args.output))
+    try:
+        constraints = json.loads(args.intent_constraints)
+    except json.JSONDecodeError as exc:
+        raise ValueError(f"Invalid --intent-constraints JSON: {exc}") from exc
+    if not isinstance(constraints, dict):
+        raise ValueError("--intent-constraints must be a JSON object")
+
+    asyncio.run(
+        run_pipeline(
+            args.input,
+            args.output,
+            intent_type=args.intent_type,
+            intent_constraints=constraints,
+        )
+    )
 
 
 if __name__ == "__main__":

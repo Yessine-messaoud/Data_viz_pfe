@@ -22,8 +22,8 @@ from viz_agent.phase1_parser.dashboard_zone_mapper import extract_dashboard_work
 
 
 class TableauParser:
-    def parse(self, twbx_path: str, registry) -> ParsedWorkbook:
-        twb_root = self._load_twb_xml(twbx_path)
+    def parse(self, tableau_path: str, registry) -> ParsedWorkbook:
+        twb_root = self._load_twb_xml(tableau_path)
 
         worksheets = self._parse_worksheets(twb_root)
         datasources = self._parse_datasources(twb_root)
@@ -44,8 +44,21 @@ class TableauParser:
             data_registry=registry,
         )
 
-    def _load_twb_xml(self, twbx_path: str) -> etree._Element:
-        with zipfile.ZipFile(twbx_path) as archive:
+    def _load_twb_xml(self, tableau_path: str) -> etree._Element:
+        path = Path(tableau_path)
+        parser = etree.XMLParser(recover=False)
+
+        if path.suffix.lower() == ".twb":
+            try:
+                tree = etree.parse(str(path), parser)
+            except etree.XMLSyntaxError as exc:
+                raise ValueError(f"Invalid TWB XML: {exc}") from exc
+            return tree.getroot()
+
+        if path.suffix.lower() != ".twbx":
+            raise ValueError(f"Unsupported Tableau format: {path.suffix}")
+
+        with zipfile.ZipFile(path) as archive:
             twb_files = [name for name in archive.namelist() if name.endswith(".twb")]
             if not twb_files:
                 raise ValueError("No .twb file found in TWBX")
@@ -54,7 +67,6 @@ class TableauParser:
             with tempfile.TemporaryDirectory() as temp_dir:
                 archive.extract(twb_name, temp_dir)
                 twb_path = Path(temp_dir) / twb_name
-                parser = etree.XMLParser(recover=False)
                 try:
                     tree = etree.parse(str(twb_path), parser)
                 except etree.XMLSyntaxError as exc:
