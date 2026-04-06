@@ -1,0 +1,181 @@
+{
+  "timestamp": "2026-04-06T11:13:59.258209Z",
+  "simulate": true,
+  "models": [
+    {
+      "model_name": "mistral_api",
+      "total_score": 0.32,
+      "pass_rate": 0.2,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.7,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"line\", \"rationale\": \"time trend with OrderDate usually maps to line\", \"confidence\": 0.82, \"mapping\": {}}",
+          "notes": "decision matched; keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.0,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Amt and Value look numeric, X1 looks categorical\", \"confidence\": 0.82, \"mapping\": {}}",
+          "notes": "column role hits: 0/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"bar\", \"rationale\": \"many categories, pie is not ideal\", \"confidence\": 0.82, \"mapping\": {}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.2,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"IIF expression with Nothing in else branch\", \"confidence\": 0.82, \"mapping\": {}}",
+          "notes": "keyword hits: 2"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.3,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"replace text measure Country by numeric Total_Revenue\", \"confidence\": 0.82, \"mapping\": {}}",
+          "notes": "keyword hits: 4"
+        }
+      ]
+    },
+    {
+      "model_name": "gemini_api",
+      "total_score": 0.32,
+      "pass_rate": 0.2,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.7,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"line\", \"rationale\": \"time trend with OrderDate usually maps to line\", \"confidence\": 0.8, \"mapping\": {}}",
+          "notes": "decision matched; keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.0,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Amt and Value look numeric, X1 looks categorical\", \"confidence\": 0.8, \"mapping\": {}}",
+          "notes": "column role hits: 0/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"bar\", \"rationale\": \"many categories, pie is not ideal\", \"confidence\": 0.8, \"mapping\": {}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.2,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"IIF expression with Nothing in else branch\", \"confidence\": 0.8, \"mapping\": {}}",
+          "notes": "keyword hits: 2"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.3,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"replace text measure Country by numeric Total_Revenue\", \"confidence\": 0.8, \"mapping\": {}}",
+          "notes": "keyword hits: 4"
+        }
+      ]
+    },
+    {
+      "model_name": "mistral_local",
+      "total_score": 0.32,
+      "pass_rate": 0.2,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.7,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"line\", \"rationale\": \"time trend with OrderDate usually maps to line\", \"confidence\": 0.72, \"mapping\": {}}",
+          "notes": "decision matched; keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.0,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Amt and Value look numeric, X1 looks categorical\", \"confidence\": 0.72, \"mapping\": {}}",
+          "notes": "column role hits: 0/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"bar\", \"rationale\": \"many categories, pie is not ideal\", \"confidence\": 0.72, \"mapping\": {}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.2,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"IIF expression with Nothing in else branch\", \"confidence\": 0.72, \"mapping\": {}}",
+          "notes": "keyword hits: 2"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.3,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"replace text measure Country by numeric Total_Revenue\", \"confidence\": 0.72, \"mapping\": {}}",
+          "notes": "keyword hits: 4"
+        }
+      ]
+    }
+  ],
+  "winner": "mistral_api"
+}

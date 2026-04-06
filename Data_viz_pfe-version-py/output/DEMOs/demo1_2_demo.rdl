@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xsi:schemaLocation="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/ReportDefinition.xsd">
+  <Description>Genere par VizAgent v2 le 2026-04-01T16:47:20.795072</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW2022</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="federated_1v3o2r30w2rgsv1aei9is1e9duvo">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="SalesAmount">
+          <DataField>SalesAmount</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritoryCountry">
+          <DataField>SalesTerritoryCountry</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Feuille_1">
+            <Left>0.2500in</Left>
+            <Top>0.7500in</Top>
+            <Width>10.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>federated_1v3o2r30w2rgsv1aei9is1e9duvo</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!SalesTerritoryCountry.Value</Label>
+                  <Group Name="grp_SalesTerritoryCountry">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SalesTerritoryCountry.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Sales Amount"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Sales_Amount">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!SalesAmount.Value)</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                  <LegendName>DefaultLegend</LegendName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartTitles>
+              <ChartTitle Name="DefaultTitle">
+                <Caption>Sales per country</Caption>
+              </ChartTitle>
+            </ChartTitles>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="CategoryAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Territory Country</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="ValueAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Amount</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartValueAxes>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="DefaultLegend"/>
+            </ChartLegends>
+          </Chart>
+        </ReportItems>
+        <Height>6.5in</Height>
+      </Body>
+      <Width>10.5in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+</Report>

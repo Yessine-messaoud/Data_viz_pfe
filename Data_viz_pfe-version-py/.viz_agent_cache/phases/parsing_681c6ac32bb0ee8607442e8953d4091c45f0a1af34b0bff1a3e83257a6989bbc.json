@@ -1,0 +1,28 @@
+{
+  "schema": "v1",
+  "phase": "parsing",
+  "fingerprint": "681c6ac32bb0ee8607442e8953d4091c45f0a1af34b0bff1a3e83257a6989bbc",
+  "result": {
+    "status": "success",
+    "confidence": 0.95,
+    "output": {
+      "parsed_structure": {
+        "worksheets": [
+          {
+            "name": "ws1"
+          }
+        ],
+        "visuals": [
+          {
+            "source_worksheet": "ws1"
+          }
+        ]
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {
+    "parsed_structure": "C:\\Users\\LOQ\\Desktop\\TALAN\\Data_viz_pfe-version-py\\.viz_agent_cache\\artifacts\\parsing_681c6ac32bb0_parsed_structure.json"
+  }
+}

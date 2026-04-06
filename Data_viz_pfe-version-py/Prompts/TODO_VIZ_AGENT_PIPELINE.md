@@ -17,6 +17,79 @@ Construire un pipeline Python complet qui convertit un fichier Tableau TWBX vers
 - P1 Coeur: phase 2, phase 3, phase 4, phase 5.
 - P2 Finition: robustesse, hardening, integration, documentation.
 
+## Backlog Correctif 2026-04-03 (Pipeline_03)
+
+### P0 - Corrections critiques (a traiter en premier)
+- [x] Corriger le nommage des tables techniques (`federated...`) en noms metier exploitables.
+  - Cible code: `viz_agent/phase0_extraction/*`, `viz_agent/phase2_semantic/schema_mapper.py`.
+  - Critere d acceptation: chaque table finale expose `name` lisible + `source_name`/mapping stable.
+
+- [x] Propager les filtres globaux jusqu au RDL final.
+  - Cible code: `phase1_parser/tableau_parser.py` -> `phase3_spec/abstract_spec_builder.py` -> `phase5_rdl/rdl_builder.py`.
+  - Critere d acceptation: `<ReportParameters>` present dans le RDL pour les filtres globaux.
+
+- [x] Rendre le mapping visuel strict et supprimer les ambiguites (`chart` generique interdit).
+  - Cible code: `phase1_parser/visual_type_mapper.py`, `phase3_spec/visual_decision_engine.py`, `phase3b_validator/abstract_spec_validator.py`.
+  - Critere d acceptation: chaque visual a un type metier explicite; fallback controle avec warning.
+
+- [x] Completer la construction des datasets RDL pour inclure structure data + champs utilises.
+  - Cible code: `phase4_transform/rdl_dataset_mapper.py`, `phase5_rdl/rdl_builder.py`.
+  - Critere d acceptation: tout champ reference par un visual existe dans `DataSet/Fields`.
+
+- [x] Forcer le type de chart explicite dans le XML RDL (pas de default implicite).
+  - Cible code: `phase5_rdl/rdl_visual_mapper.py`.
+  - Critere d acceptation: chaque `ChartSeries` a `<Type>` (et `<Subtype>` si requis, ex pie).
+
+### P1 - Corrections majeures
+- [x] Remplacer les jointures heuristiques `id -> id` par parsing des relations Tableau quand disponibles.
+  - Cible code: `phase2_semantic/join_resolver.py`, parsing XML phase 1.
+  - Critere d acceptation: les joins du lineage proviennent d abord des relations source.
+
+- [x] Recuperer et propager la semantique de couleur (`color`) jusqu au rendu RDL.
+  - Cible code: `phase1_parser/tableau_parser.py`, `phase3_spec/abstract_spec_builder.py`, `phase5_rdl/rdl_visual_mapper.py`.
+  - Critere d acceptation: `color` detecte dans l encodage et reflecte dans series/group RDL.
+
+- [x] Stabiliser le graphe semantique (ID deterministes + dedup stricte).
+  - Cible code: `phase2_semantic/graph/semantic_graph.py`.
+  - Critere d acceptation: no duplicates de noeuds/relations pour un meme input.
+
+- [x] Renforcer la validation semantique bloquante.
+  - Cible code: `phase3b_validator/abstract_spec_validator.py`, `phase5_rdl/rdl_semantic_validator.py`.
+  - Critere d acceptation: blocage si mesure non numerique ou dimension agregable incorrecte.
+
+### P1/P2 - Structure pipeline et robustesse
+- [x] Formaliser un contrat de resultat par phase (`PhaseResult`).
+  - Cible code: `viz_agent/main.py` + orchestrateur.
+  - Critere d acceptation: chaque phase retourne `ok`, `retry_hint`, `confidence`, `artifacts`.
+
+- [x] Definir et appliquer un rendering contract strict avant ecriture RDL.
+  - Cible code: `phase5_rdl/rdl_validator_pipeline.py`, `phase5_rdl/rdl_dataset_validator.py`.
+  - Critere d acceptation: blocage si dataset/field mapping incomplet ou incoherent.
+
+- [x] Limiter l auto-fix aux corrections non destructives.
+  - Cible code: `phase5_rdl/rdl_auto_fixer.py`.
+  - Critere d acceptation: auto-fix autorise seulement renommage/alias/normalisation structurelle.
+
+### P2 - Qualite avancee
+- [x] Introduire un score de confidence global cross-phases pour pilotage fast-path/retry.
+  - Cible code: `phase2_semantic/*`, `viz_agent/main.py`.
+  - Critere d acceptation: score consolide visible dans les artefacts de sortie.
+
+- [x] Activer un cache intelligent par phase (fingerprint + invalidation partielle).
+  - Cible code: `phase2_semantic/agentic_semantic_orchestrator.py`, orchestration main.
+  - Critere d acceptation: rerun plus rapide sans divergence d artefacts.
+
+- [x] Renforcer observabilite et debug.
+  - Cible code: logs pipeline, hooks validation/lineage, exports dashboard.
+  - Critere d acceptation: trace lisible phase par phase avec erreurs typees et actions appliquees.
+
+## Verification de cloture de ce backlog
+- [x] Tous les points P0 traites et testes.
+- [x] Aucun `chart` generique dans les specs de sortie.
+- [x] RDL genere valide + explicit chart type pour tous les charts.
+- [x] Filtres globaux visibles dans le RDL final (`ReportParameters`).
+- [x] Lineage et graph semantique stables (sans duplication).
+
 ## Sprint 0 - Setup Projet (P0)
 - [x] Creer l arborescence projet complete selon le document.
 - [x] Ajouter requirements.txt avec les dependances imposees.

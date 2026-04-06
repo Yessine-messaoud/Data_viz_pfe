@@ -1,0 +1,12 @@
+{
+  "worksheets": [
+    {
+      "name": "ws1"
+    }
+  ],
+  "visuals": [
+    {
+      "source_worksheet": "ws1"
+    }
+  ]
+}

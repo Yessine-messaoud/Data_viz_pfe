@@ -1,0 +1,83 @@
+{
+  "schema": "v1",
+  "phase": "parsing",
+  "fingerprint": "787cf1ca94c49c3bdfaf266345e13ddc119e4023a510c36b68d523ddb2815445",
+  "result": {
+    "status": "success",
+    "confidence": 0.88,
+    "output": {
+      "parsed_structure": {
+        "dashboards": [
+          {
+            "name": "Default",
+            "pages": [
+              {
+                "name": "Default",
+                "visuals": [
+                  "dispersion",
+                  "sales_country"
+                ],
+                "layout": {}
+              }
+            ],
+            "visuals": [
+              {
+                "id": "dispersion",
+                "name": "dispersion",
+                "type": "PIE",
+                "fields": []
+              },
+              {
+                "id": "sales_country",
+                "name": "sales_country",
+                "type": "AUTOMATIC",
+                "fields": []
+              }
+            ],
+            "filters": []
+          }
+        ],
+        "visuals": [
+          {
+            "id": "dispersion",
+            "name": "dispersion",
+            "type": "PIE",
+            "fields": []
+          },
+          {
+            "id": "sales_country",
+            "name": "sales_country",
+            "type": "AUTOMATIC",
+            "fields": []
+          }
+        ],
+        "bindings": [],
+        "filters": [],
+        "layout": {},
+        "source_format": "twb",
+        "validation_results": [],
+        "lineage_events": [
+          {
+            "phase": "phase1_parser",
+            "timestamp": "2026-04-06T16:57:04.886010+00:00",
+            "dashboards_count": 1,
+            "visuals_count": 2,
+            "bindings_count": 0,
+            "status": "ok"
+          }
+        ],
+        "parsing_log": [
+          {
+            "step": "deterministic",
+            "status": "success"
+          }
+        ]
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {
+    "parsed_structure": "output\\demo_runtime_modular\\.viz_agent_cache\\artifacts\\parsing_787cf1ca94c4_parsed_structure.json"
+  }
+}

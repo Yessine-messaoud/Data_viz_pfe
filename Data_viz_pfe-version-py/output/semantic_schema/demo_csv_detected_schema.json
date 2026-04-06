@@ -1,0 +1,101 @@
+{
+  "tables": [
+    {
+      "id": "\"Extract\".\"Extract\"",
+      "name": "\"Extract\".\"Extract\"",
+      "source_name": "\"Extract\".\"Extract\"",
+      "schema": "dbo",
+      "row_count": 2521,
+      "columns": [
+        {
+          "name": "player_id",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "name",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "club",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "club_value",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "birth_date",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "age",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "weight",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "height",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "bmi",
+          "role": "measure",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "country",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "role",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "foot",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "transfers",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "injuries",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "tables": 1,
+    "columns": 14
+  }
+}

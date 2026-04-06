@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AbstractSpec",
+  "type": "object",
+  "required": ["dashboard_spec", "semantic_model", "data_lineage", "rdl_datasets"],
+  "properties": {
+    "dashboard_spec": {
+      "type": "object",
+      "required": ["pages"],
+      "properties": {
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name", "visuals"],
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "visuals": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "type", "rdl_type", "title", "data_binding"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "type": {
+                      "type": "string",
+                      "enum": ["bar", "line", "pie", "treemap", "scatter", "table", "kpi", "map", "gantt"]
+                    },
+                    "rdl_type": {
+                      "type": "string",
+                      "enum": ["chart", "tablix", "textbox", "map"]
+                    },
+                    "title": { "type": "string" },
+                    "data_binding": {
+                      "type": "object",
+                      "properties": {
+                        "visual_type_override": {
+                          "type": "string",
+                          "enum": ["", "column", "line", "scatter", "bar", "area", "pie", "Column", "Line", "Scatter", "Bar", "Area", "Pie"]
+                        }
+                      },
+                      "additionalProperties": true
+                    }
+                  },
+                  "additionalProperties": true
+                }
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "semantic_model": {
+      "type": "object"
+    },
+    "data_lineage": {
+      "type": "object"
+    },
+    "rdl_datasets": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

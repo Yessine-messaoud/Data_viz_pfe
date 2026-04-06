@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pandas as pd
 
-from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
+from viz_agent.phase0_extraction.data_source_registry import DataSourceRegistry, ResolvedDataSource
 
 
 def test_registry_returns_all_frames() -> None:

@@ -1,0 +1,152 @@
+{
+  "status": "failed",
+  "errors": [
+    "parsing: Phase1 gate failed: no valid worksheets detected in parsed output.",
+    "validation: Phase1 gate failed: no valid worksheets detected in parsed output."
+  ],
+  "retries": {
+    "parsing": 3,
+    "validation": 0
+  },
+  "phase_results": {
+    "parsing": {
+      "status": "success",
+      "confidence": 0.88,
+      "output": {
+        "parsed_structure": {
+          "dashboards": [
+            {
+              "name": "Default",
+              "pages": [
+                {
+                  "name": "Default",
+                  "visuals": [
+                    "dispersion",
+                    "sales_country"
+                  ],
+                  "layout": {}
+                }
+              ],
+              "visuals": [
+                {
+                  "id": "dispersion",
+                  "name": "dispersion",
+                  "type": "PIE",
+                  "fields": []
+                },
+                {
+                  "id": "sales_country",
+                  "name": "sales_country",
+                  "type": "AUTOMATIC",
+                  "fields": []
+                }
+              ],
+              "filters": []
+            }
+          ],
+          "visuals": [
+            {
+              "id": "dispersion",
+              "name": "dispersion",
+              "type": "PIE",
+              "fields": []
+            },
+            {
+              "id": "sales_country",
+              "name": "sales_country",
+              "type": "AUTOMATIC",
+              "fields": []
+            }
+          ],
+          "bindings": [],
+          "filters": [],
+          "layout": {},
+          "source_format": "twb",
+          "validation_results": [],
+          "lineage_events": [
+            {
+              "phase": "phase1_parser",
+              "timestamp": "2026-04-06T16:57:04.886010+00:00",
+              "dashboards_count": 1,
+              "visuals_count": 2,
+              "bindings_count": 0,
+              "status": "ok"
+            }
+          ],
+          "parsing_log": [
+            {
+              "step": "deterministic",
+              "status": "success"
+            }
+          ]
+        }
+      },
+      "errors": [],
+      "retry_hint": ""
+    },
+    "validation": {
+      "status": "error",
+      "confidence": 0.2,
+      "output": {
+        "gate_results": {
+          "parsing": {
+            "passed": false,
+            "issues": [
+              "Phase1 gate failed: no valid worksheets detected in parsed output."
+            ]
+          }
+        }
+      },
+      "errors": [
+        "Phase1 gate failed: no valid worksheets detected in parsed output."
+      ],
+      "retry_hint": "Fix invalid outputs for failing phase gates and retry."
+    }
+  },
+  "confidence_history": [
+    {
+      "ts": "2026-04-06T16:57:04.876825+00:00",
+      "phase": "parsing",
+      "confidence": 0.88,
+      "status": "success"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.881327+00:00",
+      "phase": "parsing",
+      "confidence": 0.88,
+      "status": "success"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.886062+00:00",
+      "phase": "parsing",
+      "confidence": 0.88,
+      "status": "success"
+    }
+  ],
+  "react_history": [
+    {
+      "ts": "2026-04-06T16:57:04.876821+00:00",
+      "phase": "parsing",
+      "attempt": 1,
+      "thought": "Need reliable output for parsing; attempt 1.",
+      "action": "execute_tool:parsing",
+      "observation": "attempt=1, status=success, confidence=0.88, errors=0"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.881322+00:00",
+      "phase": "parsing",
+      "attempt": 2,
+      "thought": "Need reliable output for parsing; attempt 2.",
+      "action": "execute_tool:parsing",
+      "observation": "attempt=2, status=success, confidence=0.88, errors=0"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.886058+00:00",
+      "phase": "parsing",
+      "attempt": 3,
+      "thought": "Need reliable output for parsing; attempt 3.",
+      "action": "execute_tool:parsing",
+      "observation": "attempt=3, status=success, confidence=0.88, errors=0"
+    }
+  ]
+}

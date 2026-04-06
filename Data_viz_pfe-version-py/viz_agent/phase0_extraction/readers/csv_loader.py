@@ -5,6 +5,10 @@ from pathlib import Path
 import pandas as pd
 
 class CSVLoader:
+    def extract_from_twbx(self, twbx_path: str) -> dict[str, pd.DataFrame]:
+        """Backward-compatible alias for legacy phase0_data API."""
+        return self.extract_all_tables(twbx_path)
+
     def extract_all_tables(self, twbx_path: str) -> dict[str, pd.DataFrame]:
         """Extract all CSV tables from a Tableau TWBX archive."""
         results: dict[str, pd.DataFrame] = {}

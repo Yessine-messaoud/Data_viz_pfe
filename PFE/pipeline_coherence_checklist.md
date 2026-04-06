@@ -40,7 +40,7 @@ Référence concept: `PFE/pipeline_description.md`
   - Attendu: pipeline modulaire couvrant extraction, parsing, sémantique, spec, transformation, génération/validation, lineage.
   - Preuve: phases appelées dans `viz_agent/main.py`.
   - Réf: `Data_viz_pfe-version-py/viz_agent/main.py:311` à `:426`
-  - Note: conforme sur la structure, mais impactée par `P0-01`.
+  - Note: conforme sur la structure globale; reste à homogénéiser l'orchestration agentique complète vs pipeline runtime direct.
 
 - [~] `P1-02` Initialisation orientée intention (conversation + intent detection + pipeline dynamique)
   - Attendu: intention structurée issue de la requête utilisateur, orchestration dynamique.
@@ -59,10 +59,15 @@ Référence concept: `PFE/pipeline_description.md`
   - Détails: validation d'entrée `.twb/.twbx`, chargement XML direct `.twb`, extraction phase 0 compatible `.twb` (registry vide).
   - Réf: `Data_viz_pfe-version-py/viz_agent/main.py`
   - Réf: `Data_viz_pfe-version-py/viz_agent/phase1_parser/tableau_parser.py`
+  - Action complémentaire: implémentation parsing déterministe `.rdl` + `.twb/.twbx` dans l'agent de phase 1.
+  - Réf: `Data_viz_pfe-version-py/viz_agent/phase1_parser/agent/deterministic_parser.py`
+  - Réf: `Data_viz_pfe-version-py/viz_agent/phase1_parser/agent/parsing_agent.py`
+  - Tests ajoutés: `Data_viz_pfe-version-py/viz_agent/tests/test_phase1_deterministic_parser.py`
+  - Validation exécutée: `python -m pytest Data_viz_pfe-version-py/viz_agent/tests/test_phase1_deterministic_parser.py Data_viz_pfe-version-py/viz_agent/tests/test_main.py -q`
+  - Résultat: `5 passed`
   - Validation exécutée: `python -m pytest Data_viz_pfe-version-py/viz_agent/tests/test_main.py Data_viz_pfe-version-py/viz_agent/tests/test_phase0.py -q`
   - Résultat: `5 passed`
-  - Reste à faire: support réel `.rdl` côté parsing/extraction (agent déterministe encore TODO).
-  - Réf: `Data_viz_pfe-version-py/viz_agent/phase1_parser/agent/deterministic_parser.py:8`
+  - Reste à faire: brancher le flux runtime principal (`main.py`) sur le chemin `.rdl` end-to-end (aujourd'hui il reste centré Tableau).
 
 - [~] `P1-04` Validation transversale continue (chaque phase)
   - Attendu: hooks de validation réellement implémentés et actifs.
@@ -96,11 +101,18 @@ Référence concept: `PFE/pipeline_description.md`
 
 ## P2 (complétude fonctionnelle)
 
-- [ ] `P2-01` Détection des relations phase 0 (FK + heuristiques)
+- [~] `P2-01` Détection des relations phase 0 (FK + heuristiques)
   - Attendu: relations réellement détectées et intégrées au modèle.
-  - Preuve: appels non branchés dans pipeline + fonctions non implémentées.
-  - Réf: `Data_viz_pfe-version-py/viz_agent/phase0_extraction/pipeline.py:90`
-  - Réf: `Data_viz_pfe-version-py/viz_agent/phase0_extraction/relationship_detection/relationship_detector.py:10`, `:15`
+  - Action: implémentation de `detect_from_heuristics(...)` et `detect_from_fk(...)`.
+  - Action: branchement effectif dans `phase0_extraction/pipeline.py` avec déduplication des relations.
+  - Action: normalisation alignée (`source_type` / `source_path`) pour éviter les incohérences de modèle.
+  - Réf: `Data_viz_pfe-version-py/viz_agent/phase0_extraction/relationship_detection/relationship_detector.py`
+  - Réf: `Data_viz_pfe-version-py/viz_agent/phase0_extraction/pipeline.py`
+  - Réf: `Data_viz_pfe-version-py/viz_agent/phase0_extraction/normalization/metadata_normalizer.py`
+  - Validation exécutée: `python -m py_compile ...relationship_detector.py ...metadata_normalizer.py ...pipeline.py`
+  - Validation exécutée: `python -m pytest Data_viz_pfe-version-py/viz_agent/tests/test_main.py -q`
+  - Résultat: compilation OK + `3 passed`
+  - Reste à faire: tests dédiés relations sur datasets SQL réels et extraction FK multi-SGBD.
 
 - [x] `P2-02` Phase 5 bloquante avec validation multi-niveaux
   - Attendu: génération RDL + validation XML/XSD/sémantique + blocage si erreur.

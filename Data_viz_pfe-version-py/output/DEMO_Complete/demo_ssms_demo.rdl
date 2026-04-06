@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xsi:schemaLocation="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/ReportDefinition.xsd">
+  <Description>Genere par VizAgent v2 le 2026-04-06T10:51:29.864451+00:00</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW2022</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="FactInternetSales">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT f.ProductKey AS ProductKey, f.OrderDateKey AS OrderDateKey, f.DueDateKey AS DueDateKey, f.ShipDateKey AS ShipDateKey, f.CustomerKey AS CustomerKey, f.PromotionKey AS PromotionKey, f.CurrencyKey AS CurrencyKey, f.SalesTerritoryKey AS SalesTerritoryKey, f.SalesOrderNumber AS SalesOrderNumber, f.SalesOrderLineNumber AS SalesOrderLineNumber, f.RevisionNumber AS RevisionNumber, f.OrderQuantity AS OrderQuantity, f.UnitPrice AS UnitPrice, f.ExtendedAmount AS ExtendedAmount, f.UnitPriceDiscountPct AS UnitPriceDiscountPct, f.DiscountAmount AS DiscountAmount, f.ProductStandardCost AS ProductStandardCost, f.TotalProductCost AS TotalProductCost, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.TaxAmt AS TaxAmount, f.TaxAmt AS [Tax Amount], f.Freight AS Freight, f.CarrierTrackingNumber AS CarrierTrackingNumber, f.CustomerPONumber AS CustomerPONumber, st.SalesTerritoryCountry AS SalesTerritoryCountry, st.SalesTerritoryRegion AS SalesTerritoryRegion, st.SalesTerritoryGroup AS SalesTerritoryGroup, p.ModelName AS ModelName FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="SalesAmount">
+          <DataField>SalesAmount</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritoryCountry">
+          <DataField>SalesTerritoryCountry</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="ModelName">
+          <DataField>ModelName</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="TaxAmt">
+          <DataField>TaxAmt</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="OrderQuantity">
+          <DataField>OrderQuantity</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ProductKey">
+          <DataField>ProductKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="OrderDateKey">
+          <DataField>OrderDateKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="DueDateKey">
+          <DataField>DueDateKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="ShipDateKey">
+          <DataField>ShipDateKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="CustomerKey">
+          <DataField>CustomerKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="PromotionKey">
+          <DataField>PromotionKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="CurrencyKey">
+          <DataField>CurrencyKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritoryKey">
+          <DataField>SalesTerritoryKey</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="SalesOrderNumber">
+          <DataField>SalesOrderNumber</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="SalesOrderLineNumber">
+          <DataField>SalesOrderLineNumber</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="RevisionNumber">
+          <DataField>RevisionNumber</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="UnitPrice">
+          <DataField>UnitPrice</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ExtendedAmount">
+          <DataField>ExtendedAmount</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="UnitPriceDiscountPct">
+          <DataField>UnitPriceDiscountPct</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="DiscountAmount">
+          <DataField>DiscountAmount</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="ProductStandardCost">
+          <DataField>ProductStandardCost</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TotalProductCost">
+          <DataField>TotalProductCost</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="TaxAmount">
+          <DataField>TaxAmount</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tax_Amount">
+          <DataField>Tax Amount</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Freight">
+          <DataField>Freight</DataField>
+          <rd:TypeName>Decimal</rd:TypeName>
+        </Field>
+        <Field Name="CarrierTrackingNumber">
+          <DataField>CarrierTrackingNumber</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="CustomerPONumber">
+          <DataField>CustomerPONumber</DataField>
+          <rd:TypeName>Integer</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritoryRegion">
+          <DataField>SalesTerritoryRegion</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritoryGroup">
+          <DataField>SalesTerritoryGroup</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="f">
+          <DataField>f</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="st">
+          <DataField>st</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+        <Field Name="p">
+          <DataField>p</DataField>
+          <rd:TypeName>String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Feuille_1">
+            <Left>0.2500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>FactInternetSales</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!SalesTerritoryCountry.Value</Label>
+                  <Group Name="grp_SalesTerritoryCountry">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SalesTerritoryCountry.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Sales Amount"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Sales_Amount">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!SalesAmount.Value)</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                  <LegendName>DefaultLegend</LegendName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartTitles>
+              <ChartTitle Name="DefaultTitle">
+                <Caption>Sales per country</Caption>
+              </ChartTitle>
+            </ChartTitles>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="CategoryAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Territory Country</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="ValueAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Amount</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartValueAxes>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="DefaultLegend"/>
+            </ChartLegends>
+          </Chart>
+          <Chart Name="Feuille_2">
+            <Left>3.7500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>FactInternetSales</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!SalesTerritoryCountry.Value</Label>
+                  <Group Name="grp_SalesTerritoryCountry_2">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SalesTerritoryCountry.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="grp_series_ModelName">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!ModelName.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <Label>=Fields!ModelName.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Tax_Amount">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!TaxAmount.Value)</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Column</Type>
+                  <ChartAreaName>Default</ChartAreaName>
+                  <LegendName>DefaultLegend</LegendName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartTitles>
+              <ChartTitle Name="DefaultTitle">
+                <Caption>Tax per country</Caption>
+              </ChartTitle>
+            </ChartTitles>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="CategoryAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Territory Country</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="ValueAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Tax Amount</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartValueAxes>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="DefaultLegend"/>
+            </ChartLegends>
+          </Chart>
+          <Chart Name="Feuille_3">
+            <Left>7.2500in</Left>
+            <Top>0.7500in</Top>
+            <Width>3.4000in</Width>
+            <Height>7.4000in</Height>
+            <DataSetName>FactInternetSales</DataSetName>
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>=Fields!SalesTerritoryCountry.Value</Label>
+                  <Group Name="grp_SalesTerritoryCountry_3">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!SalesTerritoryCountry.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>="Order Quantity"</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="Order_Quantity">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <Y>=Sum(Fields!OrderQuantity.Value)</Y>
+                      </ChartDataPointValues>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Subtype>Pie</Subtype>
+                  <ChartAreaName>Default</ChartAreaName>
+                  <LegendName>DefaultLegend</LegendName>
+                </ChartSeries>
+              </ChartSeriesCollection>
+            </ChartData>
+            <ChartTitles>
+              <ChartTitle Name="DefaultTitle">
+                <Caption>Feuille 3</Caption>
+              </ChartTitle>
+            </ChartTitles>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="CategoryAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Sales Territory Country</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="ValueAxis1">
+                    <ChartAxisTitle>
+                      <Caption>Order Quantity</Caption>
+                    </ChartAxisTitle>
+                  </ChartAxis>
+                </ChartValueAxes>
+              </ChartArea>
+            </ChartAreas>
+            <ChartLegends>
+              <ChartLegend Name="DefaultLegend"/>
+            </ChartLegends>
+          </Chart>
+        </ReportItems>
+        <Height>6.5in</Height>
+      </Body>
+      <Width>10.5in</Width>
+      <Page>
+        <PageHeight>8.5in</PageHeight>
+        <PageWidth>11in</PageWidth>
+        <TopMargin>0.25in</TopMargin>
+        <BottomMargin>0.25in</BottomMargin>
+        <LeftMargin>0.25in</LeftMargin>
+        <RightMargin>0.25in</RightMargin>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+</Report>

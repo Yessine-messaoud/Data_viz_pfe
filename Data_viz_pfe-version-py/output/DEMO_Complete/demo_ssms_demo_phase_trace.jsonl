@@ -1,0 +1,182 @@
+{"timestamp": "2026-04-06T09:52:36.083260+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T09:52:36.177256+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T09:52:36.177700+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.191027+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "miss"}}
+{"timestamp": "2026-04-06T09:52:36.192148+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.197689+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "miss"}}
+{"timestamp": "2026-04-06T09:52:36.200238+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.212024+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T09:52:36.212507+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.217457+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T09:52:36.217950+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.228112+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T09:52:36.228847+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:52:36.230771+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T09:58:51.780768+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T09:58:51.809638+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T09:58:51.809982+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.814177+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T09:58:51.814611+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.816816+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T09:58:51.818161+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.826061+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T09:58:51.826499+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.830559+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T09:58:51.831012+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.838792+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T09:58:51.839386+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:58:51.840318+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T09:59:39.642978+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T09:59:39.675199+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T09:59:39.675995+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.678435+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T09:59:39.678982+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.681134+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T09:59:39.683049+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.690932+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T09:59:39.691470+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.695061+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T09:59:39.695763+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.704823+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T09:59:39.705648+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T09:59:39.706755+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:05:09.529231+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:05:09.570488+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:05:09.570837+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.573978+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:05:09.574402+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.576824+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:05:09.578376+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.586683+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:05:09.587344+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.590980+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:05:09.591772+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.602040+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:05:09.603029+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:05:09.604632+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:08:24.875358+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:08:24.906719+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:08:24.908003+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.911409+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:08:24.912278+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.915934+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:08:24.918193+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.927951+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:08:24.928721+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.932485+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:08:24.933328+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.943319+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:08:24.943822+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:08:24.944985+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:27:49.754139+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:27:49.782466+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:27:49.782862+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.784933+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:27:49.785366+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.787455+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:27:49.788855+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.795785+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:27:49.796198+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.799767+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:27:49.800219+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.809336+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 1}}
+{"timestamp": "2026-04-06T10:27:49.809945+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:27:49.811011+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:28:43.891820+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:28:43.926547+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:28:43.927160+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.929245+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:28:43.929767+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.931925+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:28:43.933014+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.940497+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:28:43.941090+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.945091+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:28:43.945606+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.953674+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:28:43.954617+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:28:43.955637+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:31:42.366269+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:31:42.397580+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:31:42.397977+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.400096+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:31:42.400451+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.402749+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:31:42.404528+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.411696+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:31:42.412113+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.415341+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:31:42.416208+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.424281+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:31:42.424793+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:31:42.425904+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}
+{"timestamp": "2026-04-06T10:47:26.628992+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:47:26.657056+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:47:26.657372+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.665432+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "miss"}}
+{"timestamp": "2026-04-06T10:47:26.665793+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.677431+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "miss"}}
+{"timestamp": "2026-04-06T10:47:26.678780+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.686174+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:47:26.686485+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.690291+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:47:26.690789+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.699355+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:47:26.699806+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:47:26.700980+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 1}}
+{"timestamp": "2026-04-06T10:49:05.694426+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:49:05.729168+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:49:05.729947+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.732915+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:49:05.733362+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.736207+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:49:05.738458+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.747204+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:49:05.747647+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.751571+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:49:05.752092+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.762521+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:49:05.763376+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:49:05.765848+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 1}}
+{"timestamp": "2026-04-06T10:50:16.984036+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:50:17.023819+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:50:17.024281+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.026733+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:50:17.027156+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.029536+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:50:17.031627+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.040017+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:50:17.040568+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.043654+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:50:17.044128+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.052800+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:50:17.053323+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:17.054625+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 1}}
+{"timestamp": "2026-04-06T10:50:43.871022+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:50:43.918853+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:50:43.919441+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.921734+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:50:43.922133+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.924661+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:50:43.926292+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.934633+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:50:43.934996+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.938608+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:50:43.939148+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.948300+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:50:43.948813+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:50:43.949896+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 1}}
+{"timestamp": "2026-04-06T10:51:29.789027+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_ssms.twbx"}}
+{"timestamp": "2026-04-06T10:51:29.820822+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 0, "connections_detected": 1, "mode": "live_sql"}}
+{"timestamp": "2026-04-06T10:51:29.821319+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.823462+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 3, "dashboards": 1, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:51:29.823938+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.826703+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "AdventureworksDW2022", "measure_count": 4, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:51:29.828624+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.837525+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 98.0, "errors": 0, "warnings": 1}}
+{"timestamp": "2026-04-06T10:51:29.837981+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.842121+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:51:29.842532+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.851417+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 100, "errors": 0, "warnings": 0, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:51:29.852046+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:51:29.853261+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 1}}

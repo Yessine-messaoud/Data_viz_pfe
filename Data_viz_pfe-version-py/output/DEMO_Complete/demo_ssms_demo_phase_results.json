@@ -1,0 +1,93 @@
+{
+  "global_confidence": 0.8571,
+  "phases": [
+    {
+      "phase": "phase0_extraction",
+      "ok": true,
+      "retry_hint": "Verifier le fichier source TWBX/TWB et les dependances d extraction Hyper/CSV.",
+      "confidence": 1.0,
+      "artifacts": {
+        "mode": "live_sql",
+        "tables_extracted": 0,
+        "connections_detected": 1,
+        "manifest": "output\\DEMO_Complete\\demo_ssms_demo_phase0_manifest.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase1_parser",
+      "ok": true,
+      "retry_hint": "Verifier la structure XML TWB/TWBX et les references datasource.",
+      "confidence": 1.0,
+      "artifacts": {
+        "worksheets": 3,
+        "dashboards": 1,
+        "warnings": 1,
+        "artifact": "output\\DEMO_Complete\\demo_ssms_demo_phase1_parsed_workbook.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase2_semantic",
+      "ok": true,
+      "retry_hint": "",
+      "confidence": 0.0,
+      "artifacts": {
+        "fact_table": "AdventureworksDW2022",
+        "measure_count": 4,
+        "path": "fast"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase3_spec",
+      "ok": true,
+      "retry_hint": "Verifier le mapping de roles semantiques et le contrat visual/data-binding.",
+      "confidence": 1.0,
+      "artifacts": {
+        "validation_score": 98.0,
+        "errors": 0,
+        "warnings": 1,
+        "artifact": "output\\DEMO_Complete\\demo_ssms_demo_abstract_spec.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase4_transform",
+      "ok": true,
+      "retry_hint": "Verifier les expressions calc fields et la coherence du tool model.",
+      "confidence": 1.0,
+      "artifacts": {
+        "llm_calls": 0,
+        "llm_success": 0,
+        "tool_model": "output\\DEMO_Complete\\demo_ssms_demo_tool_model.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase5_rdl",
+      "ok": true,
+      "retry_hint": "Verifier dataset-field mapping, schema RDL et coherence semantique chart/tablix.",
+      "confidence": 1.0,
+      "artifacts": {
+        "score": 100,
+        "errors": 0,
+        "warnings": 0,
+        "auto_fixes": []
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase6_lineage",
+      "ok": true,
+      "retry_hint": "Verifier les joins lineage et la stabilite du graphe semantique.",
+      "confidence": 1.0,
+      "artifacts": {
+        "tables": 1,
+        "joins": 1,
+        "artifact": "output\\DEMO_Complete\\demo_ssms_demo_lineage.json"
+      },
+      "errors": []
+    }
+  ]
+}

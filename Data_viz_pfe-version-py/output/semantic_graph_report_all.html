@@ -1,0 +1,211 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Semantic Graph Demo</title><style>body{font-family:Segoe UI,Arial,sans-serif;padding:20px;background:#f8fafc;}table{border-collapse:collapse;width:100%;background:#fff;}th,td{border:1px solid #cbd5e1;padding:8px;vertical-align:top;font-size:12px;}th{background:#e2e8f0;} .ok{color:#166534;font-weight:700;} .ko{color:#991b1b;font-weight:700;}pre{margin:0;white-space:pre-wrap;max-width:480px;}</style></head><body><h1>Demo Semantic Graph</h1><p>Ce rapport couvre phase 0 (extraction), phase 1 (parsing), et phase 2 (semantic graph).</p><p>Paths utilises: cache=5, fast=0, fallback=0, unknown=0</p><p>LLM utilises: mistral=0, gemini=0, ollama=0, none=5, unknown=0</p><table><tr><th>Input</th><th>Status</th><th>Mode P0</th><th>Tables</th><th>Connexions</th><th>Worksheets</th><th>Dashboards</th><th>Nodes</th><th>Relationships</th><th>Persisted</th><th>Graph Error</th><th>Graph JSON</th><th>Schema JSON</th><th>Schema HTML</th><th>Schema Tables</th><th>Schema Colonnes</th><th>Path</th><th>LLM</th><th>Confidence</th><th>Heuristic</th><th>Profiling</th><th>Ontology</th><th>LLM</th><th>Echantillon metadonnees</th><th>Erreur</th></tr><tr><td>input\demo1.1.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>10</td><td>12</td><td>False</td><td></td><td>output\semantic_graph\demo1_1_semantic_graph.json</td><td>output\semantic_schema\demo1_1_detected_schema.json</td><td>output\semantic_schema\demo1_1_detected_schema.html</td><td>1</td><td>2</td><td>cache</td><td>none</td><td>0.760</td><td>0.900</td><td>0.500</td><td>0.900</td><td>0.000</td><td><pre>{
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ],
+  &quot;graph_node_types&quot;: [
+    &quot;Table&quot;,
+    &quot;Column&quot;,
+    &quot;Measure&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Measure&quot;,
+    &quot;Measure&quot;,
+    &quot;Visual&quot;
+  ],
+  &quot;graph_relationship_types&quot;: [
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;AGGREGATED_AS&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;GROUPED_BY&quot;,
+    &quot;GROUPED_BY&quot;
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo1.2.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>9</td><td>10</td><td>False</td><td></td><td>output\semantic_graph\demo1_2_semantic_graph.json</td><td>output\semantic_schema\demo1_2_detected_schema.json</td><td>output\semantic_schema\demo1_2_detected_schema.html</td><td>1</td><td>2</td><td>cache</td><td>none</td><td>0.760</td><td>0.900</td><td>0.500</td><td>0.900</td><td>0.000</td><td><pre>{
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Pie&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ],
+  &quot;graph_node_types&quot;: [
+    &quot;Table&quot;,
+    &quot;Column&quot;,
+    &quot;Measure&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Measure&quot;,
+    &quot;Measure&quot;,
+    &quot;Visual&quot;
+  ],
+  &quot;graph_relationship_types&quot;: [
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;AGGREGATED_AS&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;GROUPED_BY&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;USED_IN&quot;
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo1.3.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>9</td><td>10</td><td>False</td><td></td><td>output\semantic_graph\demo1_3_semantic_graph.json</td><td>output\semantic_schema\demo1_3_detected_schema.json</td><td>output\semantic_schema\demo1_3_detected_schema.html</td><td>1</td><td>2</td><td>cache</td><td>none</td><td>0.760</td><td>0.900</td><td>0.500</td><td>0.900</td><td>0.000</td><td><pre>{
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Treemap&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ],
+  &quot;graph_node_types&quot;: [
+    &quot;Table&quot;,
+    &quot;Column&quot;,
+    &quot;Measure&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Measure&quot;,
+    &quot;Measure&quot;,
+    &quot;Visual&quot;
+  ],
+  &quot;graph_relationship_types&quot;: [
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;AGGREGATED_AS&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;USED_IN&quot;,
+    &quot;GROUPED_BY&quot;
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo_csv.twbx</td><td class='ok'>OK</td><td>hybrid</td><td>1</td><td>1</td><td>2</td><td>1</td><td>42</td><td>44</td><td>False</td><td></td><td>output\semantic_graph\demo_csv_semantic_graph.json</td><td>output\semantic_schema\demo_csv_detected_schema.json</td><td>output\semantic_schema\demo_csv_detected_schema.html</td><td>1</td><td>14</td><td>cache</td><td>none</td><td>0.895</td><td>0.900</td><td>1.000</td><td>0.114</td><td>0.000</td><td><pre>{
+  &quot;datasource_names&quot;: [
+    &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Pie&quot;,
+      &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+    }
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;players_cleaned&quot;,
+      &quot;class&quot;: &quot;textscan&quot;,
+      &quot;database&quot;: &quot;&quot;,
+      &quot;server&quot;: &quot;&quot;
+    }
+  ],
+  &quot;graph_node_types&quot;: [
+    &quot;Table&quot;,
+    &quot;Column&quot;,
+    &quot;Measure&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Column&quot;
+  ],
+  &quot;graph_relationship_types&quot;: [
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;AGGREGATED_AS&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;HAS_COLUMN&quot;
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo_ssms.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>3</td><td>1</td><td>24</td><td>32</td><td>False</td><td></td><td>output\semantic_graph\demo_ssms_semantic_graph.json</td><td>output\semantic_schema\demo_ssms_detected_schema.json</td><td>output\semantic_schema\demo_ssms_detected_schema.html</td><td>1</td><td>5</td><td>cache</td><td>none</td><td>0.756</td><td>0.900</td><td>0.500</td><td>0.880</td><td>0.000</td><td><pre>{
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 3&quot;,
+      &quot;mark_type&quot;: &quot;Treemap&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ],
+  &quot;graph_node_types&quot;: [
+    &quot;Table&quot;,
+    &quot;Column&quot;,
+    &quot;Measure&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Column&quot;,
+    &quot;Dimension&quot;,
+    &quot;Column&quot;
+  ],
+  &quot;graph_relationship_types&quot;: [
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_MEASURE&quot;,
+    &quot;AGGREGATED_AS&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;HAS_COLUMN&quot;,
+    &quot;IS_DIMENSION&quot;,
+    &quot;HAS_COLUMN&quot;
+  ]
+}</pre></td><td><pre></pre></td></tr></table></body></html>

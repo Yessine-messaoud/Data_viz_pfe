@@ -1,0 +1,181 @@
+{
+  "timestamp": "2026-04-06T11:17:01.063695+00:00",
+  "simulate": true,
+  "models": [
+    {
+      "model_name": "mistral_api",
+      "total_score": 0.54,
+      "pass_rate": 0.4,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.7,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"line\", \"rationale\": \"OrderDate on x suggests time trend; line is preferred over bar\", \"confidence\": 0.82, \"mapping\": {\"visual_intent\": \"trend_over_time\"}}",
+          "notes": "decision matched; keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.6,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Column role inference based on lexical cues and sample values\", \"confidence\": 0.82, \"mapping\": {\"Amt\": {\"role\": \"measure\", \"business_type\": \"amount\"}, \"Value\": {\"role\": \"measure\", \"business_type\": \"metric\"}, \"X1\": {\"role\": \"dimension\", \"business_type\": \"code\"}, \"Region\": {\"role\": \"dimension\", \"business_type\": \"geography\"}, \"OrderDate\": {\"role\": \"dimension\", \"business_type\": \"date\"}}}",
+          "notes": "column role hits: 5/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"bar\", \"rationale\": \"22 subcategories: bar is readable; pie is not appropriate\", \"confidence\": 0.82, \"mapping\": {\"candidate_rank\": [\"bar\", \"bar\", \"treemap\", \"pie\"]}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.5,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"Use IIF with Nothing for null-equivalent branch\", \"confidence\": 0.82, \"mapping\": {\"rdl_expression\": \"=IIF(Fields!Sales.Value > 1000, (Fields!Sales.Value - Fields!Cost.Value) / Fields!Sales.Value, Nothing)\"}}",
+          "notes": "keyword hits: 4; calc translation structure matched"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.5,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"Replace text aggregation by numeric measure and update mapping\", \"confidence\": 0.82, \"mapping\": {\"fix\": \"Use Total_Revenue (or Total_Profit) as Y instead of Country\"}}",
+          "notes": "keyword hits: 5; autofix target field matched"
+        }
+      ]
+    },
+    {
+      "model_name": "gemini_api",
+      "total_score": 0.54,
+      "pass_rate": 0.4,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.7,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"line\", \"rationale\": \"OrderDate on x suggests time trend; line is preferred over bar\", \"confidence\": 0.79, \"mapping\": {\"visual_intent\": \"trend_over_time\"}}",
+          "notes": "decision matched; keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.6,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Column role inference based on lexical cues and sample values\", \"confidence\": 0.79, \"mapping\": {\"Amt\": {\"role\": \"measure\", \"business_type\": \"amount\"}, \"Value\": {\"role\": \"measure\", \"business_type\": \"count_like\"}, \"X1\": {\"role\": \"dimension\", \"business_type\": \"identifier\"}, \"Region\": {\"role\": \"dimension\", \"business_type\": \"region\"}, \"OrderDate\": {\"role\": \"dimension\", \"business_type\": \"date\"}}}",
+          "notes": "column role hits: 5/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"treemap\", \"rationale\": \"Hierarchical composition (Category/SubCategory) favors treemap\", \"confidence\": 0.79, \"mapping\": {\"candidate_rank\": [\"treemap\", \"bar\", \"treemap\", \"pie\"]}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.5,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"Use IIF with Nothing for null-equivalent branch\", \"confidence\": 0.79, \"mapping\": {\"rdl_expression\": \"=IIF(Fields!Sales.Value > 1000, (Fields!Sales.Value - Fields!Cost.Value) / Fields!Sales.Value, Nothing)\"}}",
+          "notes": "keyword hits: 4; calc translation structure matched"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.5,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"Replace text aggregation by numeric measure and update mapping\", \"confidence\": 0.79, \"mapping\": {\"fix\": \"Use Total_Revenue (or Total_Profit) as Y instead of Country\"}}",
+          "notes": "keyword hits: 5; autofix target field matched"
+        }
+      ]
+    },
+    {
+      "model_name": "mistral_local",
+      "total_score": 0.376,
+      "pass_rate": 0.2,
+      "avg_latency_ms": 0.0,
+      "cases": [
+        {
+          "scenario_id": "phase1_parsing_ambigu",
+          "phase": "Phase 1",
+          "title": "Parsing ambigu",
+          "score": 0.6000000000000001,
+          "latency_ms": 0,
+          "passed": true,
+          "output": "{\"decision\": \"bar\", \"rationale\": \"bar is acceptable but less ideal for temporal trend\", \"confidence\": 0.68, \"mapping\": {\"visual_intent\": \"trend_over_time\"}}",
+          "notes": "decision matched; keyword hits: 2"
+        },
+        {
+          "scenario_id": "phase2_semantic_detection",
+          "phase": "Phase 2",
+          "title": "Detection semantique",
+          "score": 0.48,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"semantic_map\", \"rationale\": \"Column role inference based on lexical cues and sample values\", \"confidence\": 0.68, \"mapping\": {\"Amt\": {\"role\": \"dimension\", \"business_type\": \"unknown\"}, \"Value\": {\"role\": \"measure\", \"business_type\": \"metric\"}, \"X1\": {\"role\": \"dimension\", \"business_type\": \"code\"}, \"Region\": {\"role\": \"dimension\", \"business_type\": \"region\"}, \"OrderDate\": {\"role\": \"dimension\", \"business_type\": \"date\"}}}",
+          "notes": "column role hits: 4/5"
+        },
+        {
+          "scenario_id": "phase3_visual_mapping",
+          "phase": "Phase 3",
+          "title": "Mapping visuel intelligent",
+          "score": 0.4,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"pie\", \"rationale\": \"simple share view\", \"confidence\": 0.68, \"mapping\": {\"candidate_rank\": [\"pie\", \"bar\", \"treemap\", \"pie\"]}}",
+          "notes": "decision matched; forbidden decision present"
+        },
+        {
+          "scenario_id": "phase4_calc_translation",
+          "phase": "Phase 4",
+          "title": "Traduction de calculs",
+          "score": 0.3,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"rdl_calc\", \"rationale\": \"Approximate translation\", \"confidence\": 0.68, \"mapping\": {\"rdl_expression\": \"=IIF(Fields!Sales.Value > 1000, Fields!Sales.Value - Fields!Cost.Value, 0)\"}}",
+          "notes": "keyword hits: 3"
+        },
+        {
+          "scenario_id": "phase5_autofix",
+          "phase": "Phase 5",
+          "title": "Auto-fix intelligent",
+          "score": 0.1,
+          "latency_ms": 0,
+          "passed": false,
+          "output": "{\"decision\": \"autofix\", \"rationale\": \"Try to keep existing mapping\", \"confidence\": 0.68, \"mapping\": {\"fix\": \"Keep Country and cast\"}}",
+          "notes": "keyword hits: 1"
+        }
+      ]
+    }
+  ],
+  "winner": "mistral_api"
+}

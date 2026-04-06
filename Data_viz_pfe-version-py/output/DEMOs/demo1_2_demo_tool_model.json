@@ -1,0 +1,101 @@
+{
+  "target_tool": "RDL",
+  "datasets": [
+    {
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "fields": [
+        {
+          "name": "SalesAmount",
+          "source_type": "decimal",
+          "target_type": "Decimal",
+          "role": "measure"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "source_type": "text",
+          "target_type": "String",
+          "role": "dimension"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "id": "Feuille 1",
+      "title": "Sales per country",
+      "page": "Tableau de bord 1",
+      "business_type": "pie",
+      "rdl_type": "chart",
+      "encoding": {},
+      "position": {},
+      "tool_visual_type": "PieChart"
+    }
+  ],
+  "measures": [
+    {
+      "name": "Sum SalesAmount",
+      "expression": "SUM([SalesAmount])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesAmount",
+      "translated_expression": "SUM([SalesAmount])"
+    },
+    {
+      "name": "Sum SalesTerritoryCountry",
+      "expression": "SUM([SalesTerritoryCountry])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesTerritoryCountry",
+      "translated_expression": "SUM([SalesTerritoryCountry])"
+    }
+  ],
+  "parameters": [],
+  "filters": [
+    {
+      "field": "SalesTerritoryCountry",
+      "operator": "=",
+      "value": null,
+      "column": "SalesTerritoryCountry"
+    }
+  ],
+  "meta": {
+    "source_spec_id": "466c89a2-9870-49e6-b332-01441ae7bc86",
+    "source_spec_version": "2.0.0"
+  },
+  "optimization_hints": [
+    "Prefer server-side aggregation in dataset queries for heavy reports."
+  ],
+  "compatibility_notes": [],
+  "validation_results": [],
+  "lineage_events": [
+    {
+      "phase": "phase4_transform",
+      "timestamp": "2026-04-01T15:47:20.793885+00:00",
+      "datasets_count": 1,
+      "visuals_count": 1,
+      "status": "ok"
+    }
+  ],
+  "transform_log": [
+    {
+      "step": "data_model",
+      "status": "done"
+    },
+    {
+      "step": "calculation",
+      "status": "done"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done"
+    },
+    {
+      "step": "optimization",
+      "status": "done"
+    }
+  ]
+}

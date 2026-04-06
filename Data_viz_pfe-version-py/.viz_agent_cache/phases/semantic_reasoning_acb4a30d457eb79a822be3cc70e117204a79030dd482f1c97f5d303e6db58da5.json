@@ -1,0 +1,17 @@
+{
+  "schema": "v1",
+  "phase": "semantic_reasoning",
+  "fingerprint": "acb4a30d457eb79a822be3cc70e117204a79030dd482f1c97f5d303e6db58da5",
+  "result": {
+    "status": "success",
+    "confidence": 0.91,
+    "output": {
+      "semantic_graph": {
+        "columns": []
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {}
+}

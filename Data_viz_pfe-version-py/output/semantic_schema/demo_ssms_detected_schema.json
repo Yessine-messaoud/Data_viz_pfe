@@ -1,0 +1,47 @@
+{
+  "tables": [
+    {
+      "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "source_name": "AdventureworksDW2022",
+      "schema": "dbo",
+      "row_count": 0,
+      "columns": [
+        {
+          "name": "SalesAmount",
+          "role": "measure",
+          "pbi_type": "decimal",
+          "label": ""
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "ModelName",
+          "role": "dimension",
+          "pbi_type": "text",
+          "label": ""
+        },
+        {
+          "name": "TaxAmt",
+          "role": "measure",
+          "pbi_type": "decimal",
+          "label": ""
+        },
+        {
+          "name": "OrderQuantity",
+          "role": "measure",
+          "pbi_type": "decimal",
+          "label": ""
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "tables": 1,
+    "columns": 5
+  }
+}

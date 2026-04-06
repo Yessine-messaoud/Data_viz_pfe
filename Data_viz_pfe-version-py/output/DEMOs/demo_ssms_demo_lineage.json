@@ -1,0 +1,55 @@
+{
+  "tables": [
+    {
+      "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "source_name": "AdventureworksDW2022",
+      "schema": "dbo",
+      "columns": [
+        {
+          "name": "SalesAmount",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Montant des ventes"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "Pays de la zone de vente"
+        },
+        {
+          "name": "ModelName",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": "Nom du mod\u00e8le"
+        },
+        {
+          "name": "TaxAmt",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Montant des taxes"
+        },
+        {
+          "name": "OrderQuantity",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": "Quantit\u00e9 command\u00e9e"
+        }
+      ],
+      "is_date_table": false,
+      "row_count": 0
+    }
+  ],
+  "joins": [],
+  "columns_used": [],
+  "measures": [],
+  "filters_applied": [],
+  "transformations": [],
+  "visual_column_map": {}
+}

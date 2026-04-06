@@ -1,0 +1,625 @@
+{
+  "input": "input\\demo_csv.twbx",
+  "phase0_mode": "hybrid",
+  "graph": {
+    "nodes": [
+      {
+        "id": "table:_Extract_._Extract_",
+        "label": "Table",
+        "name": "\"Extract\".\"Extract\"",
+        "schema": "dbo",
+        "type": "Table"
+      },
+      {
+        "id": "column:_Extract_._Extract_.player_id",
+        "label": "Column",
+        "name": "player_id",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.name",
+        "label": "Column",
+        "name": "name",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.club",
+        "label": "Column",
+        "name": "club",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.club_value",
+        "label": "Column",
+        "name": "club_value",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.birth_date",
+        "label": "Column",
+        "name": "birth_date",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.age",
+        "label": "Column",
+        "name": "age",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.weight",
+        "label": "Column",
+        "name": "weight",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.height",
+        "label": "Column",
+        "name": "height",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.bmi",
+        "label": "Column",
+        "name": "bmi",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "measure",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.country",
+        "label": "Column",
+        "name": "country",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.role",
+        "label": "Column",
+        "name": "role",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.foot",
+        "label": "Column",
+        "name": "foot",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.transfers",
+        "label": "Column",
+        "name": "transfers",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:_Extract_._Extract_.injuries",
+        "label": "Column",
+        "name": "injuries",
+        "table": "\"Extract\".\"Extract\"",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "measure:Sum_club_value",
+        "label": "Measure",
+        "name": "Sum club_value",
+        "expression": "SUM([club_value])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_age",
+        "label": "Measure",
+        "name": "Sum age",
+        "expression": "SUM([age])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_weight",
+        "label": "Measure",
+        "name": "Sum weight",
+        "expression": "SUM([weight])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_height",
+        "label": "Measure",
+        "name": "Sum height",
+        "expression": "SUM([height])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_bmi",
+        "label": "Measure",
+        "name": "Sum bmi",
+        "expression": "SUM([bmi])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_country",
+        "label": "Measure",
+        "name": "Sum country",
+        "expression": "SUM([country])",
+        "type": "Measure"
+      },
+      {
+        "id": "term:Sales",
+        "label": "BusinessTerm",
+        "name": "Sales",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Product",
+        "label": "BusinessTerm",
+        "name": "Product",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Customer",
+        "label": "BusinessTerm",
+        "name": "Customer",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Geography",
+        "label": "BusinessTerm",
+        "name": "Geography",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Time",
+        "label": "BusinessTerm",
+        "name": "Time",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Revenue",
+        "label": "BusinessTerm",
+        "name": "Revenue",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Quantity",
+        "label": "BusinessTerm",
+        "name": "Quantity",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Profit",
+        "label": "BusinessTerm",
+        "name": "Profit",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Discount",
+        "label": "BusinessTerm",
+        "name": "Discount",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Tax",
+        "label": "BusinessTerm",
+        "name": "Tax",
+        "type": "BusinessTerm"
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.player_id",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.name",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.club",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.club_value",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.birth_date",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.age",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.weight",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.height",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.bmi",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.country",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.role",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.foot",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.transfers",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:_Extract_._Extract_",
+        "target_id": "column:_Extract_._Extract_.injuries",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "column:_Extract_._Extract_.birth_date",
+        "target_id": "term:Time",
+        "type": "MAPPED_TO",
+        "confidence": 0.8,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:_Extract_._Extract_.country",
+        "target_id": "term:Geography",
+        "type": "MAPPED_TO",
+        "confidence": 0.8,
+        "method": "heuristic"
+      }
+    ],
+    "persisted": false,
+    "error": ""
+  },
+  "mappings": [
+    {
+      "column": "player_id",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "name",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "club",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "club_value",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "birth_date",
+      "mapped_business_term": "Time",
+      "confidence": 0.8,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Time",
+          "score": 0.8
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "age",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "weight",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "height",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "bmi",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "country",
+      "mapped_business_term": "Geography",
+      "confidence": 0.8,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Geography",
+          "score": 0.8
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "role",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "foot",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "transfers",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "injuries",
+      "mapped_business_term": null,
+      "confidence": 0.0,
+      "method": "unmapped",
+      "details": {
+        "heuristic": {
+          "term": null,
+          "score": 0.0
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    }
+  ],
+  "ontology_terms": [
+    "Sales",
+    "Product",
+    "Customer",
+    "Geography",
+    "Time",
+    "Revenue",
+    "Quantity",
+    "Profit",
+    "Discount",
+    "Tax"
+  ]
+}

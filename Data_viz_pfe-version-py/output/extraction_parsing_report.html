@@ -1,0 +1,1142 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Extraction + Parsing Demo</title><style>:root{--bg:#eef2ff;--panel:#ffffff;--panel-alt:#f8fafc;--text:#0f172a;--muted:#64748b;--line:#dbe4f0;--accent:#0f766e;--accent-2:#1d4ed8;--warn:#92400e;--error:#991b1b;}*{box-sizing:border-box;} body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:linear-gradient(180deg,#eef2ff 0%,#f8fafc 35%,#ffffff 100%);color:var(--text);padding:24px;}.shell{max-width:1400px;margin:0 auto;}.hero{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:20px;flex-wrap:wrap;}.hero h1{margin:0;font-size:32px;letter-spacing:-0.03em;} .hero p{margin:8px 0 0;color:var(--muted);max-width:760px;}.summary-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:18px 0 24px;}.metric{background:rgba(255,255,255,0.88);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:0 10px 30px rgba(15,23,42,0.06);}.metric span{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;} .metric strong{display:block;margin-top:6px;font-size:26px;line-height:1.1;}.section-title{margin:24px 0 12px;font-size:18px;}.case-list{display:flex;flex-direction:column;gap:16px;}.case-card{background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 14px 35px rgba(15,23,42,0.08);}.case-card summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:18px 20px;background:linear-gradient(90deg,rgba(29,78,216,0.06),rgba(15,118,110,0.04));}.case-card summary::-webkit-details-marker{display:none;}.case-title{font-weight:700;font-size:16px;} .case-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}.case-body{padding:20px;}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 10px;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent;}.badge--ok{background:#dcfce7;color:#166534;border-color:#bbf7d0;} .badge--partial{background:#fef3c7;color:#92400e;border-color:#fde68a;} .badge--ko{background:#fee2e2;color:#991b1b;border-color:#fecaca;} .badge--muted{background:#e2e8f0;color:#334155;border-color:#cbd5e1;}.badge--bar,.badge--line,.badge--pie,.badge--treemap,.badge--scatter,.badge--map,.badge--table,.badge--kpi,.badge--gantt{background:#e0f2fe;color:#075985;border-color:#bae6fd;}.two-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px;}.panel{background:var(--panel-alt);border:1px solid var(--line);border-radius:18px;padding:16px;} .panel h3{margin:0 0 12px;font-size:15px;}.panel-kv{display:flex;flex-direction:column;gap:8px;} .kv-row{display:flex;gap:12px;justify-content:space-between;padding:8px 10px;border-radius:12px;background:#fff;border:1px solid #e5e7eb;}.kv-key{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;} .kv-value{font-size:13px;text-align:right;max-width:70%;overflow-wrap:anywhere;}.sheet-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;}.sheet-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;min-height:100%;box-shadow:0 8px 24px rgba(15,23,42,0.05);}.sheet-card__header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:10px;}.sheet-card__header h4{margin:0;font-size:14px;} .sheet-card__header p{margin:4px 0 0;color:var(--muted);font-size:12px;}.sheet-card__grid{display:grid;grid-template-columns:1fr;gap:8px;}.label{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,Monaco,monospace;font-size:11px;white-space:pre-wrap;word-break:break-word;}.inline-list{margin:6px 0 0;padding-left:18px;color:var(--text);} .inline-list li{margin:2px 0;}.empty{color:var(--muted);font-style:italic;} .muted{color:var(--muted);}.overview{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 8px;}.overview .metric{background:rgba(255,255,255,0.96);}pre{margin:0;white-space:pre-wrap;word-break:break-word;font-size:11px;line-height:1.45;}@media (max-width:1200px){.summary-grid,.overview,.sheet-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.two-columns{grid-template-columns:1fr;}}@media (max-width:720px){body{padding:14px;}.summary-grid,.overview,.sheet-grid{grid-template-columns:1fr;}.hero h1{font-size:26px;}}</style></head><body><div class='shell'><div class='hero'><div><h1>Demo Extraction + Parsing</h1><p>Vue structurée de la phase 0 et de la phase 1 avec extraction, parsing enrichi, encodage visuel, confidence et lineage.</p></div></div><div class='summary-grid'><div class='metric'><span>Fichiers</span><strong>5</strong></div><div class='metric'><span>OK</span><strong>5</strong></div><div class='metric'><span>PARTIAL</span><strong>0</strong></div><div class='metric'><span>KO</span><strong>0</strong></div><div class='metric'><span>Tables P0</span><strong>1</strong></div><div class='metric'><span>Connexions</span><strong>5</strong></div><div class='metric'><span>Worksheets P1</span><strong>8</strong></div><div class='metric'><span>Dashboards P1</span><strong>5</strong></div></div><h2 class='section-title'>Cases</h2><div class='case-list'><details class='case-card' open><summary><div class='case-title'>input\demo1.1.twbx</div><div class='case-badges'><span class='badge badge--ok'>OK</span><span class='badge badge--muted'>live_sql</span></div></summary><div class='case-body'><div class='summary-grid'><div class='metric'><span>Tables</span><strong>0</strong></div><div class='metric'><span>Connexions</span><strong>1</strong></div><div class='metric'><span>Worksheets</span><strong>1</strong></div><div class='metric'><span>Dashboards</span><strong>1</strong></div><div class='metric'><span>Calc fields</span><strong>0</strong></div><div class='metric'><span>Datasources</span><strong>1</strong></div></div><div class='two-columns'><section class='panel panel--phase0'><h3>Phase 0 - Extraction</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>tables_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>datasource_names</span><span class='kv-value'>[&#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_captions</span><span class='kv-value'>[&#x27;AdventureworksDW2022&#x27;]</span></div><div class='kv-row'><span class='kv-key'>worksheet_marks</span><span class='kv-value'>[{&#x27;worksheet&#x27;: &#x27;Feuille 1&#x27;, &#x27;mark_type&#x27;: &#x27;Bar&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}]</span></div><div class='kv-row'><span class='kv-key'>dashboard_names</span><span class='kv-value'>[&#x27;Tableau de bord 1&#x27;]</span></div><div class='kv-row'><span class='kv-key'>parameters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>filters_sample</span><span class='kv-value'>[&#x27;SalesTerritoryCountry&#x27;]</span></div><div class='kv-row'><span class='kv-key'>connections_sample</span><span class='kv-value'>[{&#x27;name&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;, &#x27;class&#x27;: &#x27;sqlserver&#x27;, &#x27;database&#x27;: &#x27;AdventureWorksDW2022&#x27;, &#x27;server&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;}]</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Connexions</span><span class='kv-value'>[]</span></div></div></section><section class='panel panel--phase1'><h3>Phase 1 - Parsing enrichi</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>worksheets</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>dashboards</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>semantic_hints</span><span class='kv-value'>2</span></div><div class='kv-row'><span class='kv-key'>enriched_lineage</span><span class='kv-value'>2</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Dashboards</span><span class='kv-value'>[
+  {
+    &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+    &quot;worksheets&quot;: [
+      &quot;Feuille 1&quot;
+    ],
+    &quot;count&quot;: 1
+  }
+]</span></div></div></section></div><section class='panel panel--sheets'><h3>Worksheets enrichies</h3><div class='sheet-grid'><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 1</h4><p>Sales per country</p></div><span class='badge badge--bar'>Bar</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;y&quot;: &quot;SalesAmount&quot;,
+  &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;size&quot;: &quot;SalesAmount&quot;,
+  &quot;detail&quot;: null
+}</div></div><div><span class='label'>Confidence</span><div>visual: 1.00 | encoding: 0.80 | datasource_linkage: 1.00 | overall: 0.94</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;x_axis&quot;
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.95,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;y_axis&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;x_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;y_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.95
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section></div></section><section class='panel panel--sample'><h3>Echantillon metadonnees</h3><pre>{
+  &quot;phase0&quot;: {
+    &quot;tables_sample&quot;: [],
+    &quot;datasource_names&quot;: [
+      &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    ],
+    &quot;datasource_captions&quot;: [
+      &quot;AdventureworksDW2022&quot;
+    ],
+    &quot;worksheet_marks&quot;: [
+      {
+        &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      }
+    ],
+    &quot;dashboard_names&quot;: [
+      &quot;Tableau de bord 1&quot;
+    ],
+    &quot;parameters_sample&quot;: [],
+    &quot;filters_sample&quot;: [
+      &quot;SalesTerritoryCountry&quot;
+    ],
+    &quot;connections_sample&quot;: [
+      {
+        &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+        &quot;class&quot;: &quot;sqlserver&quot;,
+        &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+        &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+      }
+    ]
+  },
+  &quot;phase1&quot;: {
+    &quot;summary&quot;: {
+      &quot;worksheets&quot;: 1,
+      &quot;dashboards&quot;: 1,
+      &quot;semantic_hints&quot;: 2,
+      &quot;enriched_lineage&quot;: 2
+    },
+    &quot;worksheets&quot;: [
+      {
+        &quot;name&quot;: &quot;Feuille 1&quot;,
+        &quot;title&quot;: &quot;Sales per country&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;raw_mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;y&quot;: &quot;SalesAmount&quot;,
+          &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;size&quot;: &quot;SalesAmount&quot;,
+          &quot;detail&quot;: null
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 1.0,
+          &quot;encoding&quot;: 0.8,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.94
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;x_axis&quot;
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.95,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;y_axis&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;x_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;y_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.95
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      }
+    ],
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;worksheets&quot;: [
+          &quot;Feuille 1&quot;
+        ],
+        &quot;count&quot;: 1
+      }
+    ],
+    &quot;validation_warnings&quot;: []
+  }
+}</pre></section></div></details><details class='case-card' open><summary><div class='case-title'>input\demo1.2.twbx</div><div class='case-badges'><span class='badge badge--ok'>OK</span><span class='badge badge--muted'>live_sql</span></div></summary><div class='case-body'><div class='summary-grid'><div class='metric'><span>Tables</span><strong>0</strong></div><div class='metric'><span>Connexions</span><strong>1</strong></div><div class='metric'><span>Worksheets</span><strong>1</strong></div><div class='metric'><span>Dashboards</span><strong>1</strong></div><div class='metric'><span>Calc fields</span><strong>0</strong></div><div class='metric'><span>Datasources</span><strong>1</strong></div></div><div class='two-columns'><section class='panel panel--phase0'><h3>Phase 0 - Extraction</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>tables_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>datasource_names</span><span class='kv-value'>[&#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_captions</span><span class='kv-value'>[&#x27;AdventureworksDW2022&#x27;]</span></div><div class='kv-row'><span class='kv-key'>worksheet_marks</span><span class='kv-value'>[{&#x27;worksheet&#x27;: &#x27;Feuille 1&#x27;, &#x27;mark_type&#x27;: &#x27;Pie&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}]</span></div><div class='kv-row'><span class='kv-key'>dashboard_names</span><span class='kv-value'>[&#x27;Tableau de bord 1&#x27;]</span></div><div class='kv-row'><span class='kv-key'>parameters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>filters_sample</span><span class='kv-value'>[&#x27;SalesTerritoryCountry&#x27;]</span></div><div class='kv-row'><span class='kv-key'>connections_sample</span><span class='kv-value'>[{&#x27;name&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;, &#x27;class&#x27;: &#x27;sqlserver&#x27;, &#x27;database&#x27;: &#x27;AdventureWorksDW2022&#x27;, &#x27;server&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;}]</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Connexions</span><span class='kv-value'>[]</span></div></div></section><section class='panel panel--phase1'><h3>Phase 1 - Parsing enrichi</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>worksheets</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>dashboards</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>semantic_hints</span><span class='kv-value'>2</span></div><div class='kv-row'><span class='kv-key'>enriched_lineage</span><span class='kv-value'>2</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Dashboards</span><span class='kv-value'>[
+  {
+    &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+    &quot;worksheets&quot;: [
+      &quot;Feuille 1&quot;
+    ],
+    &quot;count&quot;: 1
+  }
+]</span></div></div></section></div><section class='panel panel--sheets'><h3>Worksheets enrichies</h3><div class='sheet-grid'><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 1</h4><p>Sales per country</p></div><span class='badge badge--pie'>Pie</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: null,
+  &quot;y&quot;: null,
+  &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;size&quot;: &quot;SalesAmount&quot;,
+  &quot;detail&quot;: null
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.90 | encoding: 0.40 | datasource_linkage: 1.00 | overall: 0.78</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;color&quot;
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.95,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;size&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;color&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;size&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.95
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section></div></section><section class='panel panel--sample'><h3>Echantillon metadonnees</h3><pre>{
+  &quot;phase0&quot;: {
+    &quot;tables_sample&quot;: [],
+    &quot;datasource_names&quot;: [
+      &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    ],
+    &quot;datasource_captions&quot;: [
+      &quot;AdventureworksDW2022&quot;
+    ],
+    &quot;worksheet_marks&quot;: [
+      {
+        &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+        &quot;mark_type&quot;: &quot;Pie&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      }
+    ],
+    &quot;dashboard_names&quot;: [
+      &quot;Tableau de bord 1&quot;
+    ],
+    &quot;parameters_sample&quot;: [],
+    &quot;filters_sample&quot;: [
+      &quot;SalesTerritoryCountry&quot;
+    ],
+    &quot;connections_sample&quot;: [
+      {
+        &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+        &quot;class&quot;: &quot;sqlserver&quot;,
+        &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+        &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+      }
+    ]
+  },
+  &quot;phase1&quot;: {
+    &quot;summary&quot;: {
+      &quot;worksheets&quot;: 1,
+      &quot;dashboards&quot;: 1,
+      &quot;semantic_hints&quot;: 2,
+      &quot;enriched_lineage&quot;: 2
+    },
+    &quot;worksheets&quot;: [
+      {
+        &quot;name&quot;: &quot;Feuille 1&quot;,
+        &quot;title&quot;: &quot;Sales per country&quot;,
+        &quot;mark_type&quot;: &quot;Pie&quot;,
+        &quot;raw_mark_type&quot;: &quot;Pie&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: null,
+          &quot;y&quot;: null,
+          &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;size&quot;: &quot;SalesAmount&quot;,
+          &quot;detail&quot;: null
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.9,
+          &quot;encoding&quot;: 0.4,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.78
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;color&quot;
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.95,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;size&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;color&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;size&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.95
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      }
+    ],
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;worksheets&quot;: [
+          &quot;Feuille 1&quot;
+        ],
+        &quot;count&quot;: 1
+      }
+    ],
+    &quot;validation_warnings&quot;: []
+  }
+}</pre></section></div></details><details class='case-card' open><summary><div class='case-title'>input\demo1.3.twbx</div><div class='case-badges'><span class='badge badge--ok'>OK</span><span class='badge badge--muted'>live_sql</span></div></summary><div class='case-body'><div class='summary-grid'><div class='metric'><span>Tables</span><strong>0</strong></div><div class='metric'><span>Connexions</span><strong>1</strong></div><div class='metric'><span>Worksheets</span><strong>1</strong></div><div class='metric'><span>Dashboards</span><strong>1</strong></div><div class='metric'><span>Calc fields</span><strong>0</strong></div><div class='metric'><span>Datasources</span><strong>1</strong></div></div><div class='two-columns'><section class='panel panel--phase0'><h3>Phase 0 - Extraction</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>tables_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>datasource_names</span><span class='kv-value'>[&#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_captions</span><span class='kv-value'>[&#x27;AdventureworksDW2022&#x27;]</span></div><div class='kv-row'><span class='kv-key'>worksheet_marks</span><span class='kv-value'>[{&#x27;worksheet&#x27;: &#x27;Feuille 1&#x27;, &#x27;mark_type&#x27;: &#x27;Treemap&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}]</span></div><div class='kv-row'><span class='kv-key'>dashboard_names</span><span class='kv-value'>[&#x27;Tableau de bord 1&#x27;]</span></div><div class='kv-row'><span class='kv-key'>parameters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>filters_sample</span><span class='kv-value'>[&#x27;SalesTerritoryCountry&#x27;]</span></div><div class='kv-row'><span class='kv-key'>connections_sample</span><span class='kv-value'>[{&#x27;name&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;, &#x27;class&#x27;: &#x27;sqlserver&#x27;, &#x27;database&#x27;: &#x27;AdventureWorksDW2022&#x27;, &#x27;server&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;}]</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Connexions</span><span class='kv-value'>[]</span></div></div></section><section class='panel panel--phase1'><h3>Phase 1 - Parsing enrichi</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>worksheets</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>dashboards</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>semantic_hints</span><span class='kv-value'>2</span></div><div class='kv-row'><span class='kv-key'>enriched_lineage</span><span class='kv-value'>2</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Dashboards</span><span class='kv-value'>[
+  {
+    &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+    &quot;worksheets&quot;: [
+      &quot;Feuille 1&quot;
+    ],
+    &quot;count&quot;: 1
+  }
+]</span></div></div></section></div><section class='panel panel--sheets'><h3>Worksheets enrichies</h3><div class='sheet-grid'><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 1</h4><p>Sales per country</p></div><span class='badge badge--treemap'>Treemap</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: null,
+  &quot;y&quot;: null,
+  &quot;color&quot;: &quot;SalesAmount&quot;,
+  &quot;size&quot;: &quot;SalesAmount&quot;,
+  &quot;detail&quot;: &quot;SalesTerritoryCountry&quot;
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.70 | encoding: 0.60 | datasource_linkage: 1.00 | overall: 0.76</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.8,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;color&quot;
+  },
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;detail&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;color&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.8
+  },
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;detail&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section></div></section><section class='panel panel--sample'><h3>Echantillon metadonnees</h3><pre>{
+  &quot;phase0&quot;: {
+    &quot;tables_sample&quot;: [],
+    &quot;datasource_names&quot;: [
+      &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    ],
+    &quot;datasource_captions&quot;: [
+      &quot;AdventureworksDW2022&quot;
+    ],
+    &quot;worksheet_marks&quot;: [
+      {
+        &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+        &quot;mark_type&quot;: &quot;Treemap&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      }
+    ],
+    &quot;dashboard_names&quot;: [
+      &quot;Tableau de bord 1&quot;
+    ],
+    &quot;parameters_sample&quot;: [],
+    &quot;filters_sample&quot;: [
+      &quot;SalesTerritoryCountry&quot;
+    ],
+    &quot;connections_sample&quot;: [
+      {
+        &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+        &quot;class&quot;: &quot;sqlserver&quot;,
+        &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+        &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+      }
+    ]
+  },
+  &quot;phase1&quot;: {
+    &quot;summary&quot;: {
+      &quot;worksheets&quot;: 1,
+      &quot;dashboards&quot;: 1,
+      &quot;semantic_hints&quot;: 2,
+      &quot;enriched_lineage&quot;: 2
+    },
+    &quot;worksheets&quot;: [
+      {
+        &quot;name&quot;: &quot;Feuille 1&quot;,
+        &quot;title&quot;: &quot;Sales per country&quot;,
+        &quot;mark_type&quot;: &quot;Treemap&quot;,
+        &quot;raw_mark_type&quot;: &quot;Automatic&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: null,
+          &quot;y&quot;: null,
+          &quot;color&quot;: &quot;SalesAmount&quot;,
+          &quot;size&quot;: &quot;SalesAmount&quot;,
+          &quot;detail&quot;: &quot;SalesTerritoryCountry&quot;
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.7,
+          &quot;encoding&quot;: 0.6,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.76
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.8,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;color&quot;
+          },
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;detail&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;color&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.8
+          },
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;detail&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      }
+    ],
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;worksheets&quot;: [
+          &quot;Feuille 1&quot;
+        ],
+        &quot;count&quot;: 1
+      }
+    ],
+    &quot;validation_warnings&quot;: [
+      &quot;Feuille 1: Automatic mark resolved to Treemap from color/size encodings&quot;
+    ]
+  }
+}</pre></section></div></details><details class='case-card' open><summary><div class='case-title'>input\demo_csv.twbx</div><div class='case-badges'><span class='badge badge--ok'>OK</span><span class='badge badge--muted'>hybrid</span></div></summary><div class='case-body'><div class='summary-grid'><div class='metric'><span>Tables</span><strong>1</strong></div><div class='metric'><span>Connexions</span><strong>1</strong></div><div class='metric'><span>Worksheets</span><strong>2</strong></div><div class='metric'><span>Dashboards</span><strong>1</strong></div><div class='metric'><span>Calc fields</span><strong>0</strong></div><div class='metric'><span>Datasources</span><strong>1</strong></div></div><div class='two-columns'><section class='panel panel--phase0'><h3>Phase 0 - Extraction</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>tables_sample</span><span class='kv-value'>[&#x27;&quot;Extract&quot;.&quot;Extract&quot;&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_names</span><span class='kv-value'>[&#x27;federated.1iikpv20xs0rvn18vu69t18t297p&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_captions</span><span class='kv-value'>[&#x27;players_cleaned&#x27;]</span></div><div class='kv-row'><span class='kv-key'>worksheet_marks</span><span class='kv-value'>[{&#x27;worksheet&#x27;: &#x27;Feuille 1&#x27;, &#x27;mark_type&#x27;: &#x27;Pie&#x27;, &#x27;datasource&#x27;: &#x27;federated.1iikpv20xs0rvn18vu69t18t297p&#x27;}, {&#x27;worksheet&#x27;: &#x27;Feuille 2&#x27;, &#x27;mark_type&#x27;: &#x27;Bar&#x27;, &#x27;datasource&#x27;: &#x27;federated.1iikpv20xs0rvn18vu69t18t297p&#x27;}]</span></div><div class='kv-row'><span class='kv-key'>dashboard_names</span><span class='kv-value'>[&#x27;Tableau de bord 1&#x27;]</span></div><div class='kv-row'><span class='kv-key'>parameters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>filters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>connections_sample</span><span class='kv-value'>[{&#x27;name&#x27;: &#x27;players_cleaned&#x27;, &#x27;class&#x27;: &#x27;textscan&#x27;, &#x27;database&#x27;: &#x27;&#x27;, &#x27;server&#x27;: &#x27;&#x27;}]</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Connexions</span><span class='kv-value'>[]</span></div></div></section><section class='panel panel--phase1'><h3>Phase 1 - Parsing enrichi</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>worksheets</span><span class='kv-value'>2</span></div><div class='kv-row'><span class='kv-key'>dashboards</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>semantic_hints</span><span class='kv-value'>3</span></div><div class='kv-row'><span class='kv-key'>enriched_lineage</span><span class='kv-value'>3</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Dashboards</span><span class='kv-value'>[
+  {
+    &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+    &quot;worksheets&quot;: [
+      &quot;Feuille 1&quot;,
+      &quot;Feuille 2&quot;
+    ],
+    &quot;count&quot;: 2
+  }
+]</span></div></div></section></div><section class='panel panel--sheets'><h3>Worksheets enrichies</h3><div class='sheet-grid'><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 1</h4><p>strong foot</p></div><span class='badge badge--pie'>Pie</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1iikpv20xs0rvn18vu69t18t297p</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: null,
+  &quot;y&quot;: null,
+  &quot;color&quot;: &quot;foot&quot;,
+  &quot;size&quot;: &quot;player_id&quot;,
+  &quot;detail&quot;: null
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.80 | encoding: 0.40 | datasource_linkage: 1.00 | overall: 0.74</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;foot&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;none&quot;,
+    &quot;confidence&quot;: 0.85,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;data_type&quot;: &quot;str&quot;,
+    &quot;cardinality&quot;: 32,
+    &quot;worksheet_role&quot;: &quot;color&quot;
+  },
+  {
+    &quot;column&quot;: &quot;player_id&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;none&quot;,
+    &quot;confidence&quot;: 0.9,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;data_type&quot;: &quot;int64&quot;,
+    &quot;cardinality&quot;: 2521,
+    &quot;worksheet_role&quot;: &quot;size&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;foot&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;color&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;confidence&quot;: 0.85
+  },
+  {
+    &quot;column&quot;: &quot;player_id&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;size&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;confidence&quot;: 0.9
+  }
+]</div></div><div><span class='label'>Warnings</span><div><ul class='inline-list'><li>visual sans mesure detectee</li></ul></div></div></div></section><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 2</h4><p>AGE de l&#x27;echantillion</p></div><span class='badge badge--bar'>Bar</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1iikpv20xs0rvn18vu69t18t297p</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: &quot;age&quot;,
+  &quot;y&quot;: &quot;age&quot;,
+  &quot;color&quot;: &quot;age&quot;,
+  &quot;size&quot;: &quot;age&quot;,
+  &quot;detail&quot;: null
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.80 | encoding: 0.80 | datasource_linkage: 1.00 | overall: 0.86</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;age&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.7,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;data_type&quot;: &quot;float64&quot;,
+    &quot;cardinality&quot;: 26,
+    &quot;worksheet_role&quot;: &quot;x_axis&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;age&quot;,
+    &quot;used_in&quot;: &quot;Feuille 2&quot;,
+    &quot;role&quot;: &quot;x_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+    &quot;confidence&quot;: 0.7
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section></div></section><section class='panel panel--sample'><h3>Echantillon metadonnees</h3><pre>{
+  &quot;phase0&quot;: {
+    &quot;tables_sample&quot;: [
+      &quot;\&quot;Extract\&quot;.\&quot;Extract\&quot;&quot;
+    ],
+    &quot;datasource_names&quot;: [
+      &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+    ],
+    &quot;datasource_captions&quot;: [
+      &quot;players_cleaned&quot;
+    ],
+    &quot;worksheet_marks&quot;: [
+      {
+        &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+        &quot;mark_type&quot;: &quot;Pie&quot;,
+        &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+      },
+      {
+        &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+      }
+    ],
+    &quot;dashboard_names&quot;: [
+      &quot;Tableau de bord 1&quot;
+    ],
+    &quot;parameters_sample&quot;: [],
+    &quot;filters_sample&quot;: [],
+    &quot;connections_sample&quot;: [
+      {
+        &quot;name&quot;: &quot;players_cleaned&quot;,
+        &quot;class&quot;: &quot;textscan&quot;,
+        &quot;database&quot;: &quot;&quot;,
+        &quot;server&quot;: &quot;&quot;
+      }
+    ]
+  },
+  &quot;phase1&quot;: {
+    &quot;summary&quot;: {
+      &quot;worksheets&quot;: 2,
+      &quot;dashboards&quot;: 1,
+      &quot;semantic_hints&quot;: 3,
+      &quot;enriched_lineage&quot;: 3
+    },
+    &quot;worksheets&quot;: [
+      {
+        &quot;name&quot;: &quot;Feuille 1&quot;,
+        &quot;title&quot;: &quot;strong foot&quot;,
+        &quot;mark_type&quot;: &quot;Pie&quot;,
+        &quot;raw_mark_type&quot;: &quot;Pie&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: null,
+          &quot;y&quot;: null,
+          &quot;color&quot;: &quot;foot&quot;,
+          &quot;size&quot;: &quot;player_id&quot;,
+          &quot;detail&quot;: null
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.8,
+          &quot;encoding&quot;: 0.4,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.74
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;foot&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;none&quot;,
+            &quot;confidence&quot;: 0.85,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;data_type&quot;: &quot;str&quot;,
+            &quot;cardinality&quot;: 32,
+            &quot;worksheet_role&quot;: &quot;color&quot;
+          },
+          {
+            &quot;column&quot;: &quot;player_id&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;none&quot;,
+            &quot;confidence&quot;: 0.9,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;data_type&quot;: &quot;int64&quot;,
+            &quot;cardinality&quot;: 2521,
+            &quot;worksheet_role&quot;: &quot;size&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;foot&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;color&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;confidence&quot;: 0.85
+          },
+          {
+            &quot;column&quot;: &quot;player_id&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;size&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;confidence&quot;: 0.9
+          }
+        ],
+        &quot;validation_warnings&quot;: [
+          &quot;visual sans mesure detectee&quot;
+        ]
+      },
+      {
+        &quot;name&quot;: &quot;Feuille 2&quot;,
+        &quot;title&quot;: &quot;AGE de l&#x27;echantillion&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;raw_mark_type&quot;: &quot;Automatic&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: &quot;age&quot;,
+          &quot;y&quot;: &quot;age&quot;,
+          &quot;color&quot;: &quot;age&quot;,
+          &quot;size&quot;: &quot;age&quot;,
+          &quot;detail&quot;: null
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.8,
+          &quot;encoding&quot;: 0.8,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.86
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;age&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.7,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;data_type&quot;: &quot;float64&quot;,
+            &quot;cardinality&quot;: 26,
+            &quot;worksheet_role&quot;: &quot;x_axis&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;age&quot;,
+            &quot;used_in&quot;: &quot;Feuille 2&quot;,
+            &quot;role&quot;: &quot;x_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;,
+            &quot;confidence&quot;: 0.7
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      }
+    ],
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;worksheets&quot;: [
+          &quot;Feuille 1&quot;,
+          &quot;Feuille 2&quot;
+        ],
+        &quot;count&quot;: 2
+      }
+    ],
+    &quot;validation_warnings&quot;: [
+      &quot;visual sans mesure detectee&quot;,
+      &quot;Feuille 2: Automatic mark resolved to Bar from axis usage&quot;
+    ]
+  }
+}</pre></section></div></details><details class='case-card' open><summary><div class='case-title'>input\demo_ssms.twbx</div><div class='case-badges'><span class='badge badge--ok'>OK</span><span class='badge badge--muted'>live_sql</span></div></summary><div class='case-body'><div class='summary-grid'><div class='metric'><span>Tables</span><strong>0</strong></div><div class='metric'><span>Connexions</span><strong>1</strong></div><div class='metric'><span>Worksheets</span><strong>3</strong></div><div class='metric'><span>Dashboards</span><strong>1</strong></div><div class='metric'><span>Calc fields</span><strong>0</strong></div><div class='metric'><span>Datasources</span><strong>1</strong></div></div><div class='two-columns'><section class='panel panel--phase0'><h3>Phase 0 - Extraction</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>tables_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>datasource_names</span><span class='kv-value'>[&#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;]</span></div><div class='kv-row'><span class='kv-key'>datasource_captions</span><span class='kv-value'>[&#x27;AdventureworksDW2022&#x27;]</span></div><div class='kv-row'><span class='kv-key'>worksheet_marks</span><span class='kv-value'>[{&#x27;worksheet&#x27;: &#x27;Feuille 1&#x27;, &#x27;mark_type&#x27;: &#x27;Bar&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}, {&#x27;worksheet&#x27;: &#x27;Feuille 2&#x27;, &#x27;mark_type&#x27;: &#x27;Bar&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}, {&#x27;worksheet&#x27;: &#x27;Feuille 3&#x27;, &#x27;mark_type&#x27;: &#x27;Treemap&#x27;, &#x27;datasource&#x27;: &#x27;federated.1v3o2r30w2rgsv1aei9is1e9duvo&#x27;}]</span></div><div class='kv-row'><span class='kv-key'>dashboard_names</span><span class='kv-value'>[&#x27;Tableau de bord 1&#x27;]</span></div><div class='kv-row'><span class='kv-key'>parameters_sample</span><span class='kv-value'>-</span></div><div class='kv-row'><span class='kv-key'>filters_sample</span><span class='kv-value'>[&#x27;SalesTerritoryCountry&#x27;, &#x27;ModelName&#x27;, &#x27;SalesTerritoryCountry&#x27;]</span></div><div class='kv-row'><span class='kv-key'>connections_sample</span><span class='kv-value'>[{&#x27;name&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;, &#x27;class&#x27;: &#x27;sqlserver&#x27;, &#x27;database&#x27;: &#x27;AdventureWorksDW2022&#x27;, &#x27;server&#x27;: &#x27;localhost\\SQLEXPRESS&#x27;}]</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Connexions</span><span class='kv-value'>[]</span></div></div></section><section class='panel panel--phase1'><h3>Phase 1 - Parsing enrichi</h3><div class='panel-kv'><div class='kv-row'><span class='kv-key'>worksheets</span><span class='kv-value'>3</span></div><div class='kv-row'><span class='kv-key'>dashboards</span><span class='kv-value'>1</span></div><div class='kv-row'><span class='kv-key'>semantic_hints</span><span class='kv-value'>7</span></div><div class='kv-row'><span class='kv-key'>enriched_lineage</span><span class='kv-value'>7</span></div></div><div class='panel-kv'><div class='kv-row'><span class='kv-key'>Dashboards</span><span class='kv-value'>[
+  {
+    &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+    &quot;worksheets&quot;: [
+      &quot;Feuille 1&quot;,
+      &quot;Feuille 2&quot;,
+      &quot;Feuille 3&quot;
+    ],
+    &quot;count&quot;: 3
+  }
+]</span></div></div></section></div><section class='panel panel--sheets'><h3>Worksheets enrichies</h3><div class='sheet-grid'><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 1</h4><p>Sales per country</p></div><span class='badge badge--bar'>Bar</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;y&quot;: &quot;SalesAmount&quot;,
+  &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;size&quot;: &quot;SalesAmount&quot;,
+  &quot;detail&quot;: null
+}</div></div><div><span class='label'>Confidence</span><div>visual: 1.00 | encoding: 0.80 | datasource_linkage: 1.00 | overall: 0.94</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;x_axis&quot;
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.95,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;y_axis&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;x_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  },
+  {
+    &quot;column&quot;: &quot;SalesAmount&quot;,
+    &quot;used_in&quot;: &quot;Feuille 1&quot;,
+    &quot;role&quot;: &quot;y_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.95
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 2</h4><p>Tax per country</p></div><span class='badge badge--bar'>Bar</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;y&quot;: &quot;TaxAmt&quot;,
+  &quot;color&quot;: &quot;ModelName&quot;,
+  &quot;size&quot;: &quot;SalesTerritoryCountry&quot;,
+  &quot;detail&quot;: &quot;TaxAmt&quot;
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.80 | encoding: 1.00 | datasource_linkage: 1.00 | overall: 0.92</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;x_axis&quot;
+  },
+  {
+    &quot;column&quot;: &quot;TaxAmt&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;sum&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;y_axis&quot;
+  },
+  {
+    &quot;column&quot;: &quot;ModelName&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;none&quot;,
+    &quot;confidence&quot;: 0.95,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;color&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 2&quot;,
+    &quot;role&quot;: &quot;x_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  },
+  {
+    &quot;column&quot;: &quot;TaxAmt&quot;,
+    &quot;used_in&quot;: &quot;Feuille 2&quot;,
+    &quot;role&quot;: &quot;y_axis&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  },
+  {
+    &quot;column&quot;: &quot;ModelName&quot;,
+    &quot;used_in&quot;: &quot;Feuille 2&quot;,
+    &quot;role&quot;: &quot;color&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.95
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section><section class='sheet-card'><div class='sheet-card__header'><div><h4>Feuille 3</h4><p>Feuille 3</p></div><span class='badge badge--treemap'>Treemap</span></div><div class='sheet-card__grid'><div><span class='label'>Datasource</span><div>federated.1v3o2r30w2rgsv1aei9is1e9duvo</div></div><div><span class='label'>Encodage</span><div class='mono'>{
+  &quot;x&quot;: null,
+  &quot;y&quot;: null,
+  &quot;color&quot;: &quot;OrderQuantity&quot;,
+  &quot;size&quot;: &quot;OrderQuantity&quot;,
+  &quot;detail&quot;: &quot;SalesTerritoryCountry&quot;
+}</div></div><div><span class='label'>Confidence</span><div>visual: 0.70 | encoding: 0.60 | datasource_linkage: 1.00 | overall: 0.76</div></div><div><span class='label'>Semantic hints</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;OrderQuantity&quot;,
+    &quot;role_hint&quot;: &quot;measure&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.8,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;decimal&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;color&quot;
+  },
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;role_hint&quot;: &quot;dimension&quot;,
+    &quot;aggregation_hint&quot;: &quot;count&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;data_type&quot;: &quot;text&quot;,
+    &quot;cardinality&quot;: null,
+    &quot;worksheet_role&quot;: &quot;detail&quot;
+  }
+]</div></div><div><span class='label'>Lineage</span><div class='mono'>[
+  {
+    &quot;column&quot;: &quot;OrderQuantity&quot;,
+    &quot;used_in&quot;: &quot;Feuille 3&quot;,
+    &quot;role&quot;: &quot;color&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.8
+  },
+  {
+    &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+    &quot;used_in&quot;: &quot;Feuille 3&quot;,
+    &quot;role&quot;: &quot;detail&quot;,
+    &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;confidence&quot;: 0.75
+  }
+]</div></div><div><span class='label'>Warnings</span><div><span class='muted'>Aucun</span></div></div></div></section></div></section><section class='panel panel--sample'><h3>Echantillon metadonnees</h3><pre>{
+  &quot;phase0&quot;: {
+    &quot;tables_sample&quot;: [],
+    &quot;datasource_names&quot;: [
+      &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    ],
+    &quot;datasource_captions&quot;: [
+      &quot;AdventureworksDW2022&quot;
+    ],
+    &quot;worksheet_marks&quot;: [
+      {
+        &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      },
+      {
+        &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      },
+      {
+        &quot;worksheet&quot;: &quot;Feuille 3&quot;,
+        &quot;mark_type&quot;: &quot;Treemap&quot;,
+        &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+      }
+    ],
+    &quot;dashboard_names&quot;: [
+      &quot;Tableau de bord 1&quot;
+    ],
+    &quot;parameters_sample&quot;: [],
+    &quot;filters_sample&quot;: [
+      &quot;SalesTerritoryCountry&quot;,
+      &quot;ModelName&quot;,
+      &quot;SalesTerritoryCountry&quot;
+    ],
+    &quot;connections_sample&quot;: [
+      {
+        &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+        &quot;class&quot;: &quot;sqlserver&quot;,
+        &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+        &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+      }
+    ]
+  },
+  &quot;phase1&quot;: {
+    &quot;summary&quot;: {
+      &quot;worksheets&quot;: 3,
+      &quot;dashboards&quot;: 1,
+      &quot;semantic_hints&quot;: 7,
+      &quot;enriched_lineage&quot;: 7
+    },
+    &quot;worksheets&quot;: [
+      {
+        &quot;name&quot;: &quot;Feuille 1&quot;,
+        &quot;title&quot;: &quot;Sales per country&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;raw_mark_type&quot;: &quot;Bar&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;y&quot;: &quot;SalesAmount&quot;,
+          &quot;color&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;size&quot;: &quot;SalesAmount&quot;,
+          &quot;detail&quot;: null
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 1.0,
+          &quot;encoding&quot;: 0.8,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.94
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;x_axis&quot;
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.95,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;y_axis&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;x_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          },
+          {
+            &quot;column&quot;: &quot;SalesAmount&quot;,
+            &quot;used_in&quot;: &quot;Feuille 1&quot;,
+            &quot;role&quot;: &quot;y_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.95
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      },
+      {
+        &quot;name&quot;: &quot;Feuille 2&quot;,
+        &quot;title&quot;: &quot;Tax per country&quot;,
+        &quot;mark_type&quot;: &quot;Bar&quot;,
+        &quot;raw_mark_type&quot;: &quot;Automatic&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;y&quot;: &quot;TaxAmt&quot;,
+          &quot;color&quot;: &quot;ModelName&quot;,
+          &quot;size&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;detail&quot;: &quot;TaxAmt&quot;
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.8,
+          &quot;encoding&quot;: 1.0,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.92
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;x_axis&quot;
+          },
+          {
+            &quot;column&quot;: &quot;TaxAmt&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;sum&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;y_axis&quot;
+          },
+          {
+            &quot;column&quot;: &quot;ModelName&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;none&quot;,
+            &quot;confidence&quot;: 0.95,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;color&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 2&quot;,
+            &quot;role&quot;: &quot;x_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          },
+          {
+            &quot;column&quot;: &quot;TaxAmt&quot;,
+            &quot;used_in&quot;: &quot;Feuille 2&quot;,
+            &quot;role&quot;: &quot;y_axis&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          },
+          {
+            &quot;column&quot;: &quot;ModelName&quot;,
+            &quot;used_in&quot;: &quot;Feuille 2&quot;,
+            &quot;role&quot;: &quot;color&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.95
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      },
+      {
+        &quot;name&quot;: &quot;Feuille 3&quot;,
+        &quot;title&quot;: &quot;Feuille 3&quot;,
+        &quot;mark_type&quot;: &quot;Treemap&quot;,
+        &quot;raw_mark_type&quot;: &quot;Automatic&quot;,
+        &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;visual_encoding&quot;: {
+          &quot;x&quot;: null,
+          &quot;y&quot;: null,
+          &quot;color&quot;: &quot;OrderQuantity&quot;,
+          &quot;size&quot;: &quot;OrderQuantity&quot;,
+          &quot;detail&quot;: &quot;SalesTerritoryCountry&quot;
+        },
+        &quot;confidence&quot;: {
+          &quot;visual&quot;: 0.7,
+          &quot;encoding&quot;: 0.6,
+          &quot;datasource_linkage&quot;: 1.0,
+          &quot;overall&quot;: 0.76
+        },
+        &quot;semantic_hints&quot;: [
+          {
+            &quot;column&quot;: &quot;OrderQuantity&quot;,
+            &quot;role_hint&quot;: &quot;measure&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.8,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;decimal&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;color&quot;
+          },
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;role_hint&quot;: &quot;dimension&quot;,
+            &quot;aggregation_hint&quot;: &quot;count&quot;,
+            &quot;confidence&quot;: 0.75,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;data_type&quot;: &quot;text&quot;,
+            &quot;cardinality&quot;: null,
+            &quot;worksheet_role&quot;: &quot;detail&quot;
+          }
+        ],
+        &quot;enriched_lineage&quot;: [
+          {
+            &quot;column&quot;: &quot;OrderQuantity&quot;,
+            &quot;used_in&quot;: &quot;Feuille 3&quot;,
+            &quot;role&quot;: &quot;color&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.8
+          },
+          {
+            &quot;column&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;used_in&quot;: &quot;Feuille 3&quot;,
+            &quot;role&quot;: &quot;detail&quot;,
+            &quot;datasource_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+            &quot;confidence&quot;: 0.75
+          }
+        ],
+        &quot;validation_warnings&quot;: []
+      }
+    ],
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;worksheets&quot;: [
+          &quot;Feuille 1&quot;,
+          &quot;Feuille 2&quot;,
+          &quot;Feuille 3&quot;
+        ],
+        &quot;count&quot;: 3
+      }
+    ],
+    &quot;validation_warnings&quot;: [
+      &quot;Feuille 2: Automatic mark resolved to Bar from rows/cols structure&quot;,
+      &quot;Feuille 3: Automatic mark resolved to Treemap from color/size encodings&quot;
+    ]
+  }
+}</pre></section></div></details></div></div></body></html>

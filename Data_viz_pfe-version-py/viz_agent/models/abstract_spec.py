@@ -84,6 +84,40 @@ class Palette(BaseModel):
     colors: list[str] = Field(default_factory=list)
 
 
+class VisualEncoding(BaseModel):
+    x: str | None = None
+    y: str | None = None
+    color: str | None = None
+    size: str | None = None
+    detail: str | None = None
+
+
+class SemanticHint(BaseModel):
+    column: str
+    role_hint: Literal["measure", "dimension", "unknown"] = "unknown"
+    aggregation_hint: Literal["sum", "avg", "count", "none"] = "none"
+    confidence: float = 0.0
+    datasource_name: str = ""
+    data_type: str = ""
+    cardinality: int | None = None
+    worksheet_role: str = ""
+
+
+class ConfidenceScore(BaseModel):
+    visual: float = 0.0
+    encoding: float = 0.0
+    datasource_linkage: float = 0.0
+    overall: float = 0.0
+
+
+class EnrichedLineageEntry(BaseModel):
+    column: str
+    used_in: str
+    role: str
+    datasource_name: str = ""
+    confidence: float = 0.0
+
+
 class DataSource(BaseModel):
     name: str
     caption: str = ""
@@ -98,6 +132,9 @@ class MeasureRef(BaseModel):
 class DataBinding(BaseModel):
     axes: dict[str, ColumnRef | MeasureRef] = Field(default_factory=dict)
     measures: list[MeasureRef] = Field(default_factory=list)
+    group_by: list[str] = Field(default_factory=list)
+    hierarchy: list[str] = Field(default_factory=list)
+    aggregation: str = ""
     filters: list[Any] = Field(default_factory=list)
     visual_type_override: str = ""
     pending_translations: list[Any] = Field(default_factory=list)
@@ -107,6 +144,7 @@ class VisualSpec(BaseModel):
     id: str
     source_worksheet: str
     type: str = "tablix"
+    rdl_type: str = "tablix"
     title: str
     position: dict[str, Any] = Field(default_factory=dict)
     data_binding: DataBinding
@@ -159,12 +197,20 @@ class BuildLogEntry(BaseModel):
 
 class Worksheet(BaseModel):
     name: str
+    title: str = ""
     mark_type: str
+    raw_mark_type: str = ""
     rows_shelf: list[ColumnRef] = Field(default_factory=list)
     cols_shelf: list[ColumnRef] = Field(default_factory=list)
     marks_shelf: list[ColumnRef] = Field(default_factory=list)
+    mark_encodings: dict[str, ColumnRef] = Field(default_factory=dict)
     filters: list[Filter] = Field(default_factory=list)
     datasource_name: str = ""
+    visual_encoding: VisualEncoding = Field(default_factory=VisualEncoding)
+    semantic_hints: list[SemanticHint] = Field(default_factory=list)
+    confidence: ConfidenceScore = Field(default_factory=ConfidenceScore)
+    enriched_lineage: list[EnrichedLineageEntry] = Field(default_factory=list)
+    validation_warnings: list[str] = Field(default_factory=list)
 
 
 class TableauDashboard(BaseModel):
@@ -182,7 +228,13 @@ class ParsedWorkbook(BaseModel):
     parameters: list[Parameter] = Field(default_factory=list)
     filters: list[Filter] = Field(default_factory=list)
     color_palettes: list[Palette] = Field(default_factory=list)
+    tableau_relationships: list[dict[str, Any]] = Field(default_factory=list)
     data_registry: Any = None
+    visual_encoding: dict[str, VisualEncoding] = Field(default_factory=dict)
+    semantic_hints: list[SemanticHint] = Field(default_factory=list)
+    confidence: dict[str, ConfidenceScore] = Field(default_factory=dict)
+    enriched_lineage: list[EnrichedLineageEntry] = Field(default_factory=list)
+    validation_warnings: list[str] = Field(default_factory=list)
 
 
 class AbstractSpec(BaseModel):

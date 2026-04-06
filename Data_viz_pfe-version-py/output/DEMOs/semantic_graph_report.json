@@ -1,0 +1,81 @@
+{
+  "summary": {
+    "total": 1,
+    "ok": 1,
+    "partial": 0,
+    "ko": 0,
+    "total_nodes": 15,
+    "total_relationships": 4,
+    "total_schema_tables": 1,
+    "total_schema_columns": 2,
+    "path_counts": {
+      "cache": 1,
+      "fast": 0,
+      "fallback": 0,
+      "unknown": 0
+    }
+  },
+  "cases": [
+    {
+      "input_path": "input\\demo1.2.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "semantic_nodes": 15,
+      "semantic_relationships": 4,
+      "graph_persisted": false,
+      "graph_error": "",
+      "graph_json_path": "output\\semantic_graph\\demo1_2_semantic_graph.json",
+      "schema_json_path": "output\\semantic_schema\\demo1_2_detected_schema.json",
+      "schema_html_path": "output\\semantic_schema\\demo1_2_detected_schema.html",
+      "schema_tables": 1,
+      "schema_columns": 2,
+      "orchestration_path": "cache",
+      "orchestration_confidence": 0.6400000000000001,
+      "confidence_heuristic": 0.9,
+      "confidence_profiling": 0.5,
+      "confidence_ontology": 0.9,
+      "confidence_llm": 0.0,
+      "metadata_sample": {
+        "datasource_names": [
+          "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Pie",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          }
+        ],
+        "connections_sample": [
+          {
+            "name": "localhost\\SQLEXPRESS",
+            "class": "sqlserver",
+            "database": "AdventureWorksDW2022",
+            "server": "localhost\\SQLEXPRESS"
+          }
+        ],
+        "graph_node_types": [
+          "Table",
+          "Column",
+          "Column",
+          "Measure",
+          "Measure",
+          "BusinessTerm",
+          "BusinessTerm",
+          "BusinessTerm"
+        ],
+        "graph_relationship_types": [
+          "HAS_COLUMN",
+          "HAS_COLUMN",
+          "MAPPED_TO",
+          "MAPPED_TO"
+        ]
+      },
+      "error": ""
+    }
+  ]
+}

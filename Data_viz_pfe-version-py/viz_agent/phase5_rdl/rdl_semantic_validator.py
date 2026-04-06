@@ -19,6 +19,7 @@ class RDLSemanticValidator:
         datasource_names = self._collect_datasource_names(root)
         dataset_names = self._collect_dataset_names(root)
         dataset_fields = self._collect_dataset_fields(root)
+        dataset_field_types = self._collect_dataset_field_types(root)
         param_names = self._collect_param_names(root)
 
         for node in root.findall(".//r:Tablix", self.ns) + root.findall(".//r:Chart", self.ns) + root.findall(".//r:Map", self.ns):
@@ -46,6 +47,11 @@ class RDLSemanticValidator:
                         fix="Populate DataSet/Fields with at least one Field/DataField",
                     )
                 )
+
+            if node.tag.endswith("Chart") and dsn:
+                self._validate_chart_measures(node, dsn, dataset_field_types.get(dsn, {}), errors)
+                self._validate_chart_dimensions(node, dsn, dataset_field_types.get(dsn, {}), errors)
+
             for elem in node.iter():
                 text = (elem.text or "").strip()
                 for field_name in extract_field_refs(text):
@@ -103,6 +109,21 @@ class RDLSemanticValidator:
                     )
                 )
 
+            for field in ds.findall("r:Fields/r:Field", self.ns):
+                field_name = field.get("Name", "")
+                type_name = (field.findtext("rd:TypeName", default="", namespaces={**self.ns, "rd": "http://schemas.microsoft.com/SQLServer/reporting/reportdesigner"}) or "").strip().lower()
+                if type_name in {"decimal", "integer", "int", "float", "double", "money"}:
+                    continue
+                if field_name.lower().startswith(("sum", "avg", "count", "total", "amount", "value")):
+                    warnings.append(
+                        Issue(
+                            code="SEM008",
+                            severity="warning",
+                            message=f"Field '{field_name}' in DataSet '{ds_name}' looks like a measure but is typed as '{type_name or 'unknown'}'",
+                            fix="Prefer numeric TypeName for aggregate measures",
+                        )
+                    )
+
         score = max(0, 100 - len(errors) * 10 - len(warnings) * 3)
         return ValidationReport(score=score, errors=errors, warnings=warnings, can_proceed=len(errors) == 0)
 
@@ -119,6 +140,55 @@ class RDLSemanticValidator:
             fields = {f.get("Name", "") for f in ds.findall("r:Fields/r:Field", self.ns) if f.get("Name")}
             out[ds_name] = fields
         return out
+
+    def _collect_dataset_field_types(self, root: etree._Element) -> dict[str, dict[str, str]]:
+        out: dict[str, dict[str, str]] = {}
+        ns = {**self.ns, "rd": "http://schemas.microsoft.com/SQLServer/reporting/reportdesigner"}
+        for ds in root.findall(".//r:DataSet", self.ns):
+            ds_name = ds.get("Name", "")
+            field_types: dict[str, str] = {}
+            for field in ds.findall("r:Fields/r:Field", self.ns):
+                field_name = field.get("Name", "")
+                if not field_name:
+                    continue
+                field_types[field_name] = (field.findtext("rd:TypeName", default="", namespaces=ns) or "").strip()
+            out[ds_name] = field_types
+        return out
+
+    def _validate_chart_measures(self, node: etree._Element, dsn: str, field_types: dict[str, str], errors: list[Issue]) -> None:
+        for field_ref in node.xpath(".//*[local-name()='Value']//text()"):
+            for ref in extract_field_refs(str(field_ref or "")):
+                type_name = field_types.get(ref, "").strip().lower()
+                if type_name and type_name not in {"decimal", "integer", "int", "float", "double", "money"}:
+                    errors.append(
+                        Issue(
+                            code="SEM009",
+                            severity="error",
+                            message=f"Chart '{node.get('Name', '<no-name>')}' uses non-numeric field '{ref}' from DataSet '{dsn}'",
+                            fix="Bind chart value expressions to numeric measure fields",
+                        )
+                    )
+
+    def _validate_chart_dimensions(self, node: etree._Element, dsn: str, field_types: dict[str, str], errors: list[Issue]) -> None:
+        category_text_nodes = node.xpath(
+            ".//*[local-name()='ChartCategoryHierarchy']//*[local-name()='Label']//text() "
+            "| .//*[local-name()='ChartCategoryHierarchy']//*[local-name()='GroupExpression']//text()"
+        )
+        for text_node in category_text_nodes:
+            for ref in extract_field_refs(str(text_node or "")):
+                type_name = field_types.get(ref, "").strip().lower()
+                if type_name in {"decimal", "integer", "int", "float", "double", "money"}:
+                    errors.append(
+                        Issue(
+                            code="SEM010",
+                            severity="error",
+                            message=(
+                                f"Chart '{node.get('Name', '<no-name>')}' uses numeric field '{ref}' "
+                                f"as category/group dimension in DataSet '{dsn}'"
+                            ),
+                            fix="Bind chart category/grouping to a dimension (string/date) field",
+                        )
+                    )
 
     def _collect_param_names(self, root: etree._Element) -> set[str]:
         return {p.get("Name", "") for p in root.findall(".//r:ReportParameter", self.ns)}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Pipeline Phases</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f7f7f4; color: #1b1b1b; }
+    .meta { margin-bottom: 18px; color: #444; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #ecebe6; text-align: left; }
+    section { margin-top: 20px; padding: 14px; background: white; border: 1px solid #ddd; border-radius: 8px; }
+    pre { background: #111; color: #d3ffd4; padding: 10px; border-radius: 6px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+    <h1>Demo Pipeline Complet - Etat et Actions par Phase</h1>
+  <div class="meta">
+    <div>Input: input\demo_europe.twbx</div>
+    <div>Output RDL: output\demo_runtime_modular\demo_complet_vendredi03.rdl</div>
+        <div>Genere le: 2026-04-06 17:57:04</div>
+        <div><a href="demo_complet_vendredi03.rdl">Ouvrir le RDL genere</a></div>
+  </div>
+  <table>
+        <tr><th>Phase</th><th>Status</th><th>Actions</th><th>Resume</th></tr>
+    <tr style='background:#e8f5e9'><td>Phase 0 - Extraction</td><td>OK</td><td>resolve_source_path</td><td>Mode modulaire: extraction externalisee</td></tr><tr style='background:#e8f5e9'><td>Phase 1 - Parsing</td><td>OK</td><td>modular_planner_execute</td><td>status=success, confidence=0.88</td></tr><tr style='background:#ffebee'><td>Phase 2 - Semantic</td><td>KO</td><td></td><td></td></tr><tr style='background:#ffebee'><td>Phase 3 - Spec</td><td>KO</td><td></td><td></td></tr><tr style='background:#ffebee'><td>Phase 4 - Transform</td><td>KO</td><td></td><td></td></tr><tr style='background:#ffebee'><td>Phase 5 - RDL</td><td>KO</td><td></td><td></td></tr><tr style='background:#ffebee'><td>Phase 5b - Runtime Validation</td><td>KO</td><td></td><td></td></tr><tr style='background:#ffebee'><td>Phase 6 - Lineage</td><td>KO</td><td>modular_planner_execute</td><td>status=error, confidence=0.20</td></tr>
+  </table>
+  <section><h3>Phase 0 - Extraction</h3><p>La phase 0 n'est pas executee dans ce mode de demo; les agents commencent en phase parsing.</p></section><section><h3>Phase 1 - Parsing</h3><pre>{
+  &quot;parsed_structure&quot;: {
+    &quot;dashboards&quot;: [
+      {
+        &quot;name&quot;: &quot;Default&quot;,
+        &quot;pages&quot;: [
+          {
+            &quot;name&quot;: &quot;Default&quot;,
+            &quot;visuals&quot;: [
+              &quot;dispersion&quot;,
+              &quot;sales_country&quot;
+            ],
+            &quot;layout&quot;: {}
+          }
+        ],
+        &quot;visuals&quot;: [
+          {
+            &quot;id&quot;: &quot;dispersion&quot;,
+            &quot;name&quot;: &quot;dispersion&quot;,
+            &quot;type&quot;: &quot;PIE&quot;,
+            &quot;fields&quot;: []
+          },
+          {
+            &quot;id&quot;: &quot;sales_country&quot;,
+            &quot;name&quot;: &quot;sales_country&quot;,
+            &quot;type&quot;: &quot;AUTOMATIC&quot;,
+            &quot;fields&quot;: []
+          }
+        ],
+        &quot;filters&quot;: []
+      }
+    ],
+    &quot;visuals&quot;: [
+      {
+        &quot;id&quot;: &quot;dispersion&quot;,
+        &quot;name&quot;: &quot;dispersion&quot;,
+        &quot;type&quot;: &quot;PIE&quot;,
+        &quot;fields&quot;: []
+      },
+      {
+        &quot;id&quot;: &quot;sales_country&quot;,
+        &quot;name&quot;: &quot;sales_country&quot;,
+        &quot;type&quot;: &quot;AUTOMATIC&quot;,
+        &quot;fields&quot;: []
+      }
+    ],
+    &quot;bindings&quot;: [],
+    &quot;filters&quot;: [],
+    &quot;layout&quot;: {},
+    &quot;source_format&quot;: &quot;twb&quot;,
+    &quot;validation_results&quot;: [],
+    &quot;lineage_events&quot;: [
+      {
+        &quot;phase&quot;: &quot;phase1_parser&quot;,
+        &quot;timestamp&quot;: &quot;2026-04-06T16:57:04.886010+00:00&quot;,
+        &quot;dashboards_count&quot;: 1,
+        &quot;visuals_count&quot;: 2,
+        &quot;bindings_count&quot;: 0,
+        &quot;status&quot;: &quot;ok&quot;
+      }
+    ],
+    &quot;parsing_log&quot;: [
+      {
+        &quot;step&quot;: &quot;deterministic&quot;,
+        &quot;status&quot;: &quot;success&quot;
+      }
+    ]
+  }
+}</pre></section><section><h3>Phase 2 - Semantic</h3></section><section><h3>Phase 3 - Spec</h3></section><section><h3>Phase 4 - Transform</h3></section><section><h3>Phase 5 - RDL</h3></section><section><h3>Phase 5b - Runtime Validation</h3><p>Trace runtime: demo_complet_vendredi03_modular_agentic_phase_trace.jsonl</p></section><section><h3>Phase 6 - Lineage</h3><pre>{
+  &quot;errors&quot;: [
+    &quot;Phase1 gate failed: no valid worksheets detected in parsed output.&quot;
+  ],
+  &quot;output&quot;: {
+    &quot;gate_results&quot;: {
+      &quot;parsing&quot;: {
+        &quot;passed&quot;: false,
+        &quot;issues&quot;: [
+          &quot;Phase1 gate failed: no valid worksheets detected in parsed output.&quot;
+        ]
+      }
+    }
+  }
+}</pre></section>
+</body>
+</html>

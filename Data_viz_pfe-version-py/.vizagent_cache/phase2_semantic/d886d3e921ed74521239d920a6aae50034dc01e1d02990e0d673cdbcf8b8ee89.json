@@ -1,0 +1,510 @@
+{
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "sales_data",
+        "name": "sales_data",
+        "source_name": "sales_data",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ProductKey",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Sales Amount",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 2
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum Sales Amount",
+        "expression": "SUM([Sales Amount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Sales Amount"
+      }
+    ],
+    "dimensions": [],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "sales_data",
+    "grain": "row"
+  },
+  "lineage": {
+    "tables": [
+      {
+        "id": "sales_data",
+        "name": "sales_data",
+        "source_name": "sales_data",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ProductKey",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Sales Amount",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 2
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "artifacts": {
+    "ontology": {
+      "entities": [
+        "Sales",
+        "Product",
+        "Customer",
+        "Geography",
+        "Time",
+        "Reseller",
+        "Promotion"
+      ],
+      "metrics": [
+        "Revenue",
+        "Quantity",
+        "Profit",
+        "Discount",
+        "Tax"
+      ],
+      "terms": [
+        {
+          "name": "Sales",
+          "aliases": [
+            "Sale",
+            "Orders",
+            "Order",
+            "SalesAmount"
+          ]
+        },
+        {
+          "name": "Product",
+          "aliases": [
+            "Item",
+            "SKU",
+            "Model",
+            "Category",
+            "Subcategory"
+          ]
+        },
+        {
+          "name": "Customer",
+          "aliases": [
+            "Client",
+            "Buyer",
+            "Consumer",
+            "CustomerKey"
+          ]
+        },
+        {
+          "name": "Geography",
+          "aliases": [
+            "Country",
+            "Region",
+            "City",
+            "Territory"
+          ]
+        },
+        {
+          "name": "Time",
+          "aliases": [
+            "Date",
+            "Year",
+            "Month",
+            "Quarter",
+            "Day"
+          ]
+        },
+        {
+          "name": "Revenue",
+          "aliases": [
+            "SalesAmount",
+            "Turnover",
+            "Net Sales"
+          ]
+        },
+        {
+          "name": "Quantity",
+          "aliases": [
+            "Qty",
+            "Units",
+            "Order Quantity"
+          ]
+        },
+        {
+          "name": "Profit",
+          "aliases": [
+            "Margin",
+            "Gross Profit",
+            "Net Profit"
+          ]
+        },
+        {
+          "name": "Discount",
+          "aliases": [
+            "Discount Amount",
+            "Promo Discount"
+          ]
+        },
+        {
+          "name": "Tax",
+          "aliases": [
+            "Tax Amount",
+            "VAT"
+          ]
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "column": "CustomerKey",
+        "mapped_business_term": "Customer",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Customer",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "ProductKey",
+        "mapped_business_term": "Product",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Product",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Sales Amount",
+        "mapped_business_term": "Sales",
+        "confidence": 1.0,
+        "method": "embedding",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 1.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      }
+    ],
+    "column_profiles": {
+      "sales_data": [
+        {
+          "name": "CustomerKey",
+          "inferred_dtype": "int64",
+          "role": "measure",
+          "distinct_count": 2,
+          "null_ratio": 0.0,
+          "sample_values": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "ProductKey",
+          "inferred_dtype": "int64",
+          "role": "measure",
+          "distinct_count": 2,
+          "null_ratio": 0.0,
+          "sample_values": [
+            10,
+            11
+          ]
+        },
+        {
+          "name": "Sales Amount",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 2,
+          "null_ratio": 0.0,
+          "sample_values": [
+            100.0,
+            250.0
+          ]
+        }
+      ]
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "table:sales_data",
+          "type": "Table",
+          "name": "sales_data",
+          "schema": "dbo"
+        },
+        {
+          "id": "column:sales_data.CustomerKey",
+          "type": "Column",
+          "name": "CustomerKey",
+          "table": "sales_data",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:sales_data.CustomerKey",
+          "type": "Measure",
+          "name": "CustomerKey",
+          "expression": "SUM([CustomerKey])"
+        },
+        {
+          "id": "column:sales_data.ProductKey",
+          "type": "Column",
+          "name": "ProductKey",
+          "table": "sales_data",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:sales_data.ProductKey",
+          "type": "Measure",
+          "name": "ProductKey",
+          "expression": "SUM([ProductKey])"
+        },
+        {
+          "id": "column:sales_data.Sales_Amount",
+          "type": "Column",
+          "name": "Sales Amount",
+          "table": "sales_data",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:sales_data.Sales_Amount",
+          "type": "Measure",
+          "name": "Sales Amount",
+          "expression": "SUM([Sales Amount])"
+        },
+        {
+          "id": "measure:Sum_Sales_Amount",
+          "type": "Measure",
+          "name": "Sum Sales Amount",
+          "expression": "SUM([Sales Amount])"
+        },
+        {
+          "id": "visual:SO_Sales",
+          "type": "Visual",
+          "name": "SO_Sales",
+          "subtype": "bar"
+        },
+        {
+          "id": "dimension:sales_data.Sales_Amount",
+          "type": "Dimension",
+          "name": "Sales Amount",
+          "table": "sales_data"
+        },
+        {
+          "id": "dimension:sales_data.CustomerKey",
+          "type": "Dimension",
+          "name": "CustomerKey",
+          "table": "sales_data"
+        },
+        {
+          "id": "term:Customer",
+          "type": "BusinessTerm",
+          "name": "Customer"
+        },
+        {
+          "id": "term:Product",
+          "type": "BusinessTerm",
+          "name": "Product"
+        },
+        {
+          "id": "term:Sales",
+          "type": "BusinessTerm",
+          "name": "Sales"
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "table:sales_data",
+          "target_id": "column:sales_data.CustomerKey",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:sales_data.CustomerKey",
+          "target_id": "measure:sales_data.CustomerKey",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:sales_data.CustomerKey",
+          "target_id": "measure:sales_data.CustomerKey",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:sales_data",
+          "target_id": "column:sales_data.ProductKey",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:sales_data.ProductKey",
+          "target_id": "measure:sales_data.ProductKey",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:sales_data.ProductKey",
+          "target_id": "measure:sales_data.ProductKey",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:sales_data",
+          "target_id": "column:sales_data.Sales_Amount",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:sales_data.Sales_Amount",
+          "target_id": "measure:sales_data.Sales_Amount",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:sales_data.Sales_Amount",
+          "target_id": "measure:sales_data.Sales_Amount",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "column:sales_data.Sales_Amount",
+          "target_id": "dimension:sales_data.Sales_Amount",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "dimension:sales_data.Sales_Amount",
+          "target_id": "visual:SO_Sales",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "column:sales_data.CustomerKey",
+          "target_id": "dimension:sales_data.CustomerKey",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "dimension:sales_data.CustomerKey",
+          "target_id": "visual:SO_Sales",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "column:sales_data.CustomerKey",
+          "target_id": "term:Customer",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:sales_data.ProductKey",
+          "target_id": "term:Product",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:sales_data.Sales_Amount",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 1.0,
+          "method": "embedding"
+        }
+      ],
+      "persisted": false,
+      "error": ""
+    },
+    "orchestration": {
+      "selected_path": "fast",
+      "llm_provider": "none",
+      "llm_selection_order": [
+        "mistral_api",
+        "gemini_api",
+        "ollama_local"
+      ],
+      "threshold": 0.75,
+      "confidence": 0.9416666666666667,
+      "confidence_components": {
+        "heuristic_score": 0.9,
+        "profiling_score": 1.0,
+        "ontology_score": 0.9333333333333332,
+        "llm_score": 0.0
+      },
+      "confidence_detail": {
+        "final": 0.9416666666666667,
+        "heuristic": 0.9,
+        "profiling": 1.0,
+        "ontology": 0.9333333333333332,
+        "llm": 0.0,
+        "path": "fast"
+      }
+    }
+  }
+}

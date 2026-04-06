@@ -1,0 +1,66 @@
+{
+  "tables": [
+    {
+      "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "name": "AdventureworksDW2022",
+      "source_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "schema": "dbo",
+      "columns": [
+        {
+          "name": "SalesAmount",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "ModelName",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "TaxAmt",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "OrderQuantity",
+          "pbi_type": "decimal",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        }
+      ],
+      "is_date_table": false,
+      "row_count": 0
+    }
+  ],
+  "joins": [
+    {
+      "id": "join_src_0",
+      "left_table": "[dbo].[FactInternetSales]",
+      "right_table": "[dbo].[DimCurrency]",
+      "left_col": "id",
+      "right_col": "id",
+      "type": "INNER",
+      "pbi_cardinality": "ManyToOne",
+      "source_xml_ref": ""
+    }
+  ],
+  "columns_used": [],
+  "measures": [],
+  "filters_applied": [],
+  "transformations": [],
+  "visual_column_map": {}
+}

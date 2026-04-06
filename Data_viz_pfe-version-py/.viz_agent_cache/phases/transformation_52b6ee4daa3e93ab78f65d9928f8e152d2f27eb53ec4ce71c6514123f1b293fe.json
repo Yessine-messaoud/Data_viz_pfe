@@ -1,0 +1,17 @@
+{
+  "schema": "v1",
+  "phase": "transformation",
+  "fingerprint": "52b6ee4daa3e93ab78f65d9928f8e152d2f27eb53ec4ce71c6514123f1b293fe",
+  "result": {
+    "status": "success",
+    "confidence": 0.87,
+    "output": {
+      "tool_model": {
+        "datasets": []
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {}
+}

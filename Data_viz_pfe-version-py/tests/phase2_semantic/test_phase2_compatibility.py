@@ -1,7 +1,7 @@
 import pandas as pd
 
 from viz_agent.models.abstract_spec import DataSource, ParsedWorkbook
-from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
+from viz_agent.phase0_extraction.data_source_registry import DataSourceRegistry, ResolvedDataSource
 from viz_agent.phase2_semantic.phase2_orchestrator import Phase2SemanticOrchestrator
 from viz_agent.phase3_spec.abstract_spec_builder import AbstractSpecBuilder
 

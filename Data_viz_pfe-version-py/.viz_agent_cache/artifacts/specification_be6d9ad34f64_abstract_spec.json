@@ -1,0 +1,19 @@
+{
+  "dashboard_spec": {
+    "pages": [
+      {
+        "visuals": [
+          {
+            "type": "columnchart",
+            "data_binding": {
+              "axes": {
+                "x": "Category",
+                "y": "Sales"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

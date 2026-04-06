@@ -73,6 +73,13 @@ class SemanticGraph:
         safe = "".join(ch if ch.isalnum() or ch in {"_", "-", ":", "."} else "_" for ch in str(value))
         return f"{prefix}:{safe}"
 
+    @staticmethod
+    def _node(node_id: str, node_type: str, **attrs: Any) -> Dict[str, Any]:
+        """Build a node with both `type` and legacy `label` fields for compatibility."""
+        payload: Dict[str, Any] = {"id": node_id, "type": node_type, "label": node_type}
+        payload.update(attrs)
+        return payload
+
     @classmethod
     def build_payload(
         cls,
@@ -86,18 +93,18 @@ class SemanticGraph:
 
         for table in getattr(lineage, "tables", []):
             table_id = cls._id("table", table.name)
-            nodes.append({"id": table_id, "label": "Table", "name": table.name, "schema": table.schema})
+            nodes.append(cls._node(table_id, "Table", name=table.name, schema=table.schema))
             for col in table.columns:
                 col_id = cls._id("column", f"{table.name}.{col.name}")
                 nodes.append(
-                    {
-                        "id": col_id,
-                        "label": "Column",
-                        "name": col.name,
-                        "table": table.name,
-                        "role": col.role,
-                        "pbi_type": col.pbi_type,
-                    }
+                    cls._node(
+                        col_id,
+                        "Column",
+                        name=col.name,
+                        table=table.name,
+                        role=col.role,
+                        pbi_type=col.pbi_type,
+                    )
                 )
                 rels.append({"source_id": table_id, "target_id": col_id, "type": "HAS_COLUMN"})
 
@@ -118,12 +125,12 @@ class SemanticGraph:
         for measure in getattr(semantic_model, "measures", []):
             measure_id = cls._id("measure", measure.name)
             nodes.append(
-                {
-                    "id": measure_id,
-                    "label": "Measure",
-                    "name": measure.name,
-                    "expression": measure.expression,
-                }
+                cls._node(
+                    measure_id,
+                    "Measure",
+                    name=measure.name,
+                    expression=measure.expression,
+                )
             )
             for src in getattr(measure, "source_columns", []) or []:
                 col_id = cls._id("column", f"{src.table}.{src.column}")
@@ -131,7 +138,7 @@ class SemanticGraph:
 
         for term in ontology_terms or []:
             term_id = cls._id("term", term)
-            nodes.append({"id": term_id, "label": "BusinessTerm", "name": term})
+            nodes.append(cls._node(term_id, "BusinessTerm", name=term))
 
         for mapping in mappings or []:
             col_name = mapping.get("column")

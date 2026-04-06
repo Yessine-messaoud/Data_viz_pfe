@@ -1,0 +1,321 @@
+{
+  "summary": {
+    "worksheets": 2,
+    "dashboards": 0,
+    "calculated_fields": 0,
+    "datasources": 1,
+    "semantic_hints": 4,
+    "enriched_lineage": 4,
+    "validation_warnings": 1
+  },
+  "workbook": {
+    "worksheets": [
+      {
+        "name": "dispersion",
+        "title": "dispersion",
+        "mark_type": "Pie",
+        "raw_mark_type": "Pie",
+        "rows_shelf": [],
+        "cols_shelf": [],
+        "marks_shelf": [
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Country"
+          },
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Total Profit"
+          }
+        ],
+        "mark_encodings": {
+          "color": {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Country"
+          },
+          "size": {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Total Profit"
+          }
+        },
+        "filters": [],
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "visual_encoding": {
+          "x": null,
+          "y": null,
+          "color": "Country",
+          "size": "Total Profit",
+          "detail": null
+        },
+        "semantic_hints": [
+          {
+            "column": "Country",
+            "role_hint": "dimension",
+            "aggregation_hint": "count",
+            "confidence": 0.85,
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "data_type": "str",
+            "cardinality": 48,
+            "worksheet_role": "color"
+          },
+          {
+            "column": "Total Profit",
+            "role_hint": "measure",
+            "aggregation_hint": "sum",
+            "confidence": 1.0,
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "data_type": "float64",
+            "cardinality": 1323,
+            "worksheet_role": "size"
+          }
+        ],
+        "confidence": {
+          "visual": 0.9,
+          "encoding": 0.4,
+          "datasource_linkage": 1.0,
+          "overall": 0.78
+        },
+        "enriched_lineage": [
+          {
+            "column": "Country",
+            "used_in": "dispersion",
+            "role": "color",
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "confidence": 0.85
+          },
+          {
+            "column": "Total Profit",
+            "used_in": "dispersion",
+            "role": "size",
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "confidence": 1.0
+          }
+        ],
+        "validation_warnings": []
+      },
+      {
+        "name": "sales_country",
+        "title": "sales_country",
+        "mark_type": "Line",
+        "raw_mark_type": "Automatic",
+        "rows_shelf": [
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Country"
+          }
+        ],
+        "cols_shelf": [
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Total Cost"
+          }
+        ],
+        "marks_shelf": [
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Country"
+          },
+          {
+            "table": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "column": "Total Cost"
+          }
+        ],
+        "mark_encodings": {},
+        "filters": [],
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "visual_encoding": {
+          "x": "Total Cost",
+          "y": "Country",
+          "color": "Country",
+          "size": "Total Cost",
+          "detail": null
+        },
+        "semantic_hints": [
+          {
+            "column": "Total Cost",
+            "role_hint": "measure",
+            "aggregation_hint": "sum",
+            "confidence": 0.9,
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "data_type": "float64",
+            "cardinality": 1323,
+            "worksheet_role": "x_axis"
+          },
+          {
+            "column": "Country",
+            "role_hint": "measure",
+            "aggregation_hint": "count",
+            "confidence": 1.0,
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "data_type": "str",
+            "cardinality": 48,
+            "worksheet_role": "y_axis"
+          }
+        ],
+        "confidence": {
+          "visual": 0.8,
+          "encoding": 0.8,
+          "datasource_linkage": 1.0,
+          "overall": 0.86
+        },
+        "enriched_lineage": [
+          {
+            "column": "Total Cost",
+            "used_in": "sales_country",
+            "role": "x_axis",
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "confidence": 0.9
+          },
+          {
+            "column": "Country",
+            "used_in": "sales_country",
+            "role": "y_axis",
+            "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+            "confidence": 1.0
+          }
+        ],
+        "validation_warnings": []
+      }
+    ],
+    "datasources": [
+      {
+        "name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "caption": "Europe Sales Records",
+        "connection_type": "federated",
+        "columns": [
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Cost",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Profit",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ]
+      }
+    ],
+    "dashboards": [],
+    "calculated_fields": [],
+    "parameters": [],
+    "filters": [],
+    "color_palettes": [],
+    "tableau_relationships": [],
+    "visual_encoding": {
+      "dispersion": {
+        "x": null,
+        "y": null,
+        "color": "Country",
+        "size": "Total Profit",
+        "detail": null
+      },
+      "sales_country": {
+        "x": "Total Cost",
+        "y": "Country",
+        "color": "Country",
+        "size": "Total Cost",
+        "detail": null
+      }
+    },
+    "semantic_hints": [
+      {
+        "column": "Country",
+        "role_hint": "dimension",
+        "aggregation_hint": "count",
+        "confidence": 0.85,
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "data_type": "str",
+        "cardinality": 48,
+        "worksheet_role": "color"
+      },
+      {
+        "column": "Total Profit",
+        "role_hint": "measure",
+        "aggregation_hint": "sum",
+        "confidence": 1.0,
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "data_type": "float64",
+        "cardinality": 1323,
+        "worksheet_role": "size"
+      },
+      {
+        "column": "Total Cost",
+        "role_hint": "measure",
+        "aggregation_hint": "sum",
+        "confidence": 0.9,
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "data_type": "float64",
+        "cardinality": 1323,
+        "worksheet_role": "x_axis"
+      },
+      {
+        "column": "Country",
+        "role_hint": "measure",
+        "aggregation_hint": "count",
+        "confidence": 1.0,
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "data_type": "str",
+        "cardinality": 48,
+        "worksheet_role": "y_axis"
+      }
+    ],
+    "confidence": {
+      "dispersion": {
+        "visual": 0.9,
+        "encoding": 0.4,
+        "datasource_linkage": 1.0,
+        "overall": 0.78
+      },
+      "sales_country": {
+        "visual": 0.8,
+        "encoding": 0.8,
+        "datasource_linkage": 1.0,
+        "overall": 0.86
+      }
+    },
+    "enriched_lineage": [
+      {
+        "column": "Country",
+        "used_in": "dispersion",
+        "role": "color",
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "confidence": 0.85
+      },
+      {
+        "column": "Total Profit",
+        "used_in": "dispersion",
+        "role": "size",
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "confidence": 1.0
+      },
+      {
+        "column": "Total Cost",
+        "used_in": "sales_country",
+        "role": "x_axis",
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "confidence": 0.9
+      },
+      {
+        "column": "Country",
+        "used_in": "sales_country",
+        "role": "y_axis",
+        "datasource_name": "federated.1evqjng0vm275f1ci515g0ldj2gc",
+        "confidence": 1.0
+      }
+    ],
+    "validation_warnings": [
+      "sales_country: Automatic mark resolved to Line from multiple measures"
+    ]
+  }
+}

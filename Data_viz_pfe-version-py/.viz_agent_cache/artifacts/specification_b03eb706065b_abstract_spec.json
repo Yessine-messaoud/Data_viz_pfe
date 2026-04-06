@@ -1,0 +1,20 @@
+{
+  "dashboard_spec": {
+    "pages": [
+      {
+        "visuals": [
+          {
+            "id": "v1",
+            "type": "columnchart",
+            "data_binding": {
+              "axes": {
+                "x": "Country",
+                "y": "Sales"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

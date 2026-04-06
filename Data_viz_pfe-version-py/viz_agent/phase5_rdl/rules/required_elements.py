@@ -27,5 +27,7 @@ FIELD_REQUIRED_CHILDREN = [
 
 TABLIX_REQUIRED_CHILDREN = [
     "TablixBody",
+    "TablixColumnHierarchy",
+    "TablixRowHierarchy",
     "DataSetName",
 ]

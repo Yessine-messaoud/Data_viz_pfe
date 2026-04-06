@@ -6,7 +6,7 @@ import pandas as pd
 import pytest
 
 from viz_agent.models.abstract_spec import ColumnDef, DataLineageSpec, Measure, SemanticModel, TableRef
-from viz_agent.phase0_data.data_source_registry import DataSourceRegistry, ResolvedDataSource
+from viz_agent.phase0_extraction.data_source_registry import DataSourceRegistry, ResolvedDataSource
 from viz_agent.phase4_transform.calc_field_translator import CalcFieldTranslator
 from viz_agent.phase4_transform.rdl_dataset_mapper import RDLDatasetMapper
 from viz_agent.validators.expression_validator import ExpressionValidator
@@ -91,6 +91,48 @@ def test_rdl_dataset_mapper_extract_query_sets_sum_decimal_and_count_integer() -
     assert fields_by_name["TotalFreight"] == "Decimal"
     assert fields_by_name["TotalQuantity"] == "Decimal"
     assert fields_by_name["OrderCount"] == "Integer"
+
+
+def test_rdl_dataset_mapper_inlines_frame_for_simple_select_star_table() -> None:
+    registry = DataSourceRegistry()
+    registry.register(
+        "csv_source",
+        ResolvedDataSource(
+            name="csv_source",
+            source_type="csv",
+            frames={
+                "Data_Downloads_Europe_Sales_Records_csv": pd.DataFrame(
+                    {
+                        "Region": ["Europe"],
+                        "Country": ["France"],
+                        "Total Profit": [123.45],
+                    }
+                )
+            },
+        ),
+    )
+
+    lineage = DataLineageSpec(
+        tables=[
+            TableRef(
+                id="t_eu",
+                name="Data_Downloads_Europe_Sales_Records_csv",
+                columns=[
+                    ColumnDef(name="Region", pbi_type="text"),
+                    ColumnDef(name="Country", pbi_type="text"),
+                    ColumnDef(name="Total Profit", pbi_type="decimal"),
+                ],
+            )
+        ]
+    )
+
+    datasets = RDLDatasetMapper.build(registry, lineage)
+    query = datasets[0].query
+
+    assert "UNION ALL" not in query or query.startswith("SELECT")
+    assert "FROM Data_Downloads_Europe_Sales_Records_csv" not in query
+    assert "AS [Region]" in query
+    assert "AS [Country]" in query
 
 
 def test_calc_field_translator_retries_until_valid_expression() -> None:

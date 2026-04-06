@@ -1,0 +1,20 @@
+{
+  "schema": "v1",
+  "phase": "export",
+  "fingerprint": "a94a74f9b307451be57af4113a3ec8a007a9c041915cf0b31dc94bc7bc595f43",
+  "result": {
+    "status": "success",
+    "confidence": 0.93,
+    "output": {
+      "export_result": {
+        "validation": {
+          "is_valid": true
+        },
+        "content_bytes": 120
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {}
+}

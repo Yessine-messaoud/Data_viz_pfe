@@ -68,6 +68,21 @@ class ValidationHook:
                 }
             )
 
+        if isinstance(visuals, list):
+            for idx, visual in enumerate(visuals):
+                if not isinstance(visual, dict):
+                    continue
+                vtype = str(visual.get("business_type", "")).strip().lower()
+                if vtype == "chart":
+                    issues.append(
+                        {
+                            "severity": "error",
+                            "code": "P4_V006",
+                            "message": "Generic visualization type 'chart' is forbidden in abstract/business layer.",
+                            "field": f"visuals[{idx}].business_type",
+                        }
+                    )
+
         if self.validation_agent and hasattr(self.validation_agent, "validate"):
             try:
                 external = self.validation_agent.validate(tool_model)

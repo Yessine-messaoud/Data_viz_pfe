@@ -1,0 +1,11 @@
+{
+  "agent": "phase0_extraction_agent",
+  "input": "input\\demo1.1.twbx",
+  "source_extension": ".twbx",
+  "mode": "live_sql",
+  "tables_extracted": 0,
+  "connections_detected": 1,
+  "actions": [
+    "detect_live_connections:1"
+  ]
+}

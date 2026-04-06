@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "total": 3,
+    "ok": 3,
+    "ko": 0
+  },
+  "cases": [
+    {
+      "input_path": "input\\demo1.1.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo1.2.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo1.3.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "error": ""
+    }
+  ]
+}

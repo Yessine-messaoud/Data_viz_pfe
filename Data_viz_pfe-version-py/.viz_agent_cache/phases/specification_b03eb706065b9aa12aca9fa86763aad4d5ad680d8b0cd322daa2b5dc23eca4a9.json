@@ -1,0 +1,36 @@
+{
+  "schema": "v1",
+  "phase": "specification",
+  "fingerprint": "b03eb706065b9aa12aca9fa86763aad4d5ad680d8b0cd322daa2b5dc23eca4a9",
+  "result": {
+    "status": "success",
+    "confidence": 0.9,
+    "output": {
+      "abstract_spec": {
+        "dashboard_spec": {
+          "pages": [
+            {
+              "visuals": [
+                {
+                  "id": "v1",
+                  "type": "columnchart",
+                  "data_binding": {
+                    "axes": {
+                      "x": "Country",
+                      "y": "Sales"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {
+    "abstract_spec": "C:\\Users\\LOQ\\Desktop\\TALAN\\Data_viz_pfe-version-py\\.viz_agent_cache\\artifacts\\specification_b03eb706065b_abstract_spec.json"
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des ventes"
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays de la zone de vente"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesTerritoryCountry"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "SalesTerritoryCountry"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+    "grain": "row"
+  },
+  "phase2_artifacts": {
+    "ontology": {
+      "entities": [
+        "Sales",
+        "Product",
+        "Customer",
+        "Geography",
+        "Time",
+        "Reseller",
+        "Promotion"
+      ],
+      "metrics": [
+        "Revenue",
+        "Quantity",
+        "Profit",
+        "Discount",
+        "Tax"
+      ],
+      "terms": [
+        {
+          "name": "Sales",
+          "aliases": [
+            "Sale",
+            "Orders",
+            "Order",
+            "SalesAmount"
+          ]
+        },
+        {
+          "name": "Product",
+          "aliases": [
+            "Item",
+            "SKU",
+            "Model",
+            "Category",
+            "Subcategory"
+          ]
+        },
+        {
+          "name": "Customer",
+          "aliases": [
+            "Client",
+            "Buyer",
+            "Consumer",
+            "CustomerKey"
+          ]
+        },
+        {
+          "name": "Geography",
+          "aliases": [
+            "Country",
+            "Region",
+            "City",
+            "Territory"
+          ]
+        },
+        {
+          "name": "Time",
+          "aliases": [
+            "Date",
+            "Year",
+            "Month",
+            "Quarter",
+            "Day"
+          ]
+        },
+        {
+          "name": "Revenue",
+          "aliases": [
+            "SalesAmount",
+            "Turnover",
+            "Net Sales"
+          ]
+        },
+        {
+          "name": "Quantity",
+          "aliases": [
+            "Qty",
+            "Units",
+            "Order Quantity"
+          ]
+        },
+        {
+          "name": "Profit",
+          "aliases": [
+            "Margin",
+            "Gross Profit",
+            "Net Profit"
+          ]
+        },
+        {
+          "name": "Discount",
+          "aliases": [
+            "Discount Amount",
+            "Promo Discount"
+          ]
+        },
+        {
+          "name": "Tax",
+          "aliases": [
+            "Tax Amount",
+            "VAT"
+          ]
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "column": "SalesAmount",
+        "mapped_business_term": "Sales",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "mapped_business_term": "Sales",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      }
+    ],
+    "column_profiles": {},
+    "graph": {
+      "nodes": [
+        {
+          "id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "label": "Table",
+          "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "schema": "dbo"
+        },
+        {
+          "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "label": "Column",
+          "name": "SalesAmount",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "role": "measure",
+          "pbi_type": "decimal"
+        },
+        {
+          "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "label": "Column",
+          "name": "SalesTerritoryCountry",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Sum_SalesAmount",
+          "label": "Measure",
+          "name": "Sum SalesAmount",
+          "expression": "SUM([SalesAmount])"
+        },
+        {
+          "id": "measure:Sum_SalesTerritoryCountry",
+          "label": "Measure",
+          "name": "Sum SalesTerritoryCountry",
+          "expression": "SUM([SalesTerritoryCountry])"
+        },
+        {
+          "id": "term:Sales",
+          "label": "BusinessTerm",
+          "name": "Sales"
+        },
+        {
+          "id": "term:Product",
+          "label": "BusinessTerm",
+          "name": "Product"
+        },
+        {
+          "id": "term:Customer",
+          "label": "BusinessTerm",
+          "name": "Customer"
+        },
+        {
+          "id": "term:Geography",
+          "label": "BusinessTerm",
+          "name": "Geography"
+        },
+        {
+          "id": "term:Time",
+          "label": "BusinessTerm",
+          "name": "Time"
+        },
+        {
+          "id": "term:Revenue",
+          "label": "BusinessTerm",
+          "name": "Revenue"
+        },
+        {
+          "id": "term:Quantity",
+          "label": "BusinessTerm",
+          "name": "Quantity"
+        },
+        {
+          "id": "term:Profit",
+          "label": "BusinessTerm",
+          "name": "Profit"
+        },
+        {
+          "id": "term:Discount",
+          "label": "BusinessTerm",
+          "name": "Discount"
+        },
+        {
+          "id": "term:Tax",
+          "label": "BusinessTerm",
+          "name": "Tax"
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        }
+      ],
+      "persisted": false,
+      "error": ""
+    }
+  }
+}

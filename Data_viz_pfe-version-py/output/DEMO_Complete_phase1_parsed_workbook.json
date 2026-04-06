@@ -1,0 +1,542 @@
+{
+  "summary": {
+    "worksheets": 3,
+    "dashboards": 1,
+    "calculated_fields": 0,
+    "datasources": 1,
+    "semantic_hints": 7,
+    "enriched_lineage": 7,
+    "validation_warnings": 1
+  },
+  "workbook": {
+    "worksheets": [
+      {
+        "name": "Feuille 1",
+        "title": "Sales per country",
+        "mark_type": "Bar",
+        "raw_mark_type": "Bar",
+        "rows_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesAmount"
+          }
+        ],
+        "cols_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          }
+        ],
+        "marks_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          },
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesAmount"
+          }
+        ],
+        "mark_encodings": {},
+        "filters": [],
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "visual_encoding": {
+          "x": "SalesTerritoryCountry",
+          "y": "SalesAmount",
+          "color": "SalesTerritoryCountry",
+          "size": "SalesAmount",
+          "detail": null
+        },
+        "semantic_hints": [
+          {
+            "column": "SalesTerritoryCountry",
+            "role_hint": "dimension",
+            "aggregation_hint": "count",
+            "confidence": 0.75,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "text",
+            "cardinality": null,
+            "worksheet_role": "x_axis"
+          },
+          {
+            "column": "SalesAmount",
+            "role_hint": "measure",
+            "aggregation_hint": "sum",
+            "confidence": 0.95,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "decimal",
+            "cardinality": null,
+            "worksheet_role": "y_axis"
+          }
+        ],
+        "confidence": {
+          "visual": 1.0,
+          "encoding": 0.8,
+          "datasource_linkage": 1.0,
+          "overall": 0.94
+        },
+        "enriched_lineage": [
+          {
+            "column": "SalesTerritoryCountry",
+            "used_in": "Feuille 1",
+            "role": "x_axis",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.75
+          },
+          {
+            "column": "SalesAmount",
+            "used_in": "Feuille 1",
+            "role": "y_axis",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.95
+          }
+        ],
+        "validation_warnings": []
+      },
+      {
+        "name": "Feuille 2",
+        "title": "Tax per country",
+        "mark_type": "Bar",
+        "raw_mark_type": "Automatic",
+        "rows_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "TaxAmt"
+          }
+        ],
+        "cols_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          }
+        ],
+        "marks_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "ModelName"
+          },
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          },
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "TaxAmt"
+          }
+        ],
+        "mark_encodings": {},
+        "filters": [],
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "visual_encoding": {
+          "x": "SalesTerritoryCountry",
+          "y": "TaxAmt",
+          "color": "ModelName",
+          "size": "SalesTerritoryCountry",
+          "detail": "TaxAmt"
+        },
+        "semantic_hints": [
+          {
+            "column": "SalesTerritoryCountry",
+            "role_hint": "dimension",
+            "aggregation_hint": "count",
+            "confidence": 0.75,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "text",
+            "cardinality": null,
+            "worksheet_role": "x_axis"
+          },
+          {
+            "column": "TaxAmt",
+            "role_hint": "measure",
+            "aggregation_hint": "sum",
+            "confidence": 0.75,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "decimal",
+            "cardinality": null,
+            "worksheet_role": "y_axis"
+          },
+          {
+            "column": "ModelName",
+            "role_hint": "dimension",
+            "aggregation_hint": "none",
+            "confidence": 0.95,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "text",
+            "cardinality": null,
+            "worksheet_role": "color"
+          }
+        ],
+        "confidence": {
+          "visual": 0.8,
+          "encoding": 1.0,
+          "datasource_linkage": 1.0,
+          "overall": 0.92
+        },
+        "enriched_lineage": [
+          {
+            "column": "SalesTerritoryCountry",
+            "used_in": "Feuille 2",
+            "role": "x_axis",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.75
+          },
+          {
+            "column": "TaxAmt",
+            "used_in": "Feuille 2",
+            "role": "y_axis",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.75
+          },
+          {
+            "column": "ModelName",
+            "used_in": "Feuille 2",
+            "role": "color",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.95
+          }
+        ],
+        "validation_warnings": []
+      },
+      {
+        "name": "Feuille 3",
+        "title": "Feuille 3",
+        "mark_type": "Pie",
+        "raw_mark_type": "Pie",
+        "rows_shelf": [],
+        "cols_shelf": [],
+        "marks_shelf": [
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          },
+          {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "OrderQuantity"
+          }
+        ],
+        "mark_encodings": {
+          "color": {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "SalesTerritoryCountry"
+          },
+          "size": {
+            "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "column": "OrderQuantity"
+          }
+        },
+        "filters": [],
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "visual_encoding": {
+          "x": null,
+          "y": null,
+          "color": "SalesTerritoryCountry",
+          "size": "OrderQuantity",
+          "detail": null
+        },
+        "semantic_hints": [
+          {
+            "column": "SalesTerritoryCountry",
+            "role_hint": "dimension",
+            "aggregation_hint": "count",
+            "confidence": 0.75,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "text",
+            "cardinality": null,
+            "worksheet_role": "color"
+          },
+          {
+            "column": "OrderQuantity",
+            "role_hint": "measure",
+            "aggregation_hint": "count",
+            "confidence": 0.95,
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "data_type": "decimal",
+            "cardinality": null,
+            "worksheet_role": "size"
+          }
+        ],
+        "confidence": {
+          "visual": 0.9,
+          "encoding": 0.4,
+          "datasource_linkage": 1.0,
+          "overall": 0.78
+        },
+        "enriched_lineage": [
+          {
+            "column": "SalesTerritoryCountry",
+            "used_in": "Feuille 3",
+            "role": "color",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.75
+          },
+          {
+            "column": "OrderQuantity",
+            "used_in": "Feuille 3",
+            "role": "size",
+            "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+            "confidence": 0.95
+          }
+        ],
+        "validation_warnings": []
+      }
+    ],
+    "datasources": [
+      {
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "caption": "AdventureworksDW2022",
+        "connection_type": "federated",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ]
+      }
+    ],
+    "dashboards": [
+      {
+        "name": "Tableau de bord 1",
+        "worksheets": [
+          "Feuille 1",
+          "Feuille 2",
+          "Feuille 3"
+        ],
+        "width": 1200,
+        "height": 800
+      }
+    ],
+    "calculated_fields": [],
+    "parameters": [],
+    "filters": [
+      {
+        "field": "SalesTerritoryCountry",
+        "operator": "=",
+        "value": null,
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "field": "ModelName",
+        "operator": "=",
+        "value": null,
+        "column": "ModelName"
+      },
+      {
+        "field": "SalesTerritoryCountry",
+        "operator": "=",
+        "value": null,
+        "column": "SalesTerritoryCountry"
+      }
+    ],
+    "color_palettes": [],
+    "tableau_relationships": [
+      {
+        "left_table": "[dbo].[FactInternetSales]",
+        "right_table": "[dbo].[DimCurrency]",
+        "left_col": "id",
+        "right_col": "id",
+        "type": "INNER",
+        "source_xml_ref": ""
+      }
+    ],
+    "visual_encoding": {
+      "Feuille 1": {
+        "x": "SalesTerritoryCountry",
+        "y": "SalesAmount",
+        "color": "SalesTerritoryCountry",
+        "size": "SalesAmount",
+        "detail": null
+      },
+      "Feuille 2": {
+        "x": "SalesTerritoryCountry",
+        "y": "TaxAmt",
+        "color": "ModelName",
+        "size": "SalesTerritoryCountry",
+        "detail": "TaxAmt"
+      },
+      "Feuille 3": {
+        "x": null,
+        "y": null,
+        "color": "SalesTerritoryCountry",
+        "size": "OrderQuantity",
+        "detail": null
+      }
+    },
+    "semantic_hints": [
+      {
+        "column": "SalesTerritoryCountry",
+        "role_hint": "dimension",
+        "aggregation_hint": "count",
+        "confidence": 0.75,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "text",
+        "cardinality": null,
+        "worksheet_role": "x_axis"
+      },
+      {
+        "column": "SalesAmount",
+        "role_hint": "measure",
+        "aggregation_hint": "sum",
+        "confidence": 0.95,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "decimal",
+        "cardinality": null,
+        "worksheet_role": "y_axis"
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "role_hint": "dimension",
+        "aggregation_hint": "count",
+        "confidence": 0.75,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "text",
+        "cardinality": null,
+        "worksheet_role": "x_axis"
+      },
+      {
+        "column": "TaxAmt",
+        "role_hint": "measure",
+        "aggregation_hint": "sum",
+        "confidence": 0.75,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "decimal",
+        "cardinality": null,
+        "worksheet_role": "y_axis"
+      },
+      {
+        "column": "ModelName",
+        "role_hint": "dimension",
+        "aggregation_hint": "none",
+        "confidence": 0.95,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "text",
+        "cardinality": null,
+        "worksheet_role": "color"
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "role_hint": "dimension",
+        "aggregation_hint": "count",
+        "confidence": 0.75,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "text",
+        "cardinality": null,
+        "worksheet_role": "color"
+      },
+      {
+        "column": "OrderQuantity",
+        "role_hint": "measure",
+        "aggregation_hint": "count",
+        "confidence": 0.95,
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "data_type": "decimal",
+        "cardinality": null,
+        "worksheet_role": "size"
+      }
+    ],
+    "confidence": {
+      "Feuille 1": {
+        "visual": 1.0,
+        "encoding": 0.8,
+        "datasource_linkage": 1.0,
+        "overall": 0.94
+      },
+      "Feuille 2": {
+        "visual": 0.8,
+        "encoding": 1.0,
+        "datasource_linkage": 1.0,
+        "overall": 0.92
+      },
+      "Feuille 3": {
+        "visual": 0.9,
+        "encoding": 0.4,
+        "datasource_linkage": 1.0,
+        "overall": 0.78
+      }
+    },
+    "enriched_lineage": [
+      {
+        "column": "SalesTerritoryCountry",
+        "used_in": "Feuille 1",
+        "role": "x_axis",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.75
+      },
+      {
+        "column": "SalesAmount",
+        "used_in": "Feuille 1",
+        "role": "y_axis",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.95
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "used_in": "Feuille 2",
+        "role": "x_axis",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.75
+      },
+      {
+        "column": "TaxAmt",
+        "used_in": "Feuille 2",
+        "role": "y_axis",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.75
+      },
+      {
+        "column": "ModelName",
+        "used_in": "Feuille 2",
+        "role": "color",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.95
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "used_in": "Feuille 3",
+        "role": "color",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.75
+      },
+      {
+        "column": "OrderQuantity",
+        "used_in": "Feuille 3",
+        "role": "size",
+        "datasource_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "confidence": 0.95
+      }
+    ],
+    "validation_warnings": [
+      "Feuille 2: Automatic mark resolved to Bar from rows/cols structure"
+    ]
+  }
+}

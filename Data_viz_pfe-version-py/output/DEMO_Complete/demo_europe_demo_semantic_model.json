@@ -1,0 +1,1455 @@
+{
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "Data/Downloads/Europe Sales Records.csv",
+        "name": "Data_Downloads_Europe_Sales_Records_csv",
+        "source_name": "Data/Downloads/Europe Sales Records.csv",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Item Type",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Sales Channel",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Priority",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order ID",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Ship Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Units Sold",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Price",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Revenue",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Profit",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 1330
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum Country",
+        "expression": "SUM([Country])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Country"
+      },
+      {
+        "name": "Sum Sales Channel",
+        "expression": "SUM([Sales Channel])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Sales Channel"
+      },
+      {
+        "name": "Sum Order ID",
+        "expression": "SUM([Order ID])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Order ID"
+      },
+      {
+        "name": "Sum Units Sold",
+        "expression": "SUM([Units Sold])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Units Sold"
+      },
+      {
+        "name": "Sum Unit Price",
+        "expression": "SUM([Unit Price])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Unit Price"
+      },
+      {
+        "name": "Sum Unit Cost",
+        "expression": "SUM([Unit Cost])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Unit Cost"
+      },
+      {
+        "name": "Sum Total Revenue",
+        "expression": "SUM([Total Revenue])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Revenue"
+      },
+      {
+        "name": "Sum Total Cost",
+        "expression": "SUM([Total Cost])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Cost"
+      },
+      {
+        "name": "Sum Total Profit",
+        "expression": "SUM([Total Profit])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Profit"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Region"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Country"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Item Type"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Sales Channel"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Order Priority"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Order Date"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Ship Date"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "Data_Downloads_Europe_Sales_Records_csv",
+    "grain": "row"
+  },
+  "phase2_artifacts": {
+    "ontology": {
+      "entities": [
+        "Sales",
+        "Product",
+        "Customer",
+        "Geography",
+        "Time",
+        "Reseller",
+        "Promotion"
+      ],
+      "metrics": [
+        "Revenue",
+        "Quantity",
+        "Profit",
+        "Discount",
+        "Tax"
+      ],
+      "terms": [
+        {
+          "name": "Sales",
+          "aliases": [
+            "Sale",
+            "Orders",
+            "Order",
+            "SalesAmount"
+          ]
+        },
+        {
+          "name": "Product",
+          "aliases": [
+            "Item",
+            "SKU",
+            "Model",
+            "Category",
+            "Subcategory"
+          ]
+        },
+        {
+          "name": "Customer",
+          "aliases": [
+            "Client",
+            "Buyer",
+            "Consumer",
+            "CustomerKey"
+          ]
+        },
+        {
+          "name": "Geography",
+          "aliases": [
+            "Country",
+            "Region",
+            "City",
+            "Territory"
+          ]
+        },
+        {
+          "name": "Time",
+          "aliases": [
+            "Date",
+            "Year",
+            "Month",
+            "Quarter",
+            "Day"
+          ]
+        },
+        {
+          "name": "Revenue",
+          "aliases": [
+            "SalesAmount",
+            "Turnover",
+            "Net Sales"
+          ]
+        },
+        {
+          "name": "Quantity",
+          "aliases": [
+            "Qty",
+            "Units",
+            "Order Quantity"
+          ]
+        },
+        {
+          "name": "Profit",
+          "aliases": [
+            "Margin",
+            "Gross Profit",
+            "Net Profit"
+          ]
+        },
+        {
+          "name": "Discount",
+          "aliases": [
+            "Discount Amount",
+            "Promo Discount"
+          ]
+        },
+        {
+          "name": "Tax",
+          "aliases": [
+            "Tax Amount",
+            "VAT"
+          ]
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "column": "Region",
+        "mapped_business_term": "Geography",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Geography",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Country",
+        "mapped_business_term": "Geography",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Geography",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Item Type",
+        "mapped_business_term": "Product",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Product",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Sales Channel",
+        "mapped_business_term": "Sales",
+        "confidence": 1.0,
+        "method": "embedding",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 1.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Order Priority",
+        "mapped_business_term": "Sales",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Order Date",
+        "mapped_business_term": "Sales",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Order ID",
+        "mapped_business_term": "Sales",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Ship Date",
+        "mapped_business_term": "Time",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Time",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Units Sold",
+        "mapped_business_term": "Quantity",
+        "confidence": 0.8,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Quantity",
+            "score": 0.8
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Unit Price",
+        "mapped_business_term": null,
+        "confidence": 0.0,
+        "method": "unmapped",
+        "details": {
+          "heuristic": {
+            "term": null,
+            "score": 0.0
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Unit Cost",
+        "mapped_business_term": null,
+        "confidence": 0.0,
+        "method": "unmapped",
+        "details": {
+          "heuristic": {
+            "term": null,
+            "score": 0.0
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Total Revenue",
+        "mapped_business_term": "Revenue",
+        "confidence": 1.0,
+        "method": "embedding",
+        "details": {
+          "heuristic": {
+            "term": "Revenue",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Revenue",
+            "score": 1.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Total Cost",
+        "mapped_business_term": null,
+        "confidence": 0.0,
+        "method": "unmapped",
+        "details": {
+          "heuristic": {
+            "term": null,
+            "score": 0.0
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "Total Profit",
+        "mapped_business_term": "Profit",
+        "confidence": 1.0,
+        "method": "embedding",
+        "details": {
+          "heuristic": {
+            "term": "Profit",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Profit",
+            "score": 1.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      }
+    ],
+    "column_profiles": {
+      "Data/Downloads/Europe Sales Records.csv": [
+        {
+          "name": "Region",
+          "inferred_dtype": "str",
+          "role": "dimension",
+          "distinct_count": 1,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Europe",
+            "Europe",
+            "Europe"
+          ]
+        },
+        {
+          "name": "Country",
+          "inferred_dtype": "str",
+          "role": "dimension",
+          "distinct_count": 48,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Czech Republic",
+            "Bosnia and Herzegovina",
+            "Austria"
+          ]
+        },
+        {
+          "name": "Item Type",
+          "inferred_dtype": "str",
+          "role": "dimension",
+          "distinct_count": 12,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Beverages",
+            "Clothes",
+            "Cereal"
+          ]
+        },
+        {
+          "name": "Sales Channel",
+          "inferred_dtype": "str",
+          "role": "dimension",
+          "distinct_count": 2,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "Offline",
+            "Online",
+            "Offline"
+          ]
+        },
+        {
+          "name": "Order Priority",
+          "inferred_dtype": "str",
+          "role": "dimension",
+          "distinct_count": 4,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "C",
+            "M",
+            "C"
+          ]
+        },
+        {
+          "name": "Order Date",
+          "inferred_dtype": "str",
+          "role": "date",
+          "distinct_count": 1049,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "9/12/2011",
+            "10/14/2013",
+            "8/13/2014"
+          ]
+        },
+        {
+          "name": "Order ID",
+          "inferred_dtype": "int64",
+          "role": "measure",
+          "distinct_count": 1330,
+          "null_ratio": 0.0,
+          "sample_values": [
+            478051030,
+            919133651,
+            987410676
+          ]
+        },
+        {
+          "name": "Ship Date",
+          "inferred_dtype": "str",
+          "role": "date",
+          "distinct_count": 1070,
+          "null_ratio": 0.0,
+          "sample_values": [
+            "9/29/2011",
+            "11/4/2013",
+            "9/6/2014"
+          ]
+        },
+        {
+          "name": "Units Sold",
+          "inferred_dtype": "int64",
+          "role": "measure",
+          "distinct_count": 1240,
+          "null_ratio": 0.0,
+          "sample_values": [
+            4778,
+            927,
+            5616
+          ]
+        },
+        {
+          "name": "Unit Price",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 12,
+          "null_ratio": 0.0,
+          "sample_values": [
+            47.45,
+            109.28,
+            205.7
+          ]
+        },
+        {
+          "name": "Unit Cost",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 12,
+          "null_ratio": 0.0,
+          "sample_values": [
+            31.79,
+            35.84,
+            117.11
+          ]
+        },
+        {
+          "name": "Total Revenue",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 1323,
+          "null_ratio": 0.0,
+          "sample_values": [
+            226716.1,
+            101302.56,
+            1155211.2
+          ]
+        },
+        {
+          "name": "Total Cost",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 1323,
+          "null_ratio": 0.0,
+          "sample_values": [
+            151892.62,
+            33223.68,
+            657689.76
+          ]
+        },
+        {
+          "name": "Total Profit",
+          "inferred_dtype": "float64",
+          "role": "measure",
+          "distinct_count": 1323,
+          "null_ratio": 0.0,
+          "sample_values": [
+            74823.48,
+            68078.88,
+            497521.44
+          ]
+        }
+      ]
+    },
+    "graph": {
+      "nodes": [
+        {
+          "id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "type": "Table",
+          "name": "Data_Downloads_Europe_Sales_Records_csv",
+          "schema": "dbo"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "type": "Column",
+          "name": "Region",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "type": "Dimension",
+          "name": "Region",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "type": "Column",
+          "name": "Country",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "type": "Dimension",
+          "name": "Country",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "type": "Column",
+          "name": "Item Type",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "type": "Dimension",
+          "name": "Item Type",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "type": "Column",
+          "name": "Sales Channel",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "type": "Dimension",
+          "name": "Sales Channel",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "type": "Column",
+          "name": "Order Priority",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "type": "Dimension",
+          "name": "Order Priority",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "type": "Column",
+          "name": "Order Date",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "type": "Dimension",
+          "name": "Order Date",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "type": "Column",
+          "name": "Order ID",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "type": "Measure",
+          "name": "Order ID",
+          "expression": "SUM([Order ID])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "type": "Column",
+          "name": "Ship Date",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "type": "Dimension",
+          "name": "Ship Date",
+          "table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "type": "Column",
+          "name": "Units Sold",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "type": "Measure",
+          "name": "Units Sold",
+          "expression": "SUM([Units Sold])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "type": "Column",
+          "name": "Unit Price",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "type": "Measure",
+          "name": "Unit Price",
+          "expression": "SUM([Unit Price])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "type": "Column",
+          "name": "Unit Cost",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "type": "Measure",
+          "name": "Unit Cost",
+          "expression": "SUM([Unit Cost])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "type": "Column",
+          "name": "Total Revenue",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "type": "Measure",
+          "name": "Total Revenue",
+          "expression": "SUM([Total Revenue])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "type": "Column",
+          "name": "Total Cost",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "type": "Measure",
+          "name": "Total Cost",
+          "expression": "SUM([Total Cost])"
+        },
+        {
+          "id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "type": "Column",
+          "name": "Total Profit",
+          "table": "Data_Downloads_Europe_Sales_Records_csv",
+          "role": "measure",
+          "pbi_type": "text"
+        },
+        {
+          "id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "type": "Measure",
+          "name": "Total Profit",
+          "expression": "SUM([Total Profit])"
+        },
+        {
+          "id": "measure:Sum_Country",
+          "type": "Measure",
+          "name": "Sum Country",
+          "expression": "SUM([Country])"
+        },
+        {
+          "id": "measure:Sum_Sales_Channel",
+          "type": "Measure",
+          "name": "Sum Sales Channel",
+          "expression": "SUM([Sales Channel])"
+        },
+        {
+          "id": "measure:Sum_Order_ID",
+          "type": "Measure",
+          "name": "Sum Order ID",
+          "expression": "SUM([Order ID])"
+        },
+        {
+          "id": "measure:Sum_Units_Sold",
+          "type": "Measure",
+          "name": "Sum Units Sold",
+          "expression": "SUM([Units Sold])"
+        },
+        {
+          "id": "measure:Sum_Unit_Price",
+          "type": "Measure",
+          "name": "Sum Unit Price",
+          "expression": "SUM([Unit Price])"
+        },
+        {
+          "id": "measure:Sum_Unit_Cost",
+          "type": "Measure",
+          "name": "Sum Unit Cost",
+          "expression": "SUM([Unit Cost])"
+        },
+        {
+          "id": "measure:Sum_Total_Revenue",
+          "type": "Measure",
+          "name": "Sum Total Revenue",
+          "expression": "SUM([Total Revenue])"
+        },
+        {
+          "id": "measure:Sum_Total_Cost",
+          "type": "Measure",
+          "name": "Sum Total Cost",
+          "expression": "SUM([Total Cost])"
+        },
+        {
+          "id": "measure:Sum_Total_Profit",
+          "type": "Measure",
+          "name": "Sum Total Profit",
+          "expression": "SUM([Total Profit])"
+        },
+        {
+          "id": "visual:dispersion",
+          "type": "Visual",
+          "name": "dispersion",
+          "subtype": "pie"
+        },
+        {
+          "id": "visual:sales_country",
+          "type": "Visual",
+          "name": "sales_country",
+          "subtype": "line"
+        },
+        {
+          "id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Country",
+          "type": "Dimension",
+          "name": "Country",
+          "table": "federated.1evqjng0vm275f1ci515g0ldj2gc"
+        },
+        {
+          "id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Cost",
+          "type": "Dimension",
+          "name": "Total Cost",
+          "table": "federated.1evqjng0vm275f1ci515g0ldj2gc"
+        },
+        {
+          "id": "term:Geography",
+          "type": "BusinessTerm",
+          "name": "Geography"
+        },
+        {
+          "id": "term:Product",
+          "type": "BusinessTerm",
+          "name": "Product"
+        },
+        {
+          "id": "term:Sales",
+          "type": "BusinessTerm",
+          "name": "Sales"
+        },
+        {
+          "id": "term:Time",
+          "type": "BusinessTerm",
+          "name": "Time"
+        },
+        {
+          "id": "term:Quantity",
+          "type": "BusinessTerm",
+          "name": "Quantity"
+        },
+        {
+          "id": "term:Revenue",
+          "type": "BusinessTerm",
+          "name": "Revenue"
+        },
+        {
+          "id": "term:Profit",
+          "type": "BusinessTerm",
+          "name": "Profit"
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "target_id": "dimension:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Price",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Unit_Cost",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Cost",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:Data_Downloads_Europe_Sales_Records_csv",
+          "target_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "target_id": "measure:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "column:federated.1evqjng0vm275f1ci515g0ldj2gc.Country",
+          "target_id": "measure:Sum_Country",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "measure:Sum_Country",
+          "target_id": "visual:dispersion",
+          "type": "USED_IN"
+        },
+        {
+          "source_id": "column:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Profit",
+          "target_id": "measure:Sum_Total_Profit",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "measure:Sum_Total_Profit",
+          "target_id": "visual:dispersion",
+          "type": "USED_IN"
+        },
+        {
+          "source_id": "column:federated.1evqjng0vm275f1ci515g0ldj2gc.Country",
+          "target_id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Country",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Country",
+          "target_id": "visual:sales_country",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "column:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Cost",
+          "target_id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Cost",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "dimension:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Cost",
+          "target_id": "visual:sales_country",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "measure:Sum_Country",
+          "target_id": "visual:sales_country",
+          "type": "USED_IN"
+        },
+        {
+          "source_id": "column:federated.1evqjng0vm275f1ci515g0ldj2gc.Total_Cost",
+          "target_id": "measure:Sum_Total_Cost",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "measure:Sum_Total_Cost",
+          "target_id": "visual:sales_country",
+          "type": "USED_IN"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Region",
+          "target_id": "term:Geography",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Country",
+          "target_id": "term:Geography",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Item_Type",
+          "target_id": "term:Product",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Sales_Channel",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 1.0,
+          "method": "embedding"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Priority",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_Date",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Order_ID",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Ship_Date",
+          "target_id": "term:Time",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Units_Sold",
+          "target_id": "term:Quantity",
+          "type": "MAPPED_TO",
+          "confidence": 0.8,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Revenue",
+          "target_id": "term:Revenue",
+          "type": "MAPPED_TO",
+          "confidence": 1.0,
+          "method": "embedding"
+        },
+        {
+          "source_id": "column:Data_Downloads_Europe_Sales_Records_csv.Total_Profit",
+          "target_id": "term:Profit",
+          "type": "MAPPED_TO",
+          "confidence": 1.0,
+          "method": "embedding"
+        }
+      ],
+      "persisted": false,
+      "error": ""
+    },
+    "orchestration": {
+      "selected_path": "fast",
+      "llm_provider": "none",
+      "llm_selection_order": [
+        "mistral_api",
+        "gemini_api",
+        "ollama_local"
+      ],
+      "threshold": 0.75,
+      "confidence": 0.8892857142857143,
+      "confidence_components": {
+        "heuristic_score": 0.9,
+        "profiling_score": 1.0,
+        "ontology_score": 0.6714285714285715,
+        "llm_score": 0.0
+      },
+      "confidence_detail": {
+        "final": 0.8892857142857143,
+        "heuristic": 0.9,
+        "profiling": 1.0,
+        "ontology": 0.6714285714285715,
+        "llm": 0.0,
+        "path": "fast"
+      }
+    }
+  }
+}

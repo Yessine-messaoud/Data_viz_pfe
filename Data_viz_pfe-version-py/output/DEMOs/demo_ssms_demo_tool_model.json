@@ -1,0 +1,181 @@
+{
+  "target_tool": "RDL",
+  "datasets": [
+    {
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "fields": [
+        {
+          "name": "SalesAmount",
+          "source_type": "decimal",
+          "target_type": "Decimal",
+          "role": "measure"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "source_type": "text",
+          "target_type": "String",
+          "role": "dimension"
+        },
+        {
+          "name": "ModelName",
+          "source_type": "text",
+          "target_type": "String",
+          "role": "dimension"
+        },
+        {
+          "name": "TaxAmt",
+          "source_type": "decimal",
+          "target_type": "Decimal",
+          "role": "measure"
+        },
+        {
+          "name": "OrderQuantity",
+          "source_type": "decimal",
+          "target_type": "Decimal",
+          "role": "measure"
+        }
+      ]
+    }
+  ],
+  "visuals": [
+    {
+      "id": "Feuille 1",
+      "title": "Sales per country",
+      "page": "Tableau de bord 1",
+      "business_type": "bar",
+      "rdl_type": "chart",
+      "encoding": {
+        "x": "SalesTerritoryCountry",
+        "y": "SalesAmount"
+      },
+      "position": {},
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "id": "Feuille 2",
+      "title": "Tax per country",
+      "page": "Tableau de bord 1",
+      "business_type": "bar",
+      "rdl_type": "chart",
+      "encoding": {
+        "x": "SalesTerritoryCountry",
+        "y": "TaxAmt"
+      },
+      "position": {},
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "id": "Feuille 3",
+      "title": "Feuille 3",
+      "page": "Tableau de bord 1",
+      "business_type": "treemap",
+      "rdl_type": "chart",
+      "encoding": {},
+      "position": {},
+      "tool_visual_type": "TreeMap"
+    }
+  ],
+  "measures": [
+    {
+      "name": "Total des ventes",
+      "expression": "SUM([Montant des ventes])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesAmount",
+      "translated_expression": "SUM([Montant des ventes])"
+    },
+    {
+      "name": "Total des taxes",
+      "expression": "SUM([Montant des taxes])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "TaxAmt",
+      "translated_expression": "SUM([Montant des taxes])"
+    },
+    {
+      "name": "Quantit\u00e9 totale command\u00e9e",
+      "expression": "SUM([Quantit\u00e9 command\u00e9e])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "OrderQuantity",
+      "translated_expression": "SUM([Quantit\u00e9 command\u00e9e])"
+    },
+    {
+      "name": "Moyenne des ventes par commande",
+      "expression": "AVG([Montant des ventes])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesAmount",
+      "translated_expression": "AVG([Montant des ventes])"
+    },
+    {
+      "name": "Moyenne des taxes par commande",
+      "expression": "AVG([Montant des taxes])",
+      "rdl_expression": "",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "TaxAmt",
+      "translated_expression": "AVG([Montant des taxes])"
+    }
+  ],
+  "parameters": [],
+  "filters": [
+    {
+      "field": "SalesTerritoryCountry",
+      "operator": "=",
+      "value": null,
+      "column": "SalesTerritoryCountry"
+    },
+    {
+      "field": "ModelName",
+      "operator": "=",
+      "value": null,
+      "column": "ModelName"
+    }
+  ],
+  "meta": {
+    "source_spec_id": "d29af0b6-cf66-4fbf-913a-d7a4150b7e22",
+    "source_spec_version": "2.0.0"
+  },
+  "optimization_hints": [
+    "Prefer server-side aggregation in dataset queries for heavy reports."
+  ],
+  "compatibility_notes": [],
+  "validation_results": [],
+  "lineage_events": [
+    {
+      "phase": "phase4_transform",
+      "timestamp": "2026-04-01T15:30:55.823352+00:00",
+      "datasets_count": 1,
+      "visuals_count": 3,
+      "status": "ok"
+    }
+  ],
+  "transform_log": [
+    {
+      "step": "data_model",
+      "status": "done"
+    },
+    {
+      "step": "calculation",
+      "status": "done"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done"
+    },
+    {
+      "step": "optimization",
+      "status": "done"
+    }
+  ]
+}

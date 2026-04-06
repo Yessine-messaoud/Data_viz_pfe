@@ -1,0 +1,118 @@
+{
+  "tables": [
+    {
+      "id": "Data/Downloads/Europe Sales Records.csv",
+      "name": "Data_Downloads_Europe_Sales_Records_csv",
+      "source_name": "Data/Downloads/Europe Sales Records.csv",
+      "schema": "dbo",
+      "columns": [
+        {
+          "name": "Region",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Country",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Item Type",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Sales Channel",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Order Priority",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Order Date",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Order ID",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Ship Date",
+          "pbi_type": "text",
+          "role": "dimension",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Units Sold",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Unit Price",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Unit Cost",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Total Revenue",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Total Cost",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        },
+        {
+          "name": "Total Profit",
+          "pbi_type": "text",
+          "role": "measure",
+          "is_hidden": false,
+          "label": ""
+        }
+      ],
+      "is_date_table": false,
+      "row_count": 1330
+    }
+  ],
+  "joins": [],
+  "columns_used": [],
+  "measures": [],
+  "filters_applied": [],
+  "transformations": [],
+  "visual_column_map": {}
+}

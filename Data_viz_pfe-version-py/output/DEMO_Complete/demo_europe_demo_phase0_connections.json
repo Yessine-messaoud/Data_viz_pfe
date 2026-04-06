@@ -1,0 +1,11 @@
+{
+  "connections": [
+    {
+      "name": "Europe Sales Records",
+      "class": "textscan",
+      "server": "",
+      "database": "",
+      "schema": ""
+    }
+  ]
+}

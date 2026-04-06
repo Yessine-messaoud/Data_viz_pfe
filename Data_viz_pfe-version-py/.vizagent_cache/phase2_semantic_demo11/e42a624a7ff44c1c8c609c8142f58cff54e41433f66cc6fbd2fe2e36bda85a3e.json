@@ -1,0 +1,406 @@
+{
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesTerritoryCountry"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "SalesTerritoryCountry"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+    "grain": "row"
+  },
+  "lineage": {
+    "tables": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "artifacts": {
+    "ontology": {
+      "entities": [
+        "Sales",
+        "Product",
+        "Customer",
+        "Geography",
+        "Time",
+        "Reseller",
+        "Promotion"
+      ],
+      "metrics": [
+        "Revenue",
+        "Quantity",
+        "Profit",
+        "Discount",
+        "Tax"
+      ],
+      "terms": [
+        {
+          "name": "Sales",
+          "aliases": [
+            "Sale",
+            "Orders",
+            "Order",
+            "SalesAmount"
+          ]
+        },
+        {
+          "name": "Product",
+          "aliases": [
+            "Item",
+            "SKU",
+            "Model",
+            "Category",
+            "Subcategory"
+          ]
+        },
+        {
+          "name": "Customer",
+          "aliases": [
+            "Client",
+            "Buyer",
+            "Consumer",
+            "CustomerKey"
+          ]
+        },
+        {
+          "name": "Geography",
+          "aliases": [
+            "Country",
+            "Region",
+            "City",
+            "Territory"
+          ]
+        },
+        {
+          "name": "Time",
+          "aliases": [
+            "Date",
+            "Year",
+            "Month",
+            "Quarter",
+            "Day"
+          ]
+        },
+        {
+          "name": "Revenue",
+          "aliases": [
+            "SalesAmount",
+            "Turnover",
+            "Net Sales"
+          ]
+        },
+        {
+          "name": "Quantity",
+          "aliases": [
+            "Qty",
+            "Units",
+            "Order Quantity"
+          ]
+        },
+        {
+          "name": "Profit",
+          "aliases": [
+            "Margin",
+            "Gross Profit",
+            "Net Profit"
+          ]
+        },
+        {
+          "name": "Discount",
+          "aliases": [
+            "Discount Amount",
+            "Promo Discount"
+          ]
+        },
+        {
+          "name": "Tax",
+          "aliases": [
+            "Tax Amount",
+            "VAT"
+          ]
+        }
+      ]
+    },
+    "mappings": [
+      {
+        "column": "SalesAmount",
+        "mapped_business_term": "Sales",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      },
+      {
+        "column": "SalesTerritoryCountry",
+        "mapped_business_term": "Sales",
+        "confidence": 0.9,
+        "method": "heuristic",
+        "details": {
+          "heuristic": {
+            "term": "Sales",
+            "score": 0.9
+          },
+          "embedding": {
+            "term": "Sales",
+            "score": 0.0
+          },
+          "llm": {
+            "term": null,
+            "score": 0.0
+          }
+        }
+      }
+    ],
+    "column_profiles": {},
+    "graph": {
+      "nodes": [
+        {
+          "id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "type": "Table",
+          "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "schema": "dbo"
+        },
+        {
+          "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "Column",
+          "name": "SalesAmount",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "role": "measure",
+          "pbi_type": "decimal"
+        },
+        {
+          "id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "Measure",
+          "name": "SalesAmount",
+          "expression": "SUM([SalesAmount])"
+        },
+        {
+          "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "type": "Column",
+          "name": "SalesTerritoryCountry",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "role": "dimension",
+          "pbi_type": "text"
+        },
+        {
+          "id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "type": "Dimension",
+          "name": "SalesTerritoryCountry",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        },
+        {
+          "id": "measure:Sum_SalesAmount",
+          "type": "Measure",
+          "name": "Sum SalesAmount",
+          "expression": "SUM([SalesAmount])"
+        },
+        {
+          "id": "measure:Sum_SalesTerritoryCountry",
+          "type": "Measure",
+          "name": "Sum SalesTerritoryCountry",
+          "expression": "SUM([SalesTerritoryCountry])"
+        },
+        {
+          "id": "visual:Feuille_1",
+          "type": "Visual",
+          "name": "Feuille 1",
+          "subtype": "bar"
+        },
+        {
+          "id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "Dimension",
+          "name": "SalesAmount",
+          "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        },
+        {
+          "id": "term:Sales",
+          "type": "BusinessTerm",
+          "name": "Sales"
+        }
+      ],
+      "relationships": [
+        {
+          "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "AGGREGATED_AS",
+          "agg": "SUM"
+        },
+        {
+          "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+          "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "type": "HAS_COLUMN"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "target_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "type": "IS_DIMENSION"
+        },
+        {
+          "source_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "visual:Feuille_1",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "target_id": "visual:Feuille_1",
+          "type": "GROUPED_BY"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "measure:Sum_SalesAmount",
+          "type": "IS_MEASURE"
+        },
+        {
+          "source_id": "measure:Sum_SalesAmount",
+          "target_id": "visual:Feuille_1",
+          "type": "USED_IN"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        },
+        {
+          "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+          "target_id": "term:Sales",
+          "type": "MAPPED_TO",
+          "confidence": 0.9,
+          "method": "heuristic"
+        }
+      ],
+      "persisted": false,
+      "error": ""
+    },
+    "orchestration": {
+      "selected_path": "fast",
+      "llm_provider": "none",
+      "llm_selection_order": [
+        "mistral_api",
+        "gemini_api",
+        "ollama_local"
+      ],
+      "threshold": 0.75,
+      "confidence": 0.76,
+      "confidence_components": {
+        "heuristic_score": 0.9,
+        "profiling_score": 0.5,
+        "ontology_score": 0.9,
+        "llm_score": 0.0
+      },
+      "confidence_detail": {
+        "final": 0.76,
+        "heuristic": 0.9,
+        "profiling": 0.5,
+        "ontology": 0.9,
+        "llm": 0.0,
+        "path": "fast"
+      }
+    }
+  }
+}

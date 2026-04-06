@@ -1,0 +1,252 @@
+{
+  "summary": {
+    "total": 5,
+    "ok": 5,
+    "partial": 0,
+    "ko": 0
+  },
+  "cases": [
+    {
+      "input_path": "input\\demo1.1.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "metadata_sample": {
+        "tables_sample": [],
+        "datasource_names": [
+          "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        ],
+        "datasource_captions": [
+          "AdventureworksDW2022"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Bar",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          }
+        ],
+        "dashboard_names": [
+          "Tableau de bord 1"
+        ],
+        "parameters_sample": [],
+        "filters_sample": [
+          "SalesTerritoryCountry"
+        ],
+        "connections_sample": [
+          {
+            "name": "localhost\\SQLEXPRESS",
+            "class": "sqlserver",
+            "database": "AdventureWorksDW2022",
+            "server": "localhost\\SQLEXPRESS"
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo1.2.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "metadata_sample": {
+        "tables_sample": [],
+        "datasource_names": [
+          "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        ],
+        "datasource_captions": [
+          "AdventureworksDW2022"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Pie",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          }
+        ],
+        "dashboard_names": [
+          "Tableau de bord 1"
+        ],
+        "parameters_sample": [],
+        "filters_sample": [
+          "SalesTerritoryCountry"
+        ],
+        "connections_sample": [
+          {
+            "name": "localhost\\SQLEXPRESS",
+            "class": "sqlserver",
+            "database": "AdventureWorksDW2022",
+            "server": "localhost\\SQLEXPRESS"
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo1.3.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 1,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "metadata_sample": {
+        "tables_sample": [],
+        "datasource_names": [
+          "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        ],
+        "datasource_captions": [
+          "AdventureworksDW2022"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Treemap",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          }
+        ],
+        "dashboard_names": [
+          "Tableau de bord 1"
+        ],
+        "parameters_sample": [],
+        "filters_sample": [
+          "SalesTerritoryCountry"
+        ],
+        "connections_sample": [
+          {
+            "name": "localhost\\SQLEXPRESS",
+            "class": "sqlserver",
+            "database": "AdventureWorksDW2022",
+            "server": "localhost\\SQLEXPRESS"
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo_csv.twbx",
+      "status": "OK",
+      "phase0_mode": "hybrid",
+      "extracted_tables": 1,
+      "live_connections": 1,
+      "worksheets": 2,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "metadata_sample": {
+        "tables_sample": [
+          "\"Extract\".\"Extract\""
+        ],
+        "datasource_names": [
+          "federated.1iikpv20xs0rvn18vu69t18t297p"
+        ],
+        "datasource_captions": [
+          "players_cleaned"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Pie",
+            "datasource": "federated.1iikpv20xs0rvn18vu69t18t297p"
+          },
+          {
+            "worksheet": "Feuille 2",
+            "mark_type": "Bar",
+            "datasource": "federated.1iikpv20xs0rvn18vu69t18t297p"
+          }
+        ],
+        "dashboard_names": [
+          "Tableau de bord 1"
+        ],
+        "parameters_sample": [],
+        "filters_sample": [],
+        "connections_sample": [
+          {
+            "name": "players_cleaned",
+            "class": "textscan",
+            "database": "",
+            "server": ""
+          }
+        ]
+      },
+      "error": ""
+    },
+    {
+      "input_path": "input\\demo_ssms.twbx",
+      "status": "OK",
+      "phase0_mode": "live_sql",
+      "extracted_tables": 0,
+      "live_connections": 1,
+      "worksheets": 3,
+      "dashboards": 1,
+      "calculated_fields": 0,
+      "datasources": 1,
+      "first_worksheet": "Feuille 1",
+      "first_dashboard": "Tableau de bord 1",
+      "metadata_sample": {
+        "tables_sample": [],
+        "datasource_names": [
+          "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+        ],
+        "datasource_captions": [
+          "AdventureworksDW2022"
+        ],
+        "worksheet_marks": [
+          {
+            "worksheet": "Feuille 1",
+            "mark_type": "Bar",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          },
+          {
+            "worksheet": "Feuille 2",
+            "mark_type": "Bar",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          },
+          {
+            "worksheet": "Feuille 3",
+            "mark_type": "Treemap",
+            "datasource": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+          }
+        ],
+        "dashboard_names": [
+          "Tableau de bord 1"
+        ],
+        "parameters_sample": [],
+        "filters_sample": [
+          "SalesTerritoryCountry",
+          "ModelName",
+          "SalesTerritoryCountry"
+        ],
+        "connections_sample": [
+          {
+            "name": "localhost\\SQLEXPRESS",
+            "class": "sqlserver",
+            "database": "AdventureWorksDW2022",
+            "server": "localhost\\SQLEXPRESS"
+          }
+        ]
+      },
+      "error": ""
+    }
+  ]
+}

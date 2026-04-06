@@ -1,0 +1,93 @@
+{
+  "global_confidence": 0.8529,
+  "phases": [
+    {
+      "phase": "phase0_extraction",
+      "ok": true,
+      "retry_hint": "Verifier le fichier source TWBX/TWB et les dependances d extraction Hyper/CSV.",
+      "confidence": 1.0,
+      "artifacts": {
+        "mode": "hybrid",
+        "tables_extracted": 1,
+        "connections_detected": 1,
+        "manifest": "output\\vendredi03\\demo_complet_vendredi03_phase0_manifest.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase1_parser",
+      "ok": true,
+      "retry_hint": "Verifier la structure XML TWB/TWBX et les references datasource.",
+      "confidence": 1.0,
+      "artifacts": {
+        "worksheets": 2,
+        "dashboards": 0,
+        "warnings": 1,
+        "artifact": "output\\vendredi03\\demo_complet_vendredi03_phase1_parsed_workbook.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase2_semantic",
+      "ok": true,
+      "retry_hint": "",
+      "confidence": 0.0,
+      "artifacts": {
+        "fact_table": "Data_Downloads_Europe_Sales_Records_csv",
+        "measure_count": 9,
+        "path": "fast"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase3_spec",
+      "ok": true,
+      "retry_hint": "Verifier le mapping de roles semantiques et le contrat visual/data-binding.",
+      "confidence": 1.0,
+      "artifacts": {
+        "validation_score": 96.0,
+        "errors": 0,
+        "warnings": 2,
+        "artifact": "output\\vendredi03\\demo_complet_vendredi03_abstract_spec.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase4_transform",
+      "ok": true,
+      "retry_hint": "Verifier les expressions calc fields et la coherence du tool model.",
+      "confidence": 1.0,
+      "artifacts": {
+        "llm_calls": 0,
+        "llm_success": 0,
+        "tool_model": "output\\vendredi03\\demo_complet_vendredi03_tool_model.json"
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase5_rdl",
+      "ok": true,
+      "retry_hint": "Verifier dataset-field mapping, schema RDL et coherence semantique chart/tablix.",
+      "confidence": 0.97,
+      "artifacts": {
+        "score": 97,
+        "errors": 0,
+        "warnings": 4,
+        "auto_fixes": []
+      },
+      "errors": []
+    },
+    {
+      "phase": "phase6_lineage",
+      "ok": true,
+      "retry_hint": "Verifier les joins lineage et la stabilite du graphe semantique.",
+      "confidence": 1.0,
+      "artifacts": {
+        "tables": 1,
+        "joins": 0,
+        "artifact": "output\\vendredi03\\demo_complet_vendredi03_lineage.json"
+      },
+      "errors": []
+    }
+  ]
+}

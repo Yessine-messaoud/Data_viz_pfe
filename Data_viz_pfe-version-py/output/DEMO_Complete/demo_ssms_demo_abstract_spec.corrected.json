@@ -1,0 +1,345 @@
+{
+  "id": "aabbdc2e-f5d3-4f6d-a061-47cf1c37f5d3",
+  "version": "2.0.0",
+  "created_at": "2026-04-03T08:32:39.089293+00:00",
+  "source_fingerprint": "f142179ebdcaea2ab775fb59b05157536174f02b16bf91e0245d897da4109372",
+  "dashboard_spec": {
+    "pages": [
+      {
+        "id": "Tableau de bord 1",
+        "name": "Tableau de bord 1",
+        "visuals": [
+          {
+            "id": "Feuille 1",
+            "source_worksheet": "Feuille 1",
+            "type": "bar",
+            "rdl_type": "ColumnChart",
+            "title": "Sales per country",
+            "position": {},
+            "data_binding": {
+              "axes": {
+                "x": {
+                  "table": "unknown",
+                  "column": "SalesTerritoryCountry"
+                },
+                "y": {
+                  "name": "SalesAmount"
+                }
+              },
+              "measures": [
+                {
+                  "name": "SalesAmount"
+                }
+              ],
+              "group_by": [],
+              "hierarchy": [],
+              "aggregation": "",
+              "filters": [],
+              "visual_type_override": "Column",
+              "pending_translations": []
+            }
+          },
+          {
+            "id": "Feuille 2",
+            "source_worksheet": "Feuille 2",
+            "type": "bar",
+            "rdl_type": "ColumnChart",
+            "title": "Tax per country",
+            "position": {},
+            "data_binding": {
+              "axes": {
+                "x": {
+                  "table": "unknown",
+                  "column": "SalesTerritoryCountry"
+                },
+                "y": {
+                  "name": "TaxAmt"
+                },
+                "color": {
+                  "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+                  "column": "ModelName"
+                }
+              },
+              "measures": [
+                {
+                  "name": "TaxAmt"
+                }
+              ],
+              "group_by": [],
+              "hierarchy": [],
+              "aggregation": "",
+              "filters": [],
+              "visual_type_override": "Column",
+              "pending_translations": []
+            }
+          },
+          {
+            "id": "Feuille 3",
+            "source_worksheet": "Feuille 3",
+            "type": "pie",
+            "rdl_type": "PieChart",
+            "title": "Feuille 3",
+            "position": {},
+            "data_binding": {
+              "axes": {
+                "size": {
+                  "name": "OrderQuantity"
+                },
+                "group": {
+                  "table": "unknown",
+                  "column": "SalesTerritoryCountry"
+                }
+              },
+              "measures": [
+                {
+                  "name": "OrderQuantity"
+                }
+              ],
+              "group_by": [
+                "SalesTerritoryCountry"
+              ],
+              "hierarchy": [],
+              "aggregation": "",
+              "filters": [],
+              "visual_type_override": "Pie",
+              "pending_translations": []
+            }
+          }
+        ]
+      }
+    ],
+    "global_filters": [
+      {
+        "field": "SalesTerritoryCountry",
+        "operator": "=",
+        "value": null,
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "field": "ModelName",
+        "operator": "=",
+        "value": null,
+        "column": "ModelName"
+      }
+    ],
+    "theme": {
+      "name": "tableau-imported"
+    }
+  },
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesTerritoryCountry"
+      },
+      {
+        "name": "Sum TaxAmt",
+        "expression": "SUM([TaxAmt])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TaxAmt"
+      },
+      {
+        "name": "Sum OrderQuantity",
+        "expression": "SUM([OrderQuantity])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "OrderQuantity"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "ModelName"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+    "grain": "row"
+  },
+  "data_lineage": {
+    "tables": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "rdl_datasets": [
+    {
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "query": "SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey",
+      "connection_ref": "DataSource1",
+      "fields": [
+        {
+          "name": "SalesAmount",
+          "data_field": "SalesAmount",
+          "rdl_type": "Decimal"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "data_field": "SalesTerritoryCountry",
+          "rdl_type": "String"
+        },
+        {
+          "name": "ModelName",
+          "data_field": "ModelName",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TaxAmt",
+          "data_field": "TaxAmt",
+          "rdl_type": "Decimal"
+        },
+        {
+          "name": "OrderQuantity",
+          "data_field": "OrderQuantity",
+          "rdl_type": "Decimal"
+        }
+      ]
+    }
+  ],
+  "build_log": [
+    {
+      "level": "info",
+      "message": "AbstractSpec v2 built",
+      "timestamp": "2026-04-03T08:32:39.089320+00:00"
+    }
+  ],
+  "warnings": [
+    "Feuille 1: Removed redundant color encoding",
+    "Feuille 1: Removed invalid size encoding (not allowed for bar/line/scatter)",
+    "Feuille 1: set axis 'x' to 'SalesTerritoryCountry'",
+    "Feuille 1: axis 'x' candidates ['SalesTerritoryCountry', 'SalesAmount'] do not match expected role 'dimension'",
+    "Feuille 1: axis 'x' candidates ['SalesTerritoryCountry', 'SalesAmount'] do not match expected role 'dimension'",
+    "Feuille 2: Invalid measure used in detail, removed",
+    "Feuille 2: Removed invalid size encoding (not allowed for bar/line/scatter)",
+    "Feuille 2: set axis 'x' to 'SalesTerritoryCountry'",
+    "Feuille 2: axis 'x' candidates ['SalesTerritoryCountry', 'TaxAmt'] do not match expected role 'dimension'",
+    "Feuille 2: axis 'x' candidates ['SalesTerritoryCountry', 'TaxAmt'] do not match expected role 'dimension'",
+    "Feuille 3: Invalid measure used in detail, removed",
+    "Feuille 3: Treemap missing group, inferred from dimension",
+    "Feuille 3: Removed invalid color encoding",
+    "Feuille 3: normalized visual_type_override to 'TreeMap'",
+    "Feuille 3: axis 'group' candidates ['OrderQuantity'] do not match expected role 'dimension'",
+    "Feuille 3: axis 'group' candidates ['SalesTerritoryCountry', 'OrderQuantity'] do not match expected role 'dimension'"
+  ]
+}

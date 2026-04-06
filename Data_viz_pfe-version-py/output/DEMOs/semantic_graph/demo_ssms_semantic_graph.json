@@ -1,0 +1,326 @@
+{
+  "input": "input\\demo_ssms.twbx",
+  "phase0_mode": "live_sql",
+  "graph": {
+    "nodes": [
+      {
+        "id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "label": "Table",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "schema": "dbo",
+        "type": "Table"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "label": "Column",
+        "name": "SalesAmount",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "measure",
+        "pbi_type": "decimal",
+        "type": "Column"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "label": "Column",
+        "name": "SalesTerritoryCountry",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.ModelName",
+        "label": "Column",
+        "name": "ModelName",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "dimension",
+        "pbi_type": "text",
+        "type": "Column"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.TaxAmt",
+        "label": "Column",
+        "name": "TaxAmt",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "measure",
+        "pbi_type": "decimal",
+        "type": "Column"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.OrderQuantity",
+        "label": "Column",
+        "name": "OrderQuantity",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "measure",
+        "pbi_type": "decimal",
+        "type": "Column"
+      },
+      {
+        "id": "measure:Sum_SalesAmount",
+        "label": "Measure",
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_SalesTerritoryCountry",
+        "label": "Measure",
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_TaxAmt",
+        "label": "Measure",
+        "name": "Sum TaxAmt",
+        "expression": "SUM([TaxAmt])",
+        "type": "Measure"
+      },
+      {
+        "id": "measure:Sum_OrderQuantity",
+        "label": "Measure",
+        "name": "Sum OrderQuantity",
+        "expression": "SUM([OrderQuantity])",
+        "type": "Measure"
+      },
+      {
+        "id": "term:Sales",
+        "label": "BusinessTerm",
+        "name": "Sales",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Product",
+        "label": "BusinessTerm",
+        "name": "Product",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Customer",
+        "label": "BusinessTerm",
+        "name": "Customer",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Geography",
+        "label": "BusinessTerm",
+        "name": "Geography",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Time",
+        "label": "BusinessTerm",
+        "name": "Time",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Revenue",
+        "label": "BusinessTerm",
+        "name": "Revenue",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Quantity",
+        "label": "BusinessTerm",
+        "name": "Quantity",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Profit",
+        "label": "BusinessTerm",
+        "name": "Profit",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Discount",
+        "label": "BusinessTerm",
+        "name": "Discount",
+        "type": "BusinessTerm"
+      },
+      {
+        "id": "term:Tax",
+        "label": "BusinessTerm",
+        "name": "Tax",
+        "type": "BusinessTerm"
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.ModelName",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.TaxAmt",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.OrderQuantity",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.ModelName",
+        "target_id": "term:Product",
+        "type": "MAPPED_TO",
+        "confidence": 0.8,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.TaxAmt",
+        "target_id": "term:Tax",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.OrderQuantity",
+        "target_id": "term:Quantity",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      }
+    ],
+    "persisted": false,
+    "error": ""
+  },
+  "mappings": [
+    {
+      "column": "SalesAmount",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "SalesTerritoryCountry",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "ModelName",
+      "mapped_business_term": "Product",
+      "confidence": 0.8,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Product",
+          "score": 0.8
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "TaxAmt",
+      "mapped_business_term": "Tax",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Tax",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "OrderQuantity",
+      "mapped_business_term": "Quantity",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Quantity",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    }
+  ],
+  "ontology_terms": [
+    "Sales",
+    "Product",
+    "Customer",
+    "Geography",
+    "Time",
+    "Revenue",
+    "Quantity",
+    "Profit",
+    "Discount",
+    "Tax"
+  ]
+}

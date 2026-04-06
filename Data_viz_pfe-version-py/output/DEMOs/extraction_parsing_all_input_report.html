@@ -1,0 +1,168 @@
+<!doctype html><html><head><meta charset='utf-8'><title>Extraction + Parsing Demo</title><style>body{font-family:Segoe UI,Arial,sans-serif;padding:20px;background:#f8fafc;}table{border-collapse:collapse;width:100%;background:#fff;}th,td{border:1px solid #cbd5e1;padding:8px;vertical-align:top;font-size:12px;}th{background:#e2e8f0;} .ok{color:#166534;font-weight:700;} .ko{color:#991b1b;font-weight:700;}pre{margin:0;white-space:pre-wrap;max-width:480px;}</style></head><body><h1>Demo Extraction + Parsing</h1><p>Ce rapport couvre uniquement phase 0 (extraction) et phase 1 (parsing).</p><table><tr><th>Input</th><th>Status</th><th>Mode P0</th><th>Tables</th><th>Connexions</th><th>Worksheets</th><th>Dashboards</th><th>Calc Fields</th><th>Datasources</th><th>1er Worksheet</th><th>1er Dashboard</th><th>Echantillon metadonnees</th><th>Erreur</th></tr><tr><td>input\demo1.1.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>Feuille 1</td><td>Tableau de bord 1</td><td><pre>{
+  &quot;tables_sample&quot;: [],
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;datasource_captions&quot;: [
+    &quot;AdventureworksDW2022&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;dashboard_names&quot;: [
+    &quot;Tableau de bord 1&quot;
+  ],
+  &quot;parameters_sample&quot;: [],
+  &quot;filters_sample&quot;: [
+    &quot;SalesTerritoryCountry&quot;
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo1.2.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>Feuille 1</td><td>Tableau de bord 1</td><td><pre>{
+  &quot;tables_sample&quot;: [],
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;datasource_captions&quot;: [
+    &quot;AdventureworksDW2022&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Pie&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;dashboard_names&quot;: [
+    &quot;Tableau de bord 1&quot;
+  ],
+  &quot;parameters_sample&quot;: [],
+  &quot;filters_sample&quot;: [
+    &quot;SalesTerritoryCountry&quot;
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo1.3.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>1</td><td>1</td><td>0</td><td>1</td><td>Feuille 1</td><td>Tableau de bord 1</td><td><pre>{
+  &quot;tables_sample&quot;: [],
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;datasource_captions&quot;: [
+    &quot;AdventureworksDW2022&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Treemap&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;dashboard_names&quot;: [
+    &quot;Tableau de bord 1&quot;
+  ],
+  &quot;parameters_sample&quot;: [],
+  &quot;filters_sample&quot;: [
+    &quot;SalesTerritoryCountry&quot;
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo_csv.twbx</td><td class='ok'>OK</td><td>hybrid</td><td>1</td><td>1</td><td>2</td><td>1</td><td>0</td><td>1</td><td>Feuille 1</td><td>Tableau de bord 1</td><td><pre>{
+  &quot;tables_sample&quot;: [
+    &quot;\&quot;Extract\&quot;.\&quot;Extract\&quot;&quot;
+  ],
+  &quot;datasource_names&quot;: [
+    &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+  ],
+  &quot;datasource_captions&quot;: [
+    &quot;players_cleaned&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Pie&quot;,
+      &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1iikpv20xs0rvn18vu69t18t297p&quot;
+    }
+  ],
+  &quot;dashboard_names&quot;: [
+    &quot;Tableau de bord 1&quot;
+  ],
+  &quot;parameters_sample&quot;: [],
+  &quot;filters_sample&quot;: [],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;players_cleaned&quot;,
+      &quot;class&quot;: &quot;textscan&quot;,
+      &quot;database&quot;: &quot;&quot;,
+      &quot;server&quot;: &quot;&quot;
+    }
+  ]
+}</pre></td><td><pre></pre></td></tr><tr><td>input\demo_ssms.twbx</td><td class='ok'>OK</td><td>live_sql</td><td>0</td><td>1</td><td>3</td><td>1</td><td>0</td><td>1</td><td>Feuille 1</td><td>Tableau de bord 1</td><td><pre>{
+  &quot;tables_sample&quot;: [],
+  &quot;datasource_names&quot;: [
+    &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+  ],
+  &quot;datasource_captions&quot;: [
+    &quot;AdventureworksDW2022&quot;
+  ],
+  &quot;worksheet_marks&quot;: [
+    {
+      &quot;worksheet&quot;: &quot;Feuille 1&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 2&quot;,
+      &quot;mark_type&quot;: &quot;Bar&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    },
+    {
+      &quot;worksheet&quot;: &quot;Feuille 3&quot;,
+      &quot;mark_type&quot;: &quot;Treemap&quot;,
+      &quot;datasource&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;
+    }
+  ],
+  &quot;dashboard_names&quot;: [
+    &quot;Tableau de bord 1&quot;
+  ],
+  &quot;parameters_sample&quot;: [],
+  &quot;filters_sample&quot;: [
+    &quot;SalesTerritoryCountry&quot;,
+    &quot;ModelName&quot;,
+    &quot;SalesTerritoryCountry&quot;
+  ],
+  &quot;connections_sample&quot;: [
+    {
+      &quot;name&quot;: &quot;localhost\\SQLEXPRESS&quot;,
+      &quot;class&quot;: &quot;sqlserver&quot;,
+      &quot;database&quot;: &quot;AdventureWorksDW2022&quot;,
+      &quot;server&quot;: &quot;localhost\\SQLEXPRESS&quot;
+    }
+  ]
+}</pre></td><td><pre></pre></td></tr></table></body></html>

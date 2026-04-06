@@ -1,0 +1,12 @@
+{
+  "agent": "phase0_extraction_agent",
+  "input": "input\\demo_europe.twbx",
+  "source_extension": ".twbx",
+  "mode": "hybrid",
+  "tables_extracted": 1,
+  "connections_detected": 1,
+  "actions": [
+    "extract_csv:1",
+    "detect_live_connections:1"
+  ]
+}

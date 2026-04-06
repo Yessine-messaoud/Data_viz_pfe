@@ -54,5 +54,8 @@ class ParsingAgent:
             return {"error": str(e), "parsing_log": parsing_log}
 
     def _is_complete(self, result: Dict) -> bool:
-        # TODO: Implement completeness check (visuals, layout, bindings, etc.)
-        return bool(result and result.get("dashboards"))
+        if not isinstance(result, dict):
+            return False
+        dashboards = result.get("dashboards")
+        visuals = result.get("visuals")
+        return isinstance(dashboards, list) and len(dashboards) > 0 and isinstance(visuals, list)

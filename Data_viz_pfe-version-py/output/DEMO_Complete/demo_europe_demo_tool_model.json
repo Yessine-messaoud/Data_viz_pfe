@@ -1,0 +1,840 @@
+{
+  "target_tool": "RDL",
+  "datasets": [
+    {
+      "name": "unknown_f633e07f",
+      "source_name": "unknown",
+      "query": "SELECT [Region] AS [Region], [Country] AS [Country], COUNT([Country]) AS [Country], SUM([Total Profit]) AS [Total Profit] FROM [unknown] GROUP BY [Region], [Country]",
+      "fields": [
+        {
+          "name": "Region",
+          "source_field": "Region",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!Region.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "name": "Country",
+          "source_field": "Country",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!Country.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "name": "Total Profit",
+          "source_field": "Total Profit",
+          "role": "measure",
+          "rdl_type": "Decimal",
+          "aggregation": "Sum",
+          "expression": "=Fields!Total Profit.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        }
+      ],
+      "group_by": [
+        "Region",
+        "Country"
+      ],
+      "visual_ids": [
+        "dispersion"
+      ],
+      "signature": "unknown|country,region|country,totalprofit|pie"
+    },
+    {
+      "name": "unknown_50950bb0",
+      "source_name": "unknown",
+      "query": "SELECT [Region] AS [Region], [Total Cost] AS [Total Cost], [Country] AS [Country], COUNT([Country]) AS [Country] FROM [unknown] GROUP BY [Region], [Total Cost], [Country]",
+      "fields": [
+        {
+          "name": "Region",
+          "source_field": "Region",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!Region.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "name": "Total Cost",
+          "source_field": "Total Cost",
+          "role": "dimension",
+          "rdl_type": "Decimal",
+          "aggregation": "",
+          "expression": "=Fields!Total Cost.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        },
+        {
+          "name": "Country",
+          "source_field": "Country",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!Country.Value",
+          "source_table": "Data_Downloads_Europe_Sales_Records_csv"
+        }
+      ],
+      "group_by": [
+        "Region",
+        "Total Cost",
+        "Country"
+      ],
+      "visual_ids": [
+        "sales_country"
+      ],
+      "signature": "unknown|country,region,totalcost|country|bar"
+    }
+  ],
+  "visuals": [
+    {
+      "id": "dispersion",
+      "source_worksheet": "dispersion",
+      "type": "pie",
+      "rdl_type": "PieChart",
+      "title": "dispersion",
+      "position": {},
+      "data_binding": {
+        "axes": {
+          "size": {
+            "name": "Total Profit"
+          },
+          "x": {
+            "table": "unknown",
+            "column": "Region"
+          },
+          "y": {
+            "name": "Country"
+          }
+        },
+        "measures": [
+          {
+            "name": "Country"
+          },
+          {
+            "name": "Total Profit"
+          }
+        ],
+        "group_by": [
+          "Country"
+        ],
+        "hierarchy": [],
+        "aggregation": "SUM",
+        "filters": [],
+        "visual_type_override": "Pie",
+        "pending_translations": []
+      },
+      "page_id": "default",
+      "page_name": "Default",
+      "dataset": "unknown_f633e07f",
+      "dataset_name": "unknown_f633e07f",
+      "business_type": "pie",
+      "tool_visual_type": "PieChart"
+    },
+    {
+      "id": "sales_country",
+      "source_worksheet": "sales_country",
+      "type": "bar",
+      "rdl_type": "ColumnChart",
+      "title": "sales_country",
+      "position": {},
+      "data_binding": {
+        "axes": {
+          "x": {
+            "table": "unknown",
+            "column": "Region"
+          },
+          "y": {
+            "name": "Country"
+          }
+        },
+        "measures": [
+          {
+            "name": "Total Cost"
+          },
+          {
+            "name": "Country"
+          }
+        ],
+        "group_by": [
+          "Total Cost",
+          "Country"
+        ],
+        "hierarchy": [
+          "Total Cost"
+        ],
+        "aggregation": "SUM",
+        "filters": [],
+        "visual_type_override": "Column",
+        "pending_translations": []
+      },
+      "page_id": "default",
+      "page_name": "Default",
+      "dataset": "unknown_50950bb0",
+      "dataset_name": "unknown_50950bb0",
+      "business_type": "bar",
+      "tool_visual_type": "ColumnChart"
+    }
+  ],
+  "measures": [
+    {
+      "name": "Sum Country",
+      "expression": "SUM([Country])",
+      "translated_expression": "=Fields!Country.Value",
+      "rdl_expression": "=Fields!Country.Value",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Country"
+    },
+    {
+      "name": "Sum Sales Channel",
+      "expression": "SUM([Sales Channel])",
+      "translated_expression": "=Fields!SalesChannel.Value",
+      "rdl_expression": "=Fields!SalesChannel.Value",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Sales Channel"
+    },
+    {
+      "name": "Sum Order ID",
+      "expression": "SUM([Order ID])",
+      "translated_expression": "=Sum(Fields!OrderID.Value)",
+      "rdl_expression": "=Sum(Fields!OrderID.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Order ID"
+    },
+    {
+      "name": "Sum Units Sold",
+      "expression": "SUM([Units Sold])",
+      "translated_expression": "=Sum(Fields!UnitsSold.Value)",
+      "rdl_expression": "=Sum(Fields!UnitsSold.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Units Sold"
+    },
+    {
+      "name": "Sum Unit Price",
+      "expression": "SUM([Unit Price])",
+      "translated_expression": "=Sum(Fields!UnitPrice.Value)",
+      "rdl_expression": "=Sum(Fields!UnitPrice.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Unit Price"
+    },
+    {
+      "name": "Sum Unit Cost",
+      "expression": "SUM([Unit Cost])",
+      "translated_expression": "=Sum(Fields!UnitCost.Value)",
+      "rdl_expression": "=Sum(Fields!UnitCost.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Unit Cost"
+    },
+    {
+      "name": "Sum Total Revenue",
+      "expression": "SUM([Total Revenue])",
+      "translated_expression": "=Sum(Fields!TotalRevenue.Value)",
+      "rdl_expression": "=Sum(Fields!TotalRevenue.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Total Revenue"
+    },
+    {
+      "name": "Sum Total Cost",
+      "expression": "SUM([Total Cost])",
+      "translated_expression": "=Sum(Fields!TotalCost.Value)",
+      "rdl_expression": "=Sum(Fields!TotalCost.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Total Cost"
+    },
+    {
+      "name": "Sum Total Profit",
+      "expression": "SUM([Total Profit])",
+      "translated_expression": "=Sum(Fields!TotalProfit.Value)",
+      "rdl_expression": "=Sum(Fields!TotalProfit.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "Total Profit"
+    }
+  ],
+  "parameters": [],
+  "filters": [],
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "Data/Downloads/Europe Sales Records.csv",
+        "name": "Data_Downloads_Europe_Sales_Records_csv",
+        "source_name": "Data/Downloads/Europe Sales Records.csv",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Item Type",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Sales Channel",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Priority",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order ID",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Ship Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Units Sold",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Price",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Revenue",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Profit",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 1330
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum Country",
+        "expression": "SUM([Country])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Country"
+      },
+      {
+        "name": "Sum Sales Channel",
+        "expression": "SUM([Sales Channel])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Sales Channel"
+      },
+      {
+        "name": "Sum Order ID",
+        "expression": "SUM([Order ID])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Order ID"
+      },
+      {
+        "name": "Sum Units Sold",
+        "expression": "SUM([Units Sold])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Units Sold"
+      },
+      {
+        "name": "Sum Unit Price",
+        "expression": "SUM([Unit Price])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Unit Price"
+      },
+      {
+        "name": "Sum Unit Cost",
+        "expression": "SUM([Unit Cost])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Unit Cost"
+      },
+      {
+        "name": "Sum Total Revenue",
+        "expression": "SUM([Total Revenue])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Revenue"
+      },
+      {
+        "name": "Sum Total Cost",
+        "expression": "SUM([Total Cost])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Cost"
+      },
+      {
+        "name": "Sum Total Profit",
+        "expression": "SUM([Total Profit])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "Total Profit"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Region"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Country"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Item Type"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Sales Channel"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Order Priority"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Order Date"
+      },
+      {
+        "table": "Data_Downloads_Europe_Sales_Records_csv",
+        "column": "Ship Date"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "Data_Downloads_Europe_Sales_Records_csv",
+    "grain": "row"
+  },
+  "lineage": {
+    "tables": [
+      {
+        "id": "Data/Downloads/Europe Sales Records.csv",
+        "name": "Data_Downloads_Europe_Sales_Records_csv",
+        "source_name": "Data/Downloads/Europe Sales Records.csv",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "Region",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Country",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Item Type",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Sales Channel",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Priority",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Order ID",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Ship Date",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Units Sold",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Price",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Unit Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Revenue",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Cost",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "Total Profit",
+            "pbi_type": "text",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 1330
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "meta": {
+    "source_spec_id": "496e99ba-e94f-464e-bd66-cb66c41013b2",
+    "source_spec_version": "2.0.0",
+    "intent": {
+      "type": "conversion",
+      "action": "export_rdl",
+      "constraints": {},
+      "pipeline_target": "tableau_to_rdl",
+      "artifacts": {
+        "input_format": "twbx",
+        "output_format": "rdl"
+      }
+    }
+  },
+  "compatibility_notes": [],
+  "validation_results": [],
+  "lineage_events": [
+    {
+      "phase": "phase4_transform",
+      "timestamp": "2026-04-06T10:48:59.135488+00:00",
+      "datasets_count": 2,
+      "visuals_count": 2,
+      "status": "ok",
+      "field_to_dataset": [
+        {
+          "field": "Region",
+          "dataset": "unknown_f633e07f"
+        },
+        {
+          "field": "Country",
+          "dataset": "unknown_f633e07f"
+        },
+        {
+          "field": "Total Profit",
+          "dataset": "unknown_f633e07f"
+        },
+        {
+          "field": "Region",
+          "dataset": "unknown_50950bb0"
+        },
+        {
+          "field": "Total Cost",
+          "dataset": "unknown_50950bb0"
+        },
+        {
+          "field": "Country",
+          "dataset": "unknown_50950bb0"
+        }
+      ],
+      "dataset_to_visual": [
+        {
+          "dataset": "unknown_f633e07f",
+          "visual": "dispersion"
+        },
+        {
+          "dataset": "unknown_50950bb0",
+          "visual": "sales_country"
+        }
+      ],
+      "expression_to_rdl_field": [
+        {
+          "expression": "=Fields!Region.Value",
+          "rdl_field": "Region"
+        },
+        {
+          "expression": "=Fields!Country.Value",
+          "rdl_field": "Country"
+        },
+        {
+          "expression": "=Fields!Total Profit.Value",
+          "rdl_field": "Total Profit"
+        },
+        {
+          "expression": "=Fields!Region.Value",
+          "rdl_field": "Region"
+        },
+        {
+          "expression": "=Fields!Total Cost.Value",
+          "rdl_field": "Total Cost"
+        },
+        {
+          "expression": "=Fields!Country.Value",
+          "rdl_field": "Country"
+        }
+      ]
+    }
+  ],
+  "transform_log": [
+    {
+      "step": "dataset_creation",
+      "dataset": "unknown_f633e07f",
+      "source": "unknown",
+      "visual": "dispersion",
+      "dimensions": [
+        "Region",
+        "Country"
+      ],
+      "measures": [
+        "Country",
+        "Total Profit"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "dataset_creation",
+      "dataset": "unknown_50950bb0",
+      "source": "unknown",
+      "visual": "sales_country",
+      "dimensions": [
+        "Region",
+        "Total Cost",
+        "Country"
+      ],
+      "measures": [
+        "Country"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "aggregation_decision",
+      "dataset": "unknown_f633e07f",
+      "group_by": [
+        "Region",
+        "Country"
+      ],
+      "aggregations": [
+        "Count",
+        "Sum"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "aggregation_decision",
+      "dataset": "unknown_50950bb0",
+      "group_by": [
+        "Region",
+        "Total Cost",
+        "Country"
+      ],
+      "aggregations": [
+        "Count"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Country",
+      "expression": "SUM([Country])",
+      "translated": "=Fields!Country.Value"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Sales Channel",
+      "expression": "SUM([Sales Channel])",
+      "translated": "=Fields!SalesChannel.Value"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Order ID",
+      "expression": "SUM([Order ID])",
+      "translated": "=Sum(Fields!OrderID.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Units Sold",
+      "expression": "SUM([Units Sold])",
+      "translated": "=Sum(Fields!UnitsSold.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Unit Price",
+      "expression": "SUM([Unit Price])",
+      "translated": "=Sum(Fields!UnitPrice.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Unit Cost",
+      "expression": "SUM([Unit Cost])",
+      "translated": "=Sum(Fields!UnitCost.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Total Revenue",
+      "expression": "SUM([Total Revenue])",
+      "translated": "=Sum(Fields!TotalRevenue.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Total Cost",
+      "expression": "SUM([Total Cost])",
+      "translated": "=Sum(Fields!TotalCost.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum Total Profit",
+      "expression": "SUM([Total Profit])",
+      "translated": "=Sum(Fields!TotalProfit.Value)"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done",
+      "visual_id": "dispersion",
+      "dataset": "unknown_f633e07f",
+      "tool_visual_type": "PieChart"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done",
+      "visual_id": "sales_country",
+      "dataset": "unknown_50950bb0",
+      "tool_visual_type": "ColumnChart"
+    }
+  ],
+  "warnings": [
+    "Removed invalid SUM aggregation on dimension 'Country'",
+    "Removed invalid SUM aggregation on dimension 'Sales Channel'"
+  ],
+  "errors": []
+}

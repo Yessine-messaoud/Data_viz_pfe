@@ -1,0 +1,166 @@
+{
+  "id": "466c89a2-9870-49e6-b332-01441ae7bc86",
+  "version": "2.0.0",
+  "created_at": "2026-04-01T15:47:20.789699+00:00",
+  "source_fingerprint": "842e90d8b46bc6a15e1f6d9609ccb6bb5a98a04e96a4c0bf55e0334ea76298b8",
+  "dashboard_spec": {
+    "pages": [
+      {
+        "id": "Tableau de bord 1",
+        "name": "Tableau de bord 1",
+        "visuals": [
+          {
+            "id": "Feuille 1",
+            "source_worksheet": "Feuille 1",
+            "type": "pie",
+            "rdl_type": "chart",
+            "title": "Sales per country",
+            "position": {},
+            "data_binding": {
+              "axes": {},
+              "measures": [
+                {
+                  "name": "SalesAmount"
+                }
+              ],
+              "filters": [],
+              "visual_type_override": "chart",
+              "pending_translations": []
+            }
+          }
+        ]
+      }
+    ],
+    "global_filters": [
+      {
+        "field": "SalesTerritoryCountry",
+        "operator": "=",
+        "value": null,
+        "column": "SalesTerritoryCountry"
+      }
+    ],
+    "theme": {
+      "name": "tableau-imported"
+    }
+  },
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des ventes"
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays de la zone de vente"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesTerritoryCountry"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "SalesTerritoryCountry"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+    "grain": "row"
+  },
+  "data_lineage": {
+    "tables": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des ventes"
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays de la zone de vente"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "rdl_datasets": [
+    {
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "query": "SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey",
+      "connection_ref": "DataSource1",
+      "fields": [
+        {
+          "name": "SalesAmount",
+          "data_field": "SalesAmount",
+          "rdl_type": "Decimal"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "data_field": "SalesTerritoryCountry",
+          "rdl_type": "String"
+        }
+      ]
+    }
+  ],
+  "build_log": [
+    {
+      "level": "info",
+      "message": "AbstractSpec v2 built",
+      "timestamp": "2026-04-01T15:47:20.789729+00:00"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,14 @@
+{"timestamp": "2026-04-06T10:21:19.812639+00:00", "phase": "phase0_extraction", "status": "start", "details": {"input": "input\\demo_europe.twbx"}}
+{"timestamp": "2026-04-06T10:21:20.066572+00:00", "phase": "phase0_extraction", "status": "ok", "details": {"tables_extracted": 1, "connections_detected": 1, "mode": "hybrid"}}
+{"timestamp": "2026-04-06T10:21:20.066931+00:00", "phase": "phase1_parser", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.068651+00:00", "phase": "phase1_parser", "status": "ok", "details": {"worksheets": 2, "dashboards": 0, "warnings": 1, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:21:20.069715+00:00", "phase": "phase2_semantic", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.072238+00:00", "phase": "phase2_semantic", "status": "ok", "details": {"fact_table": "Data_Downloads_Europe_Sales_Records_csv", "measure_count": 9, "cache": "hit"}}
+{"timestamp": "2026-04-06T10:21:20.073774+00:00", "phase": "phase3_spec", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.105465+00:00", "phase": "phase3_spec", "status": "ok", "details": {"score": 96.0, "errors": 0, "warnings": 2}}
+{"timestamp": "2026-04-06T10:21:20.106027+00:00", "phase": "phase4_transform", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.109560+00:00", "phase": "phase4_transform", "status": "ok", "details": {"llm_calls": 0, "llm_success": 0, "validation_errors": 0}}
+{"timestamp": "2026-04-06T10:21:20.110057+00:00", "phase": "phase5_rdl", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.134675+00:00", "phase": "phase5_rdl", "status": "ok", "details": {"score": 97, "errors": 0, "warnings": 4, "auto_fixes": 0}}
+{"timestamp": "2026-04-06T10:21:20.135405+00:00", "phase": "phase6_lineage", "status": "start", "details": {}}
+{"timestamp": "2026-04-06T10:21:20.136695+00:00", "phase": "phase6_lineage", "status": "ok", "details": {"tables": 1, "joins": 0}}

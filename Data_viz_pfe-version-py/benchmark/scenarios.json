@@ -1,0 +1,109 @@
+[
+  {
+    "id": "phase1_parsing_ambigu",
+    "phase": "Phase 1",
+    "title": "Parsing ambigu",
+    "goal": "Detecter l intention visuelle quand mark_type=Automatic et encodage incomplet.",
+    "input": {
+      "mark_type": "Automatic",
+      "axes": {
+        "x": "OrderDate",
+        "y": "SalesAmount"
+      },
+      "encodings": {
+        "color": null,
+        "size": null,
+        "detail": null
+      },
+      "visual_hint": "unknown"
+    },
+    "question": "Est-ce un bar chart ou line chart ?",
+    "expected": {
+      "decision_any_of": ["line", "linechart", "bar", "barchart", "column"],
+      "must_include_any_keywords": ["time", "trend", "serie temporelle", "date"]
+    }
+  },
+  {
+    "id": "phase2_semantic_detection",
+    "phase": "Phase 2",
+    "title": "Detection semantique",
+    "goal": "Classer des colonnes inconnues en measure/dimension et type metier probable.",
+    "input": {
+      "columns": ["Amt", "Value", "X1", "Region", "OrderDate"],
+      "sample_rows": [
+        {"Amt": 320.5, "Value": 9, "X1": "A12", "Region": "EMEA", "OrderDate": "2024-03-02"},
+        {"Amt": 1180.0, "Value": 15, "X1": "B01", "Region": "APAC", "OrderDate": "2024-03-03"}
+      ]
+    },
+    "question": "Pour chaque colonne, measure ou dimension et type metier ?",
+    "expected": {
+      "column_expectations": {
+        "Amt": "measure",
+        "Value": "measure",
+        "X1": "dimension",
+        "Region": "dimension",
+        "OrderDate": "dimension"
+      }
+    }
+  },
+  {
+    "id": "phase3_visual_mapping",
+    "phase": "Phase 3",
+    "title": "Mapping visuel intelligent",
+    "goal": "Choisir le meilleur type visuel entre bar/pie/treemap selon les donnees.",
+    "input": {
+      "candidate_charts": ["bar", "pie", "treemap"],
+      "dataset_profile": {
+        "rows": 120,
+        "dimensions": ["Category", "SubCategory"],
+        "measures": ["Revenue"],
+        "cardinality": {
+          "Category": 6,
+          "SubCategory": 22
+        }
+      }
+    },
+    "question": "Quel visuel est le plus adapte et pourquoi ?",
+    "expected": {
+      "decision_any_of": ["bar", "treemap"],
+      "must_not_be": ["pie"]
+    }
+  },
+  {
+    "id": "phase4_calc_translation",
+    "phase": "Phase 4",
+    "title": "Traduction de calculs",
+    "goal": "Traduire une expression Tableau complexe en expression RDL.",
+    "input": {
+      "tableau_calc": "IF [Sales] > 1000 THEN ([Sales] - [Cost]) / [Sales] ELSE NULL END",
+      "field_context": {
+        "Sales": "decimal",
+        "Cost": "decimal"
+      }
+    },
+    "question": "Donner une expression RDL equivalente.",
+    "expected": {
+      "must_include_any_keywords": ["IIF", "Nothing", "Fields!Sales", "Fields!Cost"]
+    }
+  },
+  {
+    "id": "phase5_autofix",
+    "phase": "Phase 5",
+    "title": "Auto-fix intelligent",
+    "goal": "Proposer une correction logique pour une erreur de mapping non triviale.",
+    "input": {
+      "error": "Chart uses =Sum(Fields!Country.Value) and returns blank",
+      "context": {
+        "dataset_fields": [
+          {"name": "Country", "type": "String"},
+          {"name": "Total_Revenue", "type": "Float"},
+          {"name": "Total_Profit", "type": "Float"}
+        ]
+      }
+    },
+    "question": "Quelle correction appliquer ?",
+    "expected": {
+      "must_include_any_keywords": ["numeric", "measure", "Total_Revenue", "Total_Profit", "Country"]
+    }
+  }
+]

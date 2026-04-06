@@ -16,7 +16,7 @@ class AgentFactory:
         agent_config = self.config.get(agent_type.value, {})
         # Import dynamique selon le type
         if agent_type == AgentType.DATA_EXTRACTION:
-            from viz_agent.phase0_data.agent.data_extraction_agent import DataExtractionAgent
+            from viz_agent.phase0_extraction.agent.data_extraction_agent import DataExtractionAgent
             agent = DataExtractionAgent(agent_config)
         elif agent_type == AgentType.PARSING:
             from viz_agent.phase1_parser.agent.parsing_agent import ParsingAgent

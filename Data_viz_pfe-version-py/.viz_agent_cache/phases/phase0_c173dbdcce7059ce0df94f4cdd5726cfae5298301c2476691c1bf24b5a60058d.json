@@ -1,0 +1,16 @@
+{
+  "schema": "v1",
+  "phase": "phase0",
+  "fingerprint": "c173dbdcce7059ce0df94f4cdd5726cfae5298301c2476691c1bf24b5a60058d",
+  "result": {
+    "status": "success",
+    "confidence": 0.95,
+    "output": {
+      "ok": true,
+      "phase": "phase0"
+    },
+    "errors": [],
+    "retry_hint": ""
+  },
+  "artifact_paths": {}
+}

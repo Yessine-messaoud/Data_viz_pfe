@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import os
 from pathlib import Path
 
 from viz_agent.phase0_extraction.models import MetadataModel
@@ -9,28 +10,41 @@ CACHE_DIR = Path(".vizagent_cache")
 
 
 class MetadataExtractor:
-    """Orchestrator stub for phase 0 universal metadata extraction."""
+    """Orchestrator for phase 0 universal metadata extraction."""
 
-    def extract(self, source_path: str, enable_profiling: bool = False, used_columns: set[tuple[str, str]] = None) -> MetadataModel:
+    def extract(
+        self,
+        source_path: str,
+        enable_profiling: bool = False,
+        used_columns: set[tuple[str, str]] | None = None,
+    ) -> MetadataModel:
         """
-        Extraction universelle : supporte extract (hyper/csv), live_sql, rdl_live.
-        - Récupère toutes les tables/colonnes.
+        Extraction universelle: supporte extract (hyper/csv), live_sql, rdl_live.
+        - Recupere tables/colonnes.
         - Annote is_used_in_dashboard selon used_columns.
-        - Retourne un MetadataModel Pydantic normalisé.
+        - Retourne un MetadataModel normalise.
         """
-        from viz_agent.phase0_extraction.readers.csv_loader import CSVLoader
-        from viz_agent.phase0_extraction.readers.hyper_extractor import HyperExtractor
-        from viz_agent.phase0_extraction.readers.db_connector import DBConnector, ConnectionConfig
-        from viz_agent.phase0_extraction.registry.data_source_registry import DataSourceRegistry, ResolvedDataSource
         from viz_agent.phase0_extraction.normalization.metadata_normalizer import normalize
-        import os
-        import pandas as pd
+        from viz_agent.phase0_extraction.readers.csv_loader import CSVLoader
+        from viz_agent.phase0_extraction.readers.db_connector import ConnectionConfig, DBConnector
+        from viz_agent.phase0_extraction.readers.hyper_extractor import HyperExtractor
+        from viz_agent.phase0_extraction.registry.data_source_registry import (
+            DataSourceRegistry,
+            ResolvedDataSource,
+        )
+        from viz_agent.phase0_extraction.relationship_detection.relationship_detector import (
+            detect_from_fk,
+            detect_from_heuristics,
+        )
+
+        used_columns = used_columns or set()
         registry = DataSourceRegistry()
         ext = os.path.splitext(source_path)[1].lower()
         source_type = None
         frames = {}
+        sql_engine = None
+
         if ext == ".twbx":
-            # Extraction Hyper/CSV
             hyper = HyperExtractor()
             frames = hyper.extract_all_tables(source_path)
             csv = CSVLoader()
@@ -41,63 +55,61 @@ class MetadataExtractor:
             frames = csv.extract_all_tables(source_path)
             source_type = "csv"
         elif ext == ".rdl":
-            # RDL direct (stub)
-            # TODO: brancher RDLExtractor/adapters
+            # RDL direct (stub): extraction readers/adapters still to be connected.
             source_type = "rdl_live"
-            # frames = ...
         elif ext in (".db", ".sqlite", ".sql", ".mdf"):
-            # SQL direct
             db = DBConnector()
             config = ConnectionConfig(type="sqlite", database=source_path)
             frames = db.extract_all_tables(config)
             source_type = "live_sql"
+            if ext in (".db", ".sqlite"):
+                from sqlalchemy import create_engine
+
+                sql_engine = create_engine(f"sqlite:///{source_path}")
         else:
-            raise ValueError(f"Format non supporté : {ext}")
-        # Register source
-        registry.register(os.path.basename(source_path), ResolvedDataSource(
-            name=os.path.basename(source_path),
-            source_type=source_type,
-            frames=frames,
-            connection_config={"path": source_path, "type": source_type}
-        ))
-        # Build raw metadata for normalization
-        raw = {}
-        raw["tables"] = []
+            raise ValueError(f"Format non supporte: {ext}")
+
+        registry.register(
+            os.path.basename(source_path),
+            ResolvedDataSource(
+                name=os.path.basename(source_path),
+                source_type=source_type,
+                frames=frames,
+                connection_config={"path": source_path, "type": source_type},
+            ),
+        )
+
+        raw: dict = {"tables": [], "relationships": []}
         for table_name, df in frames.items():
             columns = []
             for col in df.columns:
-                is_used = False
-                if used_columns:
-                    is_used = (table_name, col) in used_columns
-                # Profiling optionnel (distinct_count, null_ratio)
+                is_used = (table_name, col) in used_columns
                 distinct_count = int(df[col].nunique()) if enable_profiling else None
                 null_ratio = float(df[col].isnull().mean()) if enable_profiling else None
-                columns.append({
-                    "name": col,
-                    "type": str(df[col].dtype),
-                    "table": table_name,
-                    "is_used_in_dashboard": is_used,
-                    "distinct_count": distinct_count,
-                    "null_ratio": null_ratio,
-                })
-            raw["tables"].append({
-                "name": table_name,
-                "columns": columns,
-                "row_count": int(len(df)),
-            })
-        # Détection des relations (FK + heuristiques)
-        from viz_agent.phase0_extraction.relationship_detection.relationship_detector import detect_from_fk, detect_from_heuristics
+                columns.append(
+                    {
+                        "name": col,
+                        "type": str(df[col].dtype),
+                        "table": table_name,
+                        "is_used_in_dashboard": is_used,
+                        "distinct_count": distinct_count,
+                        "null_ratio": null_ratio,
+                    }
+                )
+            raw["tables"].append({"name": table_name, "columns": columns, "row_count": int(len(df))})
+
+        model = normalize(
+            raw,
+            used_columns,
+            source_type=source_type,
+            source_path=source_path,
+        )
+
         relationships = []
-        # FK SQL (si applicable)
-        # TODO: brancher engine si SQL
-        # relationships += detect_from_fk(engine)
-        # Heuristiques sur les noms
-        # relationships += detect_from_heuristics(...)
-        raw["relationships"] = relationships
-        # Normalisation Pydantic stricte
-        model = normalize(raw, used_columns or set())
-        model.source_type = source_type
-        model.source_path = source_path
+        if sql_engine is not None:
+            relationships.extend(detect_from_fk(sql_engine))
+        relationships.extend(detect_from_heuristics(model.tables))
+        model.relationships = self._dedupe_relationships(relationships)
         return model
 
     def _detect_format(self, path: str) -> str:
@@ -121,3 +133,15 @@ class MetadataExtractor:
     def _save_cache(self, key: str, model: MetadataModel) -> None:
         CACHE_DIR.mkdir(exist_ok=True)
         (CACHE_DIR / f"{key}.json").write_text(model.model_dump_json(), encoding="utf-8")
+
+    @staticmethod
+    def _dedupe_relationships(relationships):
+        deduped = []
+        seen = set()
+        for rel in relationships:
+            key = (rel.source_table, rel.source_column, rel.target_table, rel.target_column, rel.type)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduped.append(rel)
+        return deduped

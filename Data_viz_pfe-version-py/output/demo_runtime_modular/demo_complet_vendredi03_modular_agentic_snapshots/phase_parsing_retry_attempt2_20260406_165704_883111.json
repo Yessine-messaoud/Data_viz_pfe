@@ -1,0 +1,128 @@
+{
+  "execution_id": "demo_modular_demo_complet_vendredi03",
+  "current_phase": "parsing",
+  "context": {
+    "intent": {
+      "type": "conversion",
+      "constraints": {}
+    },
+    "deterministic_fixes": {
+      "parsing": {
+        "ensure_worksheets_from_visuals": true
+      }
+    },
+    "heuristic_fixes": {
+      "parsing": {
+        "infer_dashboards_from_visuals": true,
+        "confidence_boost_on_repaired_bindings": true
+      }
+    }
+  },
+  "artifacts": {
+    "source_path": "input\\demo_europe.twbx",
+    "output_path": "output\\demo_runtime_modular\\demo_complet_vendredi03.rdl"
+  },
+  "previous_outputs": {
+    "parsing": {
+      "parsed_structure": {
+        "dashboards": [
+          {
+            "name": "Default",
+            "pages": [
+              {
+                "name": "Default",
+                "visuals": [
+                  "dispersion",
+                  "sales_country"
+                ],
+                "layout": {}
+              }
+            ],
+            "visuals": [
+              {
+                "id": "dispersion",
+                "name": "dispersion",
+                "type": "PIE",
+                "fields": []
+              },
+              {
+                "id": "sales_country",
+                "name": "sales_country",
+                "type": "AUTOMATIC",
+                "fields": []
+              }
+            ],
+            "filters": []
+          }
+        ],
+        "visuals": [
+          {
+            "id": "dispersion",
+            "name": "dispersion",
+            "type": "PIE",
+            "fields": []
+          },
+          {
+            "id": "sales_country",
+            "name": "sales_country",
+            "type": "AUTOMATIC",
+            "fields": []
+          }
+        ],
+        "bindings": [],
+        "filters": [],
+        "layout": {},
+        "source_format": "twb",
+        "validation_results": [],
+        "lineage_events": [
+          {
+            "phase": "phase1_parser",
+            "timestamp": "2026-04-06T16:57:04.881262+00:00",
+            "dashboards_count": 1,
+            "visuals_count": 2,
+            "bindings_count": 0,
+            "status": "ok"
+          }
+        ],
+        "parsing_log": [
+          {
+            "step": "deterministic",
+            "status": "success"
+          }
+        ]
+      }
+    }
+  },
+  "confidence_history": [
+    {
+      "ts": "2026-04-06T16:57:04.876825+00:00",
+      "phase": "parsing",
+      "confidence": 0.88,
+      "status": "success"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.881327+00:00",
+      "phase": "parsing",
+      "confidence": 0.88,
+      "status": "success"
+    }
+  ],
+  "react_history": [
+    {
+      "ts": "2026-04-06T16:57:04.876821+00:00",
+      "phase": "parsing",
+      "attempt": 1,
+      "thought": "Need reliable output for parsing; attempt 1.",
+      "action": "execute_tool:parsing",
+      "observation": "attempt=1, status=success, confidence=0.88, errors=0"
+    },
+    {
+      "ts": "2026-04-06T16:57:04.881322+00:00",
+      "phase": "parsing",
+      "attempt": 2,
+      "thought": "Need reliable output for parsing; attempt 2.",
+      "action": "execute_tool:parsing",
+      "observation": "attempt=2, status=success, confidence=0.88, errors=0"
+    }
+  ]
+}

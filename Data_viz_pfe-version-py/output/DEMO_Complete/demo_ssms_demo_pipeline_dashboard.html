@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Pipeline Phases</title>
+  <style>
+    body { font-family: Segoe UI, Arial, sans-serif; margin: 24px; background: #f7f7f4; color: #1b1b1b; }
+    .meta { margin-bottom: 18px; color: #444; }
+    table { border-collapse: collapse; width: 100%; background: white; }
+    th, td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+    th { background: #ecebe6; text-align: left; }
+    section { margin-top: 20px; padding: 14px; background: white; border: 1px solid #ddd; border-radius: 8px; }
+    pre { background: #111; color: #d3ffd4; padding: 10px; border-radius: 6px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+    <h1>Demo Pipeline Complet - Etat et Actions par Phase</h1>
+  <div class="meta">
+    <div>Input: input\demo_ssms.twbx</div>
+    <div>Output RDL: output\DEMO_Complete\demo_ssms_demo.rdl</div>
+        <div>Genere le: 2026-04-03 17:14:42</div>
+        <div><a href="demo_ssms_demo.rdl">Ouvrir le RDL genere</a></div>
+  </div>
+  <table>
+        <tr><th>Phase</th><th>Status</th><th>Actions</th><th>Resume</th></tr>
+    <tr style='background:#e8f5e9'><td>Phase 0 - Extraction</td><td>OK</td><td>detect_live_connections:1</td><td>Agent phase 0 (live_sql)</td></tr><tr style='background:#e8f5e9'><td>Phase 1 - Parsing</td><td>OK</td><td>parse_worksheets | parse_dashboards(1) | enrich_semantic_hints(7) | lineage_enrichment(7)</td><td>Structure workbook analysee (demo_ssms_demo_phase1_parsed_workbook.json)</td></tr><tr style='background:#e8f5e9'><td>Phase 2 - Semantic</td><td>OK</td><td>orchestrate(cache) | resolve_joins(0) | ontology_mapping(5) | confidence(0.76)</td><td>Semantic model genere (demo_ssms_demo_semantic_model.json)</td></tr><tr style='background:#e8f5e9'><td>Phase 3 - Spec</td><td>OK</td><td>build_dashboard_spec(1 pages) | decision_engine_logs(7) | warnings(17)</td><td>Abstract spec genere (demo_ssms_demo_abstract_spec.json)</td></tr><tr style='background:#e8f5e9'><td>Phase 4 - Transform</td><td>OK</td><td>build_tool_model(3 datasets) | map_visuals(3) | validate_transform(0 issues)</td><td>Tool model transforme (demo_ssms_demo_tool_model.json)</td></tr><tr style='background:#e8f5e9'><td>Phase 5 - RDL</td><td>OK</td><td>build_rdl_xml | validate_xml | validate_schema | validate_semantic</td><td>RDL genere depuis corrected spec (demo_ssms_demo.rdl)</td></tr><tr style='background:#e8f5e9'><td>Phase 6 - Lineage</td><td>OK</td><td>build_lineage_tables(1) | build_lineage_joins(0)</td><td>Lineage genere (demo_ssms_demo_lineage.json)</td></tr>
+  </table>
+  <section><h3>Phase 0 - Extraction</h3><ul><li>Agent: phase0_extraction_agent</li><li>Mode: live_sql</li><li>Tables extraites: 0</li><li>Connexions detectees: 1</li></ul><h4>Actions decidees par l'agent</h4><ul><li>detect_live_connections:1</li></ul><h4>Connexions live (phase 0)</h4><p>Connexions live detectees: 1</p><table><tr><th>Nom</th><th>Type</th><th>Serveur</th><th>Base</th><th>Schema</th></tr><tr><td>localhost\SQLEXPRESS</td><td>sqlserver</td><td>localhost\SQLEXPRESS</td><td>AdventureWorksDW2022</td><td></td></tr></table></section><section><h3>Phase 1 - Parsing</h3><ul><li>Worksheets: 3</li><li>Dashboards: 1</li><li>Calculated fields: 0</li><li>Semantic hints (global): 7</li><li>Enriched lineage (global): 7</li><li>Premier worksheet: Feuille 1</li><li>Premier dashboard: Tableau de bord 1</li></ul><h4>Worksheets enrichies</h4><ul><li><strong>Feuille 1</strong> (mark=Bar, raw=Bar, datasource=federated.1v3o2r30w2rgsv1aei9is1e9duvo)<br/>encoding={&quot;x&quot;: &quot;SalesTerritoryCountry&quot;, &quot;y&quot;: &quot;SalesAmount&quot;, &quot;color&quot;: &quot;SalesTerritoryCountry&quot;, &quot;size&quot;: &quot;SalesAmount&quot;, &quot;detail&quot;: null}<br/>confidence={&quot;visual&quot;: 1.0, &quot;encoding&quot;: 0.8, &quot;datasource_linkage&quot;: 1.0, &quot;overall&quot;: 0.94}<br/>semantic_hints=2, enriched_lineage=2</li><li><strong>Feuille 2</strong> (mark=Bar, raw=Automatic, datasource=federated.1v3o2r30w2rgsv1aei9is1e9duvo)<br/>encoding={&quot;x&quot;: &quot;SalesTerritoryCountry&quot;, &quot;y&quot;: &quot;TaxAmt&quot;, &quot;color&quot;: &quot;ModelName&quot;, &quot;size&quot;: &quot;SalesTerritoryCountry&quot;, &quot;detail&quot;: &quot;TaxAmt&quot;}<br/>confidence={&quot;visual&quot;: 0.8, &quot;encoding&quot;: 1.0, &quot;datasource_linkage&quot;: 1.0, &quot;overall&quot;: 0.92}<br/>semantic_hints=3, enriched_lineage=3</li><li><strong>Feuille 3</strong> (mark=Pie, raw=Pie, datasource=federated.1v3o2r30w2rgsv1aei9is1e9duvo)<br/>encoding={&quot;x&quot;: null, &quot;y&quot;: null, &quot;color&quot;: &quot;SalesTerritoryCountry&quot;, &quot;size&quot;: &quot;OrderQuantity&quot;, &quot;detail&quot;: null}<br/>confidence={&quot;visual&quot;: 0.9, &quot;encoding&quot;: 0.4, &quot;datasource_linkage&quot;: 1.0, &quot;overall&quot;: 0.78}<br/>semantic_hints=2, enriched_lineage=2</li></ul><h4>Warnings phase 1</h4><ul><li>Feuille 2: Automatic mark resolved to Bar from rows/cols structure</li></ul></section><section><h3>Phase 2 - Semantic</h3><ul><li>Fact table: federated.1v3o2r30w2rgsv1aei9is1e9duvo</li><li>Nombre de mesures: 4</li></ul><h4>Echantillon mesures</h4><ul><li>Sum SalesAmount</li><li>Sum SalesTerritoryCountry</li><li>Sum TaxAmt</li><li>Sum OrderQuantity</li></ul></section><section><h3>Phase 3 - Spec</h3><ul><li>Pages: 1</li><li>Visuals (premiere page): 3</li></ul><h4>Echantillon visuals (page 1)</h4><ul><li>Sales per country</li><li>Tax per country</li><li>Feuille 3</li></ul></section><section><h3>Phase 4 - Transform</h3><p>Tool model genere: demo_ssms_demo_tool_model.json</p><table><tr><th>Visual</th><th>Type metier</th><th>Type outil</th></tr><tr><td>Feuille 1</td><td>bar</td><td>ColumnChart</td></tr><tr><td>Feuille 2</td><td>bar</td><td>ColumnChart</td></tr><tr><td>Feuille 3</td><td>pie</td><td>PieChart</td></tr></table><h4>Optimizations</h4><ul><li>Aucun hint</li></ul></section><section><h3>Phase 5 - RDL</h3><p>RDL regenere depuis abstract_spec.corrected.json</p><ul><li>Taille RDL: 10.78 KB</li></ul><pre>&lt;?xml version=&#x27;1.0&#x27; encoding=&#x27;UTF-8&#x27;?&gt;
+&lt;Report xmlns=&quot;http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:rd=&quot;http://schemas.microsoft.com/SQLServer/reporting/reportdesigner&quot; xsi:schemaLocation=&quot;http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/ReportDefinition.xsd&quot;&gt;
+  &lt;Description&gt;Genere par VizAgent v2 le 2026-04-03T16:14:42.142459+00:00&lt;/Description&gt;
+  &lt;AutoRefresh&gt;0&lt;/AutoRefresh&gt;
+  &lt;DataSources&gt;
+    &lt;DataSource Name=&quot;DataSource1&quot;&gt;
+      &lt;ConnectionProperties&gt;
+        &lt;DataProvider&gt;SQL&lt;/DataProvider&gt;
+        &lt;ConnectString&gt;Data Source=localhost\SQLEXPRESS;Initial Catalog=AdventureWorksDW2022&lt;/ConnectString&gt;
+        &lt;IntegratedSecurity&gt;true&lt;/IntegratedSecurity&gt;
+      &lt;/ConnectionProperties&gt;
+    &lt;/DataSource&gt;
+  &lt;/DataSources&gt;
+  &lt;DataSets&gt;
+    &lt;DataSet Name=&quot;federated_1v3o2r30w2rgsv1aei9is1e9duvo&quot;&gt;
+      &lt;Query&gt;
+        &lt;DataSourceName&gt;DataSource1&lt;/DataSourceName&gt;
+        &lt;CommandText&gt;SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAm</pre></section><section><h3>Phase 6 - Lineage</h3><ul><li>Tables lineages (uniques): 1</li><li>Joins: 0</li></ul><h4>Echantillon tables</h4><ul><li>AdventureworksDW2022 (federated.1v3o2r30w2rgsv1aei9is1e9duvo)</li></ul></section>
+</body>
+</html>

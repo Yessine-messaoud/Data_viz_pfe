@@ -85,9 +85,31 @@ class RDLSchemaValidator:
                         )
                     )
 
+            field_names: list[str] = []
             for field in ds.findall("r:Fields/r:Field", self.ns):
                 field_name = field.get("Name", "<no-name>")
+                if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", str(field_name or "")):
+                    errors.append(
+                        Issue(
+                            code="S003g",
+                            severity="error",
+                            message=f"Field name '{field_name}' in DataSet '{ds_name}' is not CLS-compliant",
+                            fix="Use only letters, digits, and underscores for Field/@Name",
+                        )
+                    )
+                field_names.append(str(field_name))
                 self._check_required_children(field, FIELD_REQUIRED_CHILDREN, f"Field[{field_name}]", "S003d", errors)
+
+            lowered = [name.lower() for name in field_names]
+            if len(set(lowered)) != len(lowered):
+                errors.append(
+                    Issue(
+                        code="S003f",
+                        severity="error",
+                        message=f"DataSet '{ds_name}' contains duplicate Field/@Name values",
+                        fix="Ensure each Field Name is unique within the DataSet",
+                    )
+                )
 
         if len(set(dataset_names)) != len(dataset_names):
             errors.append(
@@ -109,13 +131,75 @@ class RDLSchemaValidator:
                     fix="Add at least one ReportItem (Tablix, Textbox, Chart, ...)",
                 )
             )
+        else:
+            report_item_names: list[str] = []
+            for item in report_items.xpath("./*[@Name]"):
+                if not isinstance(item.tag, str):
+                    continue
+                report_item_names.append(str(item.get("Name", "")))
+            lowered_item_names = [name.lower() for name in report_item_names if name]
+            if len(set(lowered_item_names)) != len(lowered_item_names):
+                errors.append(
+                    Issue(
+                        code="S009",
+                        severity="error",
+                        message="Duplicate ReportItem names detected under Body/ReportItems",
+                        fix="Ensure each report item Name is unique across the report",
+                    )
+                )
 
         for tablix in root.findall(".//r:Tablix", self.ns):
             tname = tablix.get("Name", "<no-name>")
             self._check_required_children(tablix, TABLIX_REQUIRED_CHILDREN, f"Tablix[{tname}]", "S005", errors)
 
+            col_members = tablix.findall("r:TablixColumnHierarchy/r:TablixMembers/r:TablixMember", self.ns)
+            row_members = tablix.findall("r:TablixRowHierarchy/r:TablixMembers/r:TablixMember", self.ns)
+            tablix_rows = tablix.findall("r:TablixBody/r:TablixRows/r:TablixRow", self.ns)
+            if not col_members:
+                errors.append(
+                    Issue(
+                        code="S005d",
+                        severity="error",
+                        message=f"Tablix[{tname}] missing TablixColumnHierarchy/TablixMembers/TablixMember",
+                        fix="Add at least one TablixMember under TablixColumnHierarchy",
+                    )
+                )
+            if not row_members:
+                errors.append(
+                    Issue(
+                        code="S005e",
+                        severity="error",
+                        message=f"Tablix[{tname}] missing TablixRowHierarchy/TablixMembers/TablixMember",
+                        fix="Add at least one TablixMember under TablixRowHierarchy",
+                    )
+                )
+            for idx, row in enumerate(tablix_rows):
+                row_cells = row.find("r:TablixCells", self.ns)
+                if row_cells is None:
+                    errors.append(
+                        Issue(
+                            code="S005f",
+                            severity="error",
+                            message=f"Tablix[{tname}] row #{idx + 1} missing required TablixCells",
+                            fix="Add <TablixCells> with at least one <TablixCell> under each <TablixRow>",
+                        )
+                    )
+                elif not row_cells.findall("r:TablixCell", self.ns):
+                    errors.append(
+                        Issue(
+                            code="S005f",
+                            severity="error",
+                            message=f"Tablix[{tname}] row #{idx + 1} has empty TablixCells",
+                            fix="Add at least one <TablixCell> under each <TablixCells>",
+                        )
+                    )
+
         for chart_member in root.findall(".//r:ChartMember", self.ns):
-            if chart_member.find("r:Label", self.ns) is None:
+            label_node = chart_member.find("r:Label", self.ns)
+            if label_node is None:
+                # Defensive fallback for mixed namespace payloads.
+                label_node = chart_member.find("Label")
+            if label_node is None:
                 errors.append(
                     Issue(
                         code="S005c",
@@ -154,8 +238,19 @@ class RDLSchemaValidator:
                         )
                     )
 
+        param_names: list[str] = []
         for param in root.findall(".//r:ReportParameter", self.ns):
             pname = param.get("Name", "<no-name>")
+            param_names.append(str(pname))
+            if not re.match(r"^[A-Za-z_][A-Za-z0-9_]*$", str(pname or "")):
+                errors.append(
+                    Issue(
+                        code="S008d",
+                        severity="error",
+                        message=f"ReportParameter '{pname}' is not CLS-compliant",
+                        fix="Use only letters, digits, and underscores, starting with a letter or underscore",
+                    )
+                )
             dtype = param.find("r:DataType", self.ns)
             if dtype is None:
                 errors.append(
@@ -173,6 +268,45 @@ class RDLSchemaValidator:
                         severity="error",
                         message=f"ReportParameter '{pname}' has invalid DataType '{(dtype.text or '').strip()}'",
                         fix=f"Use one of: {sorted(VALID_ENUMS['DataType'])}",
+                    )
+                )
+
+        lowered_params = [name.lower() for name in param_names]
+        if len(set(lowered_params)) != len(lowered_params):
+            errors.append(
+                Issue(
+                    code="S008c",
+                    severity="error",
+                    message="Duplicate ReportParameter names detected",
+                    fix="Ensure each ReportParameter/@Name is unique",
+                )
+            )
+
+        params_layout = root.find("r:ReportParametersLayout/r:GridLayoutDefinition/r:CellDefinitions", self.ns)
+        if params_layout is not None:
+            layout_param_names = []
+            for cell in params_layout.findall("r:CellDefinition", self.ns):
+                pname = cell.find("r:ParameterName", self.ns)
+                if pname is not None and (pname.text or "").strip():
+                    layout_param_names.append((pname.text or "").strip())
+            if len(layout_param_names) != len(param_names):
+                errors.append(
+                    Issue(
+                        code="S008e",
+                        severity="error",
+                        message=(
+                            "ReportParametersLayout cell count does not match ReportParameters count"
+                        ),
+                        fix="Align CellDefinitions count with ReportParameter definitions",
+                    )
+                )
+            elif set(name.lower() for name in layout_param_names) != set(name.lower() for name in param_names):
+                errors.append(
+                    Issue(
+                        code="S008e",
+                        severity="error",
+                        message="ReportParametersLayout parameter names do not match ReportParameters",
+                        fix="Ensure each CellDefinition/ParameterName points to a defined ReportParameter",
                     )
                 )
 

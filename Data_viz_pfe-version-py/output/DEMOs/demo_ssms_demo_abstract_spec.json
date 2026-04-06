@@ -1,0 +1,314 @@
+{
+  "id": "d29af0b6-cf66-4fbf-913a-d7a4150b7e22",
+  "version": "2.0.0",
+  "created_at": "2026-04-01T15:30:55.817507+00:00",
+  "source_fingerprint": "f142179ebdcaea2ab775fb59b05157536174f02b16bf91e0245d897da4109372",
+  "dashboard_spec": {
+    "pages": [
+      {
+        "id": "Tableau de bord 1",
+        "name": "Tableau de bord 1",
+        "visuals": [
+          {
+            "id": "Feuille 1",
+            "source_worksheet": "Feuille 1",
+            "type": "bar",
+            "rdl_type": "chart",
+            "title": "Sales per country",
+            "position": {},
+            "data_binding": {
+              "axes": {
+                "x": {
+                  "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+                  "column": "SalesTerritoryCountry"
+                },
+                "y": {
+                  "name": "SalesAmount"
+                }
+              },
+              "measures": [
+                {
+                  "name": "SalesAmount"
+                }
+              ],
+              "filters": [],
+              "visual_type_override": "chart",
+              "pending_translations": []
+            }
+          },
+          {
+            "id": "Feuille 2",
+            "source_worksheet": "Feuille 2",
+            "type": "bar",
+            "rdl_type": "chart",
+            "title": "Tax per country",
+            "position": {},
+            "data_binding": {
+              "axes": {
+                "x": {
+                  "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+                  "column": "SalesTerritoryCountry"
+                },
+                "y": {
+                  "name": "TaxAmt"
+                }
+              },
+              "measures": [
+                {
+                  "name": "TaxAmt"
+                }
+              ],
+              "filters": [],
+              "visual_type_override": "chart",
+              "pending_translations": []
+            }
+          },
+          {
+            "id": "Feuille 3",
+            "source_worksheet": "Feuille 3",
+            "type": "treemap",
+            "rdl_type": "chart",
+            "title": "Feuille 3",
+            "position": {},
+            "data_binding": {
+              "axes": {},
+              "measures": [
+                {
+                  "name": "OrderQuantity"
+                }
+              ],
+              "filters": [],
+              "visual_type_override": "chart",
+              "pending_translations": []
+            }
+          }
+        ]
+      }
+    ],
+    "global_filters": [
+      {
+        "field": "SalesTerritoryCountry",
+        "operator": "=",
+        "value": null,
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "field": "ModelName",
+        "operator": "=",
+        "value": null,
+        "column": "ModelName"
+      }
+    ],
+    "theme": {
+      "name": "tableau-imported"
+    }
+  },
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des ventes"
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays de la zone de vente"
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Nom du mod\u00e8le"
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des taxes"
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Quantit\u00e9 command\u00e9e"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Total des ventes",
+        "expression": "SUM([Montant des ventes])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Total des taxes",
+        "expression": "SUM([Montant des taxes])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TaxAmt"
+      },
+      {
+        "name": "Quantit\u00e9 totale command\u00e9e",
+        "expression": "SUM([Quantit\u00e9 command\u00e9e])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "OrderQuantity"
+      },
+      {
+        "name": "Moyenne des ventes par commande",
+        "expression": "AVG([Montant des ventes])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Moyenne des taxes par commande",
+        "expression": "AVG([Montant des taxes])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TaxAmt"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "column": "ModelName"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+    "grain": "row"
+  },
+  "data_lineage": {
+    "tables": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "source_name": "AdventureworksDW2022",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des ventes"
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Pays de la zone de vente"
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": "Nom du mod\u00e8le"
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Montant des taxes"
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": "Quantit\u00e9 command\u00e9e"
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "joins": [],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "rdl_datasets": [
+    {
+      "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+      "query": "SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey",
+      "connection_ref": "DataSource1",
+      "fields": [
+        {
+          "name": "SalesAmount",
+          "data_field": "SalesAmount",
+          "rdl_type": "Decimal"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "data_field": "SalesTerritoryCountry",
+          "rdl_type": "String"
+        },
+        {
+          "name": "ModelName",
+          "data_field": "ModelName",
+          "rdl_type": "String"
+        },
+        {
+          "name": "TaxAmt",
+          "data_field": "TaxAmt",
+          "rdl_type": "Decimal"
+        },
+        {
+          "name": "OrderQuantity",
+          "data_field": "OrderQuantity",
+          "rdl_type": "Decimal"
+        }
+      ]
+    }
+  ],
+  "build_log": [
+    {
+      "level": "info",
+      "message": "AbstractSpec v2 built",
+      "timestamp": "2026-04-01T15:30:55.817546+00:00"
+    }
+  ],
+  "warnings": []
+}

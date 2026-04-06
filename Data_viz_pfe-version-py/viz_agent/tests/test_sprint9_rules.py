@@ -37,5 +37,5 @@ def test_prefix_mapping_builds_cd_pd_so_pages() -> None:
 
 
 def test_kpi_is_mapped_to_textbox() -> None:
-    assert infer_rdl_visual_type("SO_KPIs", "Text") == "textbox"
-    assert infer_rdl_visual_type("MyKPIWidget", "Bar") == "textbox"
+    assert infer_rdl_visual_type("SO_KPIs", "Text") == "Textbox"
+    assert infer_rdl_visual_type("MyKPIWidget", "Bar") == "Textbox"

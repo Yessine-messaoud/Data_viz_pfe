@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abstract Spec - Viz Agent</title>
+    <style>
+        :root {
+            --bg: #f5f4ef;
+            --card: #ffffff;
+            --ink: #1c1c1a;
+            --muted: #5b5b56;
+            --line: #dfddd3;
+            --accent: #0d7a5f;
+        }
+        body {
+            margin: 0;
+            font-family: Segoe UI, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top right, #efe8d1, var(--bg));
+        }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        .header { margin-bottom: 18px; }
+        .header h1 { margin: 0 0 8px; }
+        .header p { margin: 0; color: var(--muted); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 14px 0 24px; }
+        .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+        .kpi .label { color: var(--muted); font-size: 12px; }
+        .kpi .value { font-size: 24px; font-weight: 700; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+        h2 { margin-top: 0; }
+        ul { margin-top: 8px; }
+        .page { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+        pre {
+            background: #141414;
+            color: #dbf8d3;
+            border-radius: 10px;
+            padding: 12px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .badge {
+            display: inline-block;
+            margin-left: 8px;
+            background: #def4ec;
+            color: var(--accent);
+            border: 1px solid #badfd3;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <h1>Abstract Spec</h1>
+            <p>Version 2.0.0 <span class="badge">8f66ce4a-ffc1-4d66-9d84-fcb16241acb6</span></p>
+        </header>
+
+        <section class="grid">
+            <article class="kpi"><div class="label">Pages</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Visuals</div><div class="value">3</div></article>
+            <article class="kpi"><div class="label">Tables</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Measures</div><div class="value">4</div></article>
+        </section>
+
+        <section class="card">
+            <h2>Pages et Visuals</h2>
+            <section class='page'><h3>Tableau de bord 1</h3><p>3 visual(s)</p><ul><li><strong>Sales per country</strong> (bar) - source: Feuille 1</li><li><strong>Tax per country</strong> (bar) - source: Feuille 2</li><li><strong>distribution</strong> (pie) - source: distribution</li></ul></section>
+        </section>
+
+        <section class="card">
+            <h2>Tables</h2>
+            <ul><li>AdventureworksDW2022 (5 colonne(s))</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>Measures</h2>
+            <ul><li>Sum SalesAmount</li><li>Sum SalesTerritoryCountry</li><li>Sum TaxAmt</li><li>Sum OrderQuantity</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>JSON Complet</h2>
+            <pre>{
+  &quot;id&quot;: &quot;8f66ce4a-ffc1-4d66-9d84-fcb16241acb6&quot;,
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;created_at&quot;: &quot;2026-04-06T10:51:29.830146+00:00&quot;,
+  &quot;source_fingerprint&quot;: &quot;1d2a3cf87e4090680cba3d93971ac3c37b7a845af146651f507be6bd752c8b80&quot;,
+  &quot;dashboard_spec&quot;: {
+    &quot;pages&quot;: [
+      {
+        &quot;id&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;visuals&quot;: [
+          {
+            &quot;id&quot;: &quot;Feuille 1&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 1&quot;,
+            &quot;type&quot;: &quot;bar&quot;,
+            &quot;rdl_type&quot;: &quot;ColumnChart&quot;,
+            &quot;title&quot;: &quot;Sales per country&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;unknown&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                }
+              ],
+              &quot;group_by&quot;: [
+                &quot;SalesTerritoryCountry&quot;,
+                &quot;SalesTerritoryCountry&quot;
+              ],
+              &quot;hierarchy&quot;: [
+                &quot;SalesTerritoryCountry&quot;
+              ],
+              &quot;aggregation&quot;: &quot;SUM&quot;,
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Column&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          },
+          {
+            &quot;id&quot;: &quot;Feuille 2&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 2&quot;,
+            &quot;type&quot;: &quot;bar&quot;,
+            &quot;rdl_type&quot;: &quot;ColumnChart&quot;,
+            &quot;title&quot;: &quot;Tax per country&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;unknown&quot;,
+                  &quot;column&quot;: &quot;ModelName&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;TaxAmt&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                {
+                  &quot;name&quot;: &quot;TaxAmt&quot;
+                }
+              ],
+              &quot;group_by&quot;: [
+                &quot;SalesTerritoryCountry&quot;,
+                &quot;ModelName&quot;,
+                &quot;TaxAmt&quot;
+              ],
+              &quot;hierarchy&quot;: [
+                &quot;SalesTerritoryCountry&quot;,
+                &quot;TaxAmt&quot;
+              ],
+              &quot;aggregation&quot;: &quot;SUM&quot;,
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Column&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          },
+          {
+            &quot;id&quot;: &quot;distribution&quot;,
+            &quot;source_worksheet&quot;: &quot;distribution&quot;,
+            &quot;type&quot;: &quot;pie&quot;,
+            &quot;rdl_type&quot;: &quot;PieChart&quot;,
+            &quot;title&quot;: &quot;distribution&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;size&quot;: {
+                  &quot;name&quot;: &quot;OrderQuantity&quot;
+                },
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;unknown&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;SalesTerritoryCountry&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                {
+                  &quot;name&quot;: &quot;OrderQuantity&quot;
+                }
+              ],
+              &quot;group_by&quot;: [
+                &quot;SalesTerritoryCountry&quot;
+              ],
+              &quot;hierarchy&quot;: [],
+              &quot;aggregation&quot;: &quot;SUM&quot;,
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Pie&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          }
+        ]
+      }
+    ],
+    &quot;global_filters&quot;: [],
+    &quot;theme&quot;: {
+      &quot;name&quot;: &quot;tableau-imported&quot;,
+      &quot;build_log_count&quot;: 6,
+      &quot;warning_count&quot;: 18
+    }
+  },
+  &quot;semantic_model&quot;: {
+    &quot;entities&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;source_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;ModelName&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TaxAmt&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;measures&quot;: [
+      {
+        &quot;name&quot;: &quot;Sum SalesAmount&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesAmount])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesAmount&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum SalesTerritoryCountry&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesTerritoryCountry])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesTerritoryCountry&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum TaxAmt&quot;,
+        &quot;expression&quot;: &quot;SUM([TaxAmt])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TaxAmt&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum OrderQuantity&quot;,
+        &quot;expression&quot;: &quot;SUM([OrderQuantity])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;OrderQuantity&quot;
+      }
+    ],
+    &quot;dimensions&quot;: [
+      {
+        &quot;table&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+      },
+      {
+        &quot;table&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;column&quot;: &quot;ModelName&quot;
+      }
+    ],
+    &quot;hierarchies&quot;: [],
+    &quot;relationships&quot;: [],
+    &quot;glossary&quot;: [],
+    &quot;fact_table&quot;: &quot;AdventureworksDW2022&quot;,
+    &quot;grain&quot;: &quot;row&quot;
+  },
+  &quot;data_lineage&quot;: {
+    &quot;tables&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;source_name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;ModelName&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TaxAmt&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;joins&quot;: [
+      {
+        &quot;id&quot;: &quot;join_src_0&quot;,
+        &quot;left_table&quot;: &quot;[dbo].[FactInternetSales]&quot;,
+        &quot;right_table&quot;: &quot;[dbo].[DimCurrency]&quot;,
+        &quot;left_col&quot;: &quot;id&quot;,
+        &quot;right_col&quot;: &quot;id&quot;,
+        &quot;type&quot;: &quot;INNER&quot;,
+        &quot;pbi_cardinality&quot;: &quot;ManyToOne&quot;,
+        &quot;source_xml_ref&quot;: &quot;&quot;
+      }
+    ],
+    &quot;columns_used&quot;: [],
+    &quot;measures&quot;: [],
+    &quot;filters_applied&quot;: [],
+    &quot;transformations&quot;: [],
+    &quot;visual_column_map&quot;: {}
+  },
+  &quot;rdl_datasets&quot;: [
+    {
+      &quot;name&quot;: &quot;AdventureworksDW2022&quot;,
+      &quot;query&quot;: &quot;SELECT * FROM AdventureworksDW2022&quot;,
+      &quot;connection_ref&quot;: &quot;DataSource1&quot;,
+      &quot;fields&quot;: [
+        {
+          &quot;name&quot;: &quot;SalesAmount&quot;,
+          &quot;data_field&quot;: &quot;SalesAmount&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;data_field&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;ModelName&quot;,
+          &quot;data_field&quot;: &quot;ModelName&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TaxAmt&quot;,
+          &quot;data_field&quot;: &quot;TaxAmt&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;OrderQuantity&quot;,
+          &quot;data_field&quot;: &quot;OrderQuantity&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        }
+      ]
+    }
+  ],
+  &quot;build_log&quot;: [
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;AbstractSpec v2 built with visual decision engine&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.830165+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;warning&quot;,
+      &quot;message&quot;: &quot;Feuille 1: Removed redundant color encoding; Removed invalid size encoding (not allowed for bar/line/scatter); set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;; normalized visual_type_override to &#x27;Column&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.829430+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;Feuille 1: set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.829450+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;warning&quot;,
+      &quot;message&quot;: &quot;Feuille 2: Removed redundant color encoding; Invalid measure used in detail, removed; Removed invalid size encoding (not allowed for bar/line/scatter); normalized visual_type_override to &#x27;Column&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.829772+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;Feuille 2: set axis &#x27;x&#x27; to &#x27;ModelName&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.829786+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;warning&quot;,
+      &quot;message&quot;: &quot;distribution: Removed redundant color encoding; set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;; normalized visual_type_override to &#x27;Pie&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.830067+00:00&quot;
+    },
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;distribution: set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;; set axis &#x27;y&#x27; to &#x27;SalesTerritoryCountry&#x27;&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-06T10:51:29.830079+00:00&quot;
+    }
+  ],
+  &quot;warnings&quot;: [
+    &quot;Feuille 1: Removed redundant color encoding&quot;,
+    &quot;Feuille 1: Removed invalid size encoding (not allowed for bar/line/scatter)&quot;,
+    &quot;Feuille 1: set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;&quot;,
+    &quot;Feuille 1: normalized visual_type_override to &#x27;Column&#x27;&quot;,
+    &quot;Feuille 1: axis &#x27;x&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;SalesAmount&#x27;] do not match expected role &#x27;dimension&#x27;&quot;,
+    &quot;Feuille 1: axis &#x27;x&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;SalesAmount&#x27;] do not match expected role &#x27;dimension&#x27;&quot;,
+    &quot;Feuille 1: axis &#x27;x&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;SalesAmount&#x27;] do not match expected role &#x27;dimension&#x27;&quot;,
+    &quot;Feuille 2: Removed redundant color encoding&quot;,
+    &quot;Feuille 2: Invalid measure used in detail, removed&quot;,
+    &quot;Feuille 2: Removed invalid size encoding (not allowed for bar/line/scatter)&quot;,
+    &quot;Feuille 2: normalized visual_type_override to &#x27;Column&#x27;&quot;,
+    &quot;Feuille 2: automatic mark type resolved from encoding&quot;,
+    &quot;distribution: Removed redundant color encoding&quot;,
+    &quot;distribution: set axis &#x27;x&#x27; to &#x27;SalesTerritoryCountry&#x27;&quot;,
+    &quot;distribution: normalized visual_type_override to &#x27;Pie&#x27;&quot;,
+    &quot;distribution: axis &#x27;category&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;OrderQuantity&#x27;] do not match expected role &#x27;dimension&#x27;&quot;,
+    &quot;distribution: axis &#x27;category&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;OrderQuantity&#x27;] do not match expected role &#x27;dimension&#x27;&quot;,
+    &quot;distribution: axis &#x27;category&#x27; candidates [&#x27;SalesTerritoryCountry&#x27;, &#x27;OrderQuantity&#x27;] do not match expected role &#x27;dimension&#x27;&quot;
+  ]
+}</pre>
+        </section>
+    </div>
+</body>
+</html>

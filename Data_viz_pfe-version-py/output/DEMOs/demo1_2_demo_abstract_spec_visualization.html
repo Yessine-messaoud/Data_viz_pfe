@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Abstract Spec - Viz Agent</title>
+    <style>
+        :root {
+            --bg: #f5f4ef;
+            --card: #ffffff;
+            --ink: #1c1c1a;
+            --muted: #5b5b56;
+            --line: #dfddd3;
+            --accent: #0d7a5f;
+        }
+        body {
+            margin: 0;
+            font-family: Segoe UI, Helvetica, Arial, sans-serif;
+            color: var(--ink);
+            background: radial-gradient(circle at top right, #efe8d1, var(--bg));
+        }
+        .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+        .header { margin-bottom: 18px; }
+        .header h1 { margin: 0 0 8px; }
+        .header p { margin: 0; color: var(--muted); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin: 14px 0 24px; }
+        .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+        .kpi .label { color: var(--muted); font-size: 12px; }
+        .kpi .value { font-size: 24px; font-weight: 700; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+        h2 { margin-top: 0; }
+        ul { margin-top: 8px; }
+        .page { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 12px; }
+        pre {
+            background: #141414;
+            color: #dbf8d3;
+            border-radius: 10px;
+            padding: 12px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+        .badge {
+            display: inline-block;
+            margin-left: 8px;
+            background: #def4ec;
+            color: var(--accent);
+            border: 1px solid #badfd3;
+            border-radius: 999px;
+            padding: 2px 10px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <header class="header">
+            <h1>Abstract Spec</h1>
+            <p>Version 2.0.0 <span class="badge">466c89a2-9870-49e6-b332-01441ae7bc86</span></p>
+        </header>
+
+        <section class="grid">
+            <article class="kpi"><div class="label">Pages</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Visuals</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Tables</div><div class="value">1</div></article>
+            <article class="kpi"><div class="label">Measures</div><div class="value">2</div></article>
+        </section>
+
+        <section class="card">
+            <h2>Pages et Visuals</h2>
+            <section class='page'><h3>Tableau de bord 1</h3><p>1 visual(s)</p><ul><li><strong>Sales per country</strong> (pie) - source: Feuille 1</li></ul></section>
+        </section>
+
+        <section class="card">
+            <h2>Tables</h2>
+            <ul><li>federated.1v3o2r30w2rgsv1aei9is1e9duvo (2 colonne(s))</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>Measures</h2>
+            <ul><li>Sum SalesAmount</li><li>Sum SalesTerritoryCountry</li></ul>
+        </section>
+
+        <section class="card">
+            <h2>JSON Complet</h2>
+            <pre>{
+  &quot;id&quot;: &quot;466c89a2-9870-49e6-b332-01441ae7bc86&quot;,
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;created_at&quot;: &quot;2026-04-01T15:47:20.789699+00:00&quot;,
+  &quot;source_fingerprint&quot;: &quot;842e90d8b46bc6a15e1f6d9609ccb6bb5a98a04e96a4c0bf55e0334ea76298b8&quot;,
+  &quot;dashboard_spec&quot;: {
+    &quot;pages&quot;: [
+      {
+        &quot;id&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;visuals&quot;: [
+          {
+            &quot;id&quot;: &quot;Feuille 1&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 1&quot;,
+            &quot;type&quot;: &quot;pie&quot;,
+            &quot;rdl_type&quot;: &quot;chart&quot;,
+            &quot;title&quot;: &quot;Sales per country&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {},
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                }
+              ],
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;chart&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          }
+        ]
+      }
+    ],
+    &quot;global_filters&quot;: [
+      {
+        &quot;field&quot;: &quot;SalesTerritoryCountry&quot;,
+        &quot;operator&quot;: &quot;=&quot;,
+        &quot;value&quot;: null,
+        &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+      }
+    ],
+    &quot;theme&quot;: {
+      &quot;name&quot;: &quot;tableau-imported&quot;
+    }
+  },
+  &quot;semantic_model&quot;: {
+    &quot;entities&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;source_name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Montant des ventes&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Pays de la zone de vente&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;measures&quot;: [
+      {
+        &quot;name&quot;: &quot;Sum SalesAmount&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesAmount])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesAmount&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum SalesTerritoryCountry&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesTerritoryCountry])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesTerritoryCountry&quot;
+      }
+    ],
+    &quot;dimensions&quot;: [
+      {
+        &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+      }
+    ],
+    &quot;hierarchies&quot;: [],
+    &quot;relationships&quot;: [],
+    &quot;glossary&quot;: [],
+    &quot;fact_table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;grain&quot;: &quot;row&quot;
+  },
+  &quot;data_lineage&quot;: {
+    &quot;tables&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;source_name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Montant des ventes&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;Pays de la zone de vente&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;joins&quot;: [],
+    &quot;columns_used&quot;: [],
+    &quot;measures&quot;: [],
+    &quot;filters_applied&quot;: [],
+    &quot;transformations&quot;: [],
+    &quot;visual_column_map&quot;: {}
+  },
+  &quot;rdl_datasets&quot;: [
+    {
+      &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+      &quot;query&quot;: &quot;SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey&quot;,
+      &quot;connection_ref&quot;: &quot;DataSource1&quot;,
+      &quot;fields&quot;: [
+        {
+          &quot;name&quot;: &quot;SalesAmount&quot;,
+          &quot;data_field&quot;: &quot;SalesAmount&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;data_field&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        }
+      ]
+    }
+  ],
+  &quot;build_log&quot;: [
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;AbstractSpec v2 built&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-01T15:47:20.789729+00:00&quot;
+    }
+  ],
+  &quot;warnings&quot;: []
+}</pre>
+        </section>
+    </div>
+</body>
+</html>

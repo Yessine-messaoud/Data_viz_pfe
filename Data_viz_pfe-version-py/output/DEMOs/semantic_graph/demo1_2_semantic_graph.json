@@ -1,0 +1,202 @@
+{
+  "input": "input\\demo1.2.twbx",
+  "phase0_mode": "live_sql",
+  "graph": {
+    "nodes": [
+      {
+        "id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "type": "Table",
+        "label": "Table",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "schema": "dbo"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "Column",
+        "label": "Column",
+        "name": "SalesAmount",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "measure",
+        "pbi_type": "decimal"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "Column",
+        "label": "Column",
+        "name": "SalesTerritoryCountry",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "dimension",
+        "pbi_type": "text"
+      },
+      {
+        "id": "measure:Sum_SalesAmount",
+        "type": "Measure",
+        "label": "Measure",
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])"
+      },
+      {
+        "id": "measure:Sum_SalesTerritoryCountry",
+        "type": "Measure",
+        "label": "Measure",
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])"
+      },
+      {
+        "id": "term:Sales",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Sales"
+      },
+      {
+        "id": "term:Product",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Product"
+      },
+      {
+        "id": "term:Customer",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Customer"
+      },
+      {
+        "id": "term:Geography",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Geography"
+      },
+      {
+        "id": "term:Time",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Time"
+      },
+      {
+        "id": "term:Revenue",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Revenue"
+      },
+      {
+        "id": "term:Quantity",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Quantity"
+      },
+      {
+        "id": "term:Profit",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Profit"
+      },
+      {
+        "id": "term:Discount",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Discount"
+      },
+      {
+        "id": "term:Tax",
+        "type": "BusinessTerm",
+        "label": "BusinessTerm",
+        "name": "Tax"
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      }
+    ],
+    "persisted": false,
+    "error": ""
+  },
+  "mappings": [
+    {
+      "column": "SalesAmount",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "SalesTerritoryCountry",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    }
+  ],
+  "orchestration": {
+    "selected_path": "cache",
+    "threshold": 0.85,
+    "confidence": 0.6400000000000001,
+    "confidence_components": {
+      "heuristic_score": 0.9,
+      "profiling_score": 0.5,
+      "ontology_score": 0.9,
+      "llm_score": 0.0
+    },
+    "cached_from": "fallback",
+    "cache_key": "3382e4fdefae1bed7e5b4a3a3cb590f7744380caa55857faaa0076438e4e27f9"
+  },
+  "ontology_terms": [
+    "Sales",
+    "Product",
+    "Customer",
+    "Geography",
+    "Time",
+    "Revenue",
+    "Quantity",
+    "Profit",
+    "Discount",
+    "Tax"
+  ]
+}

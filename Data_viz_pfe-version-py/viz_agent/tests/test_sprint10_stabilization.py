@@ -7,9 +7,9 @@ from pathlib import Path
 import pytest
 
 from viz_agent.main import run_pipeline
-from viz_agent.phase0_data.hyper_extractor import HyperExtractor
+from viz_agent.phase0_extraction.hyper_extractor import HyperExtractor
 from viz_agent.phase1_parser.tableau_parser import TableauParser
-from viz_agent.phase0_data.data_source_registry import DataSourceRegistry
+from viz_agent.phase0_extraction.data_source_registry import DataSourceRegistry
 
 
 def test_run_pipeline_fails_when_input_missing(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -31,7 +31,7 @@ def test_parser_fails_on_invalid_xml(tmp_path: Path) -> None:
 
 
 def test_hyper_extractor_raises_if_no_dependency(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
-    monkeypatch.setattr("viz_agent.phase0_data.hyper_extractor.PANTAB_AVAILABLE", False)
+    monkeypatch.setattr("viz_agent.phase0_extraction.hyper_extractor.PANTAB_AVAILABLE", False)
 
     def _raise_native(_self, _hyper_path):
         raise RuntimeError("Hyper extraction requires pantab or tableauhyperapi. Install one of them.")

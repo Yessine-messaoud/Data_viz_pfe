@@ -1,0 +1,688 @@
+{
+  "target_tool": "RDL",
+  "datasets": [
+    {
+      "name": "unknown_90f4cc72",
+      "source_name": "unknown",
+      "query": "SELECT [SalesTerritoryCountry] AS [SalesTerritoryCountry], SUM([SalesAmount]) AS [SalesAmount] FROM [unknown] GROUP BY [SalesTerritoryCountry]",
+      "fields": [
+        {
+          "name": "SalesTerritoryCountry",
+          "source_field": "SalesTerritoryCountry",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "source_table": "AdventureworksDW2022"
+        },
+        {
+          "name": "SalesAmount",
+          "source_field": "SalesAmount",
+          "role": "measure",
+          "rdl_type": "Decimal",
+          "aggregation": "Sum",
+          "expression": "=Fields!SalesAmount.Value",
+          "source_table": "AdventureworksDW2022"
+        }
+      ],
+      "group_by": [
+        "SalesTerritoryCountry"
+      ],
+      "visual_ids": [
+        "Feuille 1"
+      ],
+      "signature": "unknown|salesterritorycountry|salesamount|bar"
+    },
+    {
+      "name": "unknown_6e86e740",
+      "source_name": "unknown",
+      "query": "SELECT [ModelName] AS [ModelName], [SalesTerritoryCountry] AS [SalesTerritoryCountry], [TaxAmt] AS [TaxAmt], SUM([TaxAmt]) AS [TaxAmt] FROM [unknown] GROUP BY [ModelName], [SalesTerritoryCountry], [TaxAmt]",
+      "fields": [
+        {
+          "name": "ModelName",
+          "source_field": "ModelName",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!ModelName.Value",
+          "source_table": "AdventureworksDW2022"
+        },
+        {
+          "name": "SalesTerritoryCountry",
+          "source_field": "SalesTerritoryCountry",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "source_table": "AdventureworksDW2022"
+        },
+        {
+          "name": "TaxAmt",
+          "source_field": "TaxAmt",
+          "role": "dimension",
+          "rdl_type": "Decimal",
+          "aggregation": "",
+          "expression": "=Fields!TaxAmt.Value",
+          "source_table": "AdventureworksDW2022"
+        }
+      ],
+      "group_by": [
+        "ModelName",
+        "SalesTerritoryCountry",
+        "TaxAmt"
+      ],
+      "visual_ids": [
+        "Feuille 2"
+      ],
+      "signature": "unknown|modelname,salesterritorycountry,taxamt|taxamt|bar"
+    },
+    {
+      "name": "unknown_478346f0",
+      "source_name": "unknown",
+      "query": "SELECT [SalesTerritoryCountry] AS [SalesTerritoryCountry], COUNT([SalesTerritoryCountry]) AS [SalesTerritoryCountry], COUNT([OrderQuantity]) AS [OrderQuantity] FROM [unknown] GROUP BY [SalesTerritoryCountry]",
+      "fields": [
+        {
+          "name": "SalesTerritoryCountry",
+          "source_field": "SalesTerritoryCountry",
+          "role": "dimension",
+          "rdl_type": "String",
+          "aggregation": "",
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "source_table": "AdventureworksDW2022"
+        },
+        {
+          "name": "OrderQuantity",
+          "source_field": "OrderQuantity",
+          "role": "measure",
+          "rdl_type": "Decimal",
+          "aggregation": "Count",
+          "expression": "=Fields!OrderQuantity.Value",
+          "source_table": "AdventureworksDW2022"
+        }
+      ],
+      "group_by": [
+        "SalesTerritoryCountry"
+      ],
+      "visual_ids": [
+        "distribution"
+      ],
+      "signature": "unknown|salesterritorycountry|orderquantity,salesterritorycountry|pie"
+    }
+  ],
+  "visuals": [
+    {
+      "id": "Feuille 1",
+      "source_worksheet": "Feuille 1",
+      "type": "bar",
+      "rdl_type": "ColumnChart",
+      "title": "Sales per country",
+      "position": {},
+      "data_binding": {
+        "axes": {
+          "x": {
+            "table": "unknown",
+            "column": "SalesTerritoryCountry"
+          },
+          "y": {
+            "name": "SalesAmount"
+          }
+        },
+        "measures": [
+          {
+            "name": "SalesTerritoryCountry"
+          },
+          {
+            "name": "SalesAmount"
+          }
+        ],
+        "group_by": [
+          "SalesTerritoryCountry",
+          "SalesTerritoryCountry"
+        ],
+        "hierarchy": [
+          "SalesTerritoryCountry"
+        ],
+        "aggregation": "SUM",
+        "filters": [],
+        "visual_type_override": "Column",
+        "pending_translations": []
+      },
+      "page_id": "Tableau de bord 1",
+      "page_name": "Tableau de bord 1",
+      "dataset": "unknown_90f4cc72",
+      "dataset_name": "unknown_90f4cc72",
+      "business_type": "bar",
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "id": "Feuille 2",
+      "source_worksheet": "Feuille 2",
+      "type": "bar",
+      "rdl_type": "ColumnChart",
+      "title": "Tax per country",
+      "position": {},
+      "data_binding": {
+        "axes": {
+          "x": {
+            "table": "unknown",
+            "column": "ModelName"
+          },
+          "y": {
+            "name": "TaxAmt"
+          }
+        },
+        "measures": [
+          {
+            "name": "SalesTerritoryCountry"
+          },
+          {
+            "name": "TaxAmt"
+          }
+        ],
+        "group_by": [
+          "SalesTerritoryCountry",
+          "ModelName",
+          "TaxAmt"
+        ],
+        "hierarchy": [
+          "SalesTerritoryCountry",
+          "TaxAmt"
+        ],
+        "aggregation": "SUM",
+        "filters": [],
+        "visual_type_override": "Column",
+        "pending_translations": []
+      },
+      "page_id": "Tableau de bord 1",
+      "page_name": "Tableau de bord 1",
+      "dataset": "unknown_6e86e740",
+      "dataset_name": "unknown_6e86e740",
+      "business_type": "bar",
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "id": "distribution",
+      "source_worksheet": "distribution",
+      "type": "pie",
+      "rdl_type": "PieChart",
+      "title": "distribution",
+      "position": {},
+      "data_binding": {
+        "axes": {
+          "size": {
+            "name": "OrderQuantity"
+          },
+          "x": {
+            "table": "unknown",
+            "column": "SalesTerritoryCountry"
+          },
+          "y": {
+            "name": "SalesTerritoryCountry"
+          }
+        },
+        "measures": [
+          {
+            "name": "SalesTerritoryCountry"
+          },
+          {
+            "name": "OrderQuantity"
+          }
+        ],
+        "group_by": [
+          "SalesTerritoryCountry"
+        ],
+        "hierarchy": [],
+        "aggregation": "SUM",
+        "filters": [],
+        "visual_type_override": "Pie",
+        "pending_translations": []
+      },
+      "page_id": "Tableau de bord 1",
+      "page_name": "Tableau de bord 1",
+      "dataset": "unknown_478346f0",
+      "dataset_name": "unknown_478346f0",
+      "business_type": "pie",
+      "tool_visual_type": "PieChart"
+    }
+  ],
+  "measures": [
+    {
+      "name": "Sum SalesAmount",
+      "expression": "SUM([SalesAmount])",
+      "translated_expression": "=Sum(Fields!SalesAmount.Value)",
+      "rdl_expression": "=Sum(Fields!SalesAmount.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesAmount"
+    },
+    {
+      "name": "Sum SalesTerritoryCountry",
+      "expression": "SUM([SalesTerritoryCountry])",
+      "translated_expression": "=Fields!SalesTerritoryCountry.Value",
+      "rdl_expression": "=Fields!SalesTerritoryCountry.Value",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "SalesTerritoryCountry"
+    },
+    {
+      "name": "Sum TaxAmt",
+      "expression": "SUM([TaxAmt])",
+      "translated_expression": "=Sum(Fields!TaxAmt.Value)",
+      "rdl_expression": "=Sum(Fields!TaxAmt.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "TaxAmt"
+    },
+    {
+      "name": "Sum OrderQuantity",
+      "expression": "SUM([OrderQuantity])",
+      "translated_expression": "=Sum(Fields!OrderQuantity.Value)",
+      "rdl_expression": "=Sum(Fields!OrderQuantity.Value)",
+      "source_columns": [],
+      "pattern": "",
+      "template_args": {},
+      "tableau_expression": "OrderQuantity"
+    }
+  ],
+  "parameters": [],
+  "filters": [],
+  "semantic_model": {
+    "entities": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "AdventureworksDW2022",
+        "source_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "measures": [
+      {
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesAmount"
+      },
+      {
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "SalesTerritoryCountry"
+      },
+      {
+        "name": "Sum TaxAmt",
+        "expression": "SUM([TaxAmt])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "TaxAmt"
+      },
+      {
+        "name": "Sum OrderQuantity",
+        "expression": "SUM([OrderQuantity])",
+        "rdl_expression": "",
+        "source_columns": [],
+        "pattern": "",
+        "template_args": {},
+        "tableau_expression": "OrderQuantity"
+      }
+    ],
+    "dimensions": [
+      {
+        "table": "AdventureworksDW2022",
+        "column": "SalesTerritoryCountry"
+      },
+      {
+        "table": "AdventureworksDW2022",
+        "column": "ModelName"
+      }
+    ],
+    "hierarchies": [],
+    "relationships": [],
+    "glossary": [],
+    "fact_table": "AdventureworksDW2022",
+    "grain": "row"
+  },
+  "lineage": {
+    "tables": [
+      {
+        "id": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "name": "AdventureworksDW2022",
+        "source_name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "schema": "dbo",
+        "columns": [
+          {
+            "name": "SalesAmount",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "SalesTerritoryCountry",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "ModelName",
+            "pbi_type": "text",
+            "role": "dimension",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "TaxAmt",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          },
+          {
+            "name": "OrderQuantity",
+            "pbi_type": "decimal",
+            "role": "measure",
+            "is_hidden": false,
+            "label": ""
+          }
+        ],
+        "is_date_table": false,
+        "row_count": 0
+      }
+    ],
+    "joins": [
+      {
+        "id": "join_src_0",
+        "left_table": "[dbo].[FactInternetSales]",
+        "right_table": "[dbo].[DimCurrency]",
+        "left_col": "id",
+        "right_col": "id",
+        "type": "INNER",
+        "pbi_cardinality": "ManyToOne",
+        "source_xml_ref": ""
+      }
+    ],
+    "columns_used": [],
+    "measures": [],
+    "filters_applied": [],
+    "transformations": [],
+    "visual_column_map": {}
+  },
+  "meta": {
+    "source_spec_id": "8f66ce4a-ffc1-4d66-9d84-fcb16241acb6",
+    "source_spec_version": "2.0.0",
+    "intent": {
+      "type": "conversion",
+      "action": "export_rdl",
+      "constraints": {},
+      "pipeline_target": "tableau_to_rdl",
+      "artifacts": {
+        "input_format": "twbx",
+        "output_format": "rdl"
+      }
+    }
+  },
+  "compatibility_notes": [],
+  "validation_results": [],
+  "lineage_events": [
+    {
+      "phase": "phase4_transform",
+      "timestamp": "2026-04-06T10:51:29.840874+00:00",
+      "datasets_count": 3,
+      "visuals_count": 3,
+      "status": "ok",
+      "field_to_dataset": [
+        {
+          "field": "SalesTerritoryCountry",
+          "dataset": "unknown_90f4cc72"
+        },
+        {
+          "field": "SalesAmount",
+          "dataset": "unknown_90f4cc72"
+        },
+        {
+          "field": "ModelName",
+          "dataset": "unknown_6e86e740"
+        },
+        {
+          "field": "SalesTerritoryCountry",
+          "dataset": "unknown_6e86e740"
+        },
+        {
+          "field": "TaxAmt",
+          "dataset": "unknown_6e86e740"
+        },
+        {
+          "field": "SalesTerritoryCountry",
+          "dataset": "unknown_478346f0"
+        },
+        {
+          "field": "OrderQuantity",
+          "dataset": "unknown_478346f0"
+        }
+      ],
+      "dataset_to_visual": [
+        {
+          "dataset": "unknown_90f4cc72",
+          "visual": "Feuille 1"
+        },
+        {
+          "dataset": "unknown_6e86e740",
+          "visual": "Feuille 2"
+        },
+        {
+          "dataset": "unknown_478346f0",
+          "visual": "distribution"
+        }
+      ],
+      "expression_to_rdl_field": [
+        {
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "rdl_field": "SalesTerritoryCountry"
+        },
+        {
+          "expression": "=Fields!SalesAmount.Value",
+          "rdl_field": "SalesAmount"
+        },
+        {
+          "expression": "=Fields!ModelName.Value",
+          "rdl_field": "ModelName"
+        },
+        {
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "rdl_field": "SalesTerritoryCountry"
+        },
+        {
+          "expression": "=Fields!TaxAmt.Value",
+          "rdl_field": "TaxAmt"
+        },
+        {
+          "expression": "=Fields!SalesTerritoryCountry.Value",
+          "rdl_field": "SalesTerritoryCountry"
+        },
+        {
+          "expression": "=Fields!OrderQuantity.Value",
+          "rdl_field": "OrderQuantity"
+        }
+      ]
+    }
+  ],
+  "transform_log": [
+    {
+      "step": "dataset_creation",
+      "dataset": "unknown_90f4cc72",
+      "source": "unknown",
+      "visual": "Feuille 1",
+      "dimensions": [
+        "SalesTerritoryCountry"
+      ],
+      "measures": [
+        "SalesAmount"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "dataset_creation",
+      "dataset": "unknown_6e86e740",
+      "source": "unknown",
+      "visual": "Feuille 2",
+      "dimensions": [
+        "ModelName",
+        "SalesTerritoryCountry",
+        "TaxAmt"
+      ],
+      "measures": [
+        "TaxAmt"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "dataset_creation",
+      "dataset": "unknown_478346f0",
+      "source": "unknown",
+      "visual": "distribution",
+      "dimensions": [
+        "SalesTerritoryCountry"
+      ],
+      "measures": [
+        "SalesTerritoryCountry",
+        "OrderQuantity"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "aggregation_decision",
+      "dataset": "unknown_90f4cc72",
+      "group_by": [
+        "SalesTerritoryCountry"
+      ],
+      "aggregations": [
+        "Sum"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "aggregation_decision",
+      "dataset": "unknown_6e86e740",
+      "group_by": [
+        "ModelName",
+        "SalesTerritoryCountry",
+        "TaxAmt"
+      ],
+      "aggregations": [
+        "Sum"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "aggregation_decision",
+      "dataset": "unknown_478346f0",
+      "group_by": [
+        "SalesTerritoryCountry"
+      ],
+      "aggregations": [
+        "Count",
+        "Count"
+      ],
+      "status": "done"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum SalesAmount",
+      "expression": "SUM([SalesAmount])",
+      "translated": "=Sum(Fields!SalesAmount.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum SalesTerritoryCountry",
+      "expression": "SUM([SalesTerritoryCountry])",
+      "translated": "=Fields!SalesTerritoryCountry.Value"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum TaxAmt",
+      "expression": "SUM([TaxAmt])",
+      "translated": "=Sum(Fields!TaxAmt.Value)"
+    },
+    {
+      "step": "calculation_translation",
+      "measure": "Sum OrderQuantity",
+      "expression": "SUM([OrderQuantity])",
+      "translated": "=Sum(Fields!OrderQuantity.Value)"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done",
+      "visual_id": "Feuille 1",
+      "dataset": "unknown_90f4cc72",
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done",
+      "visual_id": "Feuille 2",
+      "dataset": "unknown_6e86e740",
+      "tool_visual_type": "ColumnChart"
+    },
+    {
+      "step": "visual_mapping",
+      "status": "done",
+      "visual_id": "distribution",
+      "dataset": "unknown_478346f0",
+      "tool_visual_type": "PieChart"
+    }
+  ],
+  "warnings": [
+    "Removed invalid SUM aggregation on dimension 'SalesTerritoryCountry'"
+  ],
+  "errors": []
+}

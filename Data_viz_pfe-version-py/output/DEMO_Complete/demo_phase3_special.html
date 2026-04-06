@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang='fr'>
+<head>
+  <meta charset='utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <title>Phase 3 Special Demo</title>
+  <style>
+    :root { --bg: #f3efe8; --panel: #ffffff; --ink: #181612; --muted: #646058; --line: #ddd6c9; --accent: #0f766e; --warn: #b45309; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Segoe UI, Helvetica, Arial, sans-serif; color: var(--ink); background: radial-gradient(circle at top right, #efe6d1, var(--bg)); }
+    .wrap { max-width: 1320px; margin: 0 auto; padding: 24px; }
+    .hero { display: flex; justify-content: space-between; gap: 16px; align-items: flex-end; flex-wrap: wrap; margin-bottom: 18px; }
+    .hero h1 { margin: 0; font-size: 34px; letter-spacing: -0.03em; }
+    .hero p { margin: 8px 0 0; max-width: 920px; color: var(--muted); }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 18px 0 24px; }
+    .metric { background: rgba(255,255,255,0.92); border: 1px solid var(--line); border-radius: 18px; padding: 14px 16px; box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06); }
+    .metric span { display: block; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+    .metric strong { display: block; margin-top: 6px; font-size: 28px; line-height: 1.1; }
+    .section { margin: 22px 0; }
+    .section h2 { margin: 0 0 12px; font-size: 18px; }
+    .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 18px; box-shadow: 0 14px 35px rgba(15, 23, 42, 0.06); }
+    .page { margin-top: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: #faf9f6; }
+    .page-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 12px; }
+    .page-head h3 { margin: 0; }
+    .page-meta { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+    .visual-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .visual-card { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 14px; }
+    .visual-card.good { box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.08); }
+    .visual-card.warn { box-shadow: inset 0 0 0 1px rgba(180, 83, 9, 0.10); }
+    .visual-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; margin-bottom: 10px; }
+    .visual-head h4 { margin: 0; font-size: 15px; }
+    .visual-head p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+    .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 4px 10px; font-size: 11px; font-weight: 700; border: 1px solid #cbd5e1; background: #e0f2fe; color: #075985; }
+    .visual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .label { display: block; font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; }
+    .kv { display: flex; justify-content: space-between; gap: 10px; padding: 6px 8px; border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 6px; background: #fcfcfc; }
+    .kv span { color: var(--muted); font-size: 12px; text-transform: uppercase; }
+    .kv strong { font-size: 12px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Consolas, Monaco, monospace; font-size: 12px; }
+    .footer { margin-top: 10px; display: flex; justify-content: space-between; color: var(--muted); font-size: 12px; }
+    .build-log { display: grid; gap: 8px; }
+    .log-item { padding: 10px 12px; border-radius: 12px; background: #fcfcfb; border: 1px solid var(--line); }
+    .log-item strong { display: block; margin-bottom: 4px; }
+    .muted { color: var(--muted); }
+    ul { margin: 6px 0 0; padding-left: 18px; }
+    pre { margin: 0; white-space: pre-wrap; word-break: break-word; background: #111; color: #d3ffd4; padding: 12px; border-radius: 14px; }
+    @media (max-width: 1000px) { .metrics, .visual-list, .visual-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class='wrap'>
+    <div class='hero'>
+      <div>
+        <h1>Phase 3 Special Demo</h1>
+        <p>Démo centrée sur la couche contractuelle de l'Abstract Spec: décision visuelle, validation des bindings, corrections et traçabilité du build log.</p>
+      </div>
+      <div class='pill'>2.0.0</div>
+    </div>
+
+    <div class='metrics'>
+      <div class='metric'><span>Pages</span><strong>1</strong></div>
+      <div class='metric'><span>Visuals</span><strong>3</strong></div>
+      <div class='metric'><span>Contrats OK</span><strong>3</strong></div>
+      <div class='metric'><span>A vérifier</span><strong>0</strong></div>
+    </div>
+
+    <section class='section panel'>
+      <h2>Pages et Visuals</h2>
+      <section class='page'><div class='page-head'><h3>Tableau de bord 1</h3><span class='page-meta'>3 visual(s)</span></div><div class='visual-list'><section class='visual-card good'><div class='visual-head'><div><h4>Sales per country</h4><p>Feuille 1</p></div><span class='pill'>bar / ColumnChart</span></div><div class='visual-grid'><div><span class='label'>Binding</span><div class='kv'><span>x</span><strong>SalesTerritoryCountry</strong></div><div class='kv'><span>y</span><strong>SalesAmount</strong></div><div class='kv'><span>color</span><strong>SalesTerritoryCountry</strong></div><div class='kv'><span>size</span><strong>SalesAmount</strong></div><div class='kv'><span>detail</span><strong>-</strong></div></div><div><span class='label'>Measures</span><ul><li>SalesAmount</li></ul></div><div><span class='label'>Group By</span><span class='muted'>Aucun</span></div><div><span class='label'>Hierarchy</span><span class='muted'>Aucun</span></div><div><span class='label'>Aggregation</span><div class='mono'>-</div></div><div><span class='label'>Warnings</span><span class='muted'>Aucun</span></div></div><div class='footer'><span>Contract</span><strong>OK</strong></div></section><section class='visual-card good'><div class='visual-head'><div><h4>Tax per country</h4><p>Feuille 2</p></div><span class='pill'>bar / ColumnChart</span></div><div class='visual-grid'><div><span class='label'>Binding</span><div class='kv'><span>x</span><strong>SalesTerritoryCountry</strong></div><div class='kv'><span>y</span><strong>TaxAmt</strong></div><div class='kv'><span>color</span><strong>ModelName</strong></div><div class='kv'><span>size</span><strong>SalesTerritoryCountry</strong></div><div class='kv'><span>detail</span><strong>TaxAmt</strong></div></div><div><span class='label'>Measures</span><ul><li>TaxAmt</li></ul></div><div><span class='label'>Group By</span><span class='muted'>Aucun</span></div><div><span class='label'>Hierarchy</span><span class='muted'>Aucun</span></div><div><span class='label'>Aggregation</span><div class='mono'>-</div></div><div><span class='label'>Warnings</span><span class='muted'>Aucun</span></div></div><div class='footer'><span>Contract</span><strong>OK</strong></div></section><section class='visual-card good'><div class='visual-head'><div><h4>Feuille 3</h4><p>Feuille 3</p></div><span class='pill'>treemap / TreeMap</span></div><div class='visual-grid'><div><span class='label'>Binding</span><div class='kv'><span>x</span><strong>-</strong></div><div class='kv'><span>y</span><strong>-</strong></div><div class='kv'><span>color</span><strong>OrderQuantity</strong></div><div class='kv'><span>size</span><strong>OrderQuantity</strong></div><div class='kv'><span>detail</span><strong>SalesTerritoryCountry</strong></div></div><div><span class='label'>Measures</span><ul><li>OrderQuantity</li></ul></div><div><span class='label'>Group By</span><span class='muted'>Aucun</span></div><div><span class='label'>Hierarchy</span><span class='muted'>Aucun</span></div><div><span class='label'>Aggregation</span><div class='mono'>-</div></div><div><span class='label'>Warnings</span><span class='muted'>Aucun</span></div></div><div class='footer'><span>Contract</span><strong>OK</strong></div></section></div></section>
+    </section>
+
+    <section class='section panel'>
+      <h2>Build Log</h2>
+      <div class='build-log'>
+        <div class='log-item'><strong>AbstractSpec v2 built</strong><div>AbstractSpec v2 built</div></div>
+      </div>
+    </section>
+
+    <section class='section panel'>
+      <h2>Warnings</h2>
+      <span class='muted'>Aucun</span>
+    </section>
+
+    <section class='section panel'>
+      <h2>Abstract Spec JSON</h2>
+      <pre>{
+  &quot;id&quot;: &quot;aabbdc2e-f5d3-4f6d-a061-47cf1c37f5d3&quot;,
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;created_at&quot;: &quot;2026-04-03T08:32:39.089293+00:00&quot;,
+  &quot;source_fingerprint&quot;: &quot;f142179ebdcaea2ab775fb59b05157536174f02b16bf91e0245d897da4109372&quot;,
+  &quot;dashboard_spec&quot;: {
+    &quot;pages&quot;: [
+      {
+        &quot;id&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;name&quot;: &quot;Tableau de bord 1&quot;,
+        &quot;visuals&quot;: [
+          {
+            &quot;id&quot;: &quot;Feuille 1&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 1&quot;,
+            &quot;type&quot;: &quot;bar&quot;,
+            &quot;rdl_type&quot;: &quot;ColumnChart&quot;,
+            &quot;title&quot;: &quot;Sales per country&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                },
+                &quot;color&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;size&quot;: {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;SalesAmount&quot;
+                }
+              ],
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Column&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          },
+          {
+            &quot;id&quot;: &quot;Feuille 2&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 2&quot;,
+            &quot;type&quot;: &quot;bar&quot;,
+            &quot;rdl_type&quot;: &quot;ColumnChart&quot;,
+            &quot;title&quot;: &quot;Tax per country&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;x&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;y&quot;: {
+                  &quot;name&quot;: &quot;TaxAmt&quot;
+                },
+                &quot;color&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;ModelName&quot;
+                },
+                &quot;size&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                },
+                &quot;detail&quot;: {
+                  &quot;name&quot;: &quot;TaxAmt&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;TaxAmt&quot;
+                }
+              ],
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Column&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          },
+          {
+            &quot;id&quot;: &quot;Feuille 3&quot;,
+            &quot;source_worksheet&quot;: &quot;Feuille 3&quot;,
+            &quot;type&quot;: &quot;treemap&quot;,
+            &quot;rdl_type&quot;: &quot;TreeMap&quot;,
+            &quot;title&quot;: &quot;Feuille 3&quot;,
+            &quot;position&quot;: {},
+            &quot;data_binding&quot;: {
+              &quot;axes&quot;: {
+                &quot;color&quot;: {
+                  &quot;name&quot;: &quot;OrderQuantity&quot;
+                },
+                &quot;size&quot;: {
+                  &quot;name&quot;: &quot;OrderQuantity&quot;
+                },
+                &quot;detail&quot;: {
+                  &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+                  &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+                }
+              },
+              &quot;measures&quot;: [
+                {
+                  &quot;name&quot;: &quot;OrderQuantity&quot;
+                }
+              ],
+              &quot;filters&quot;: [],
+              &quot;visual_type_override&quot;: &quot;Column&quot;,
+              &quot;pending_translations&quot;: []
+            }
+          }
+        ]
+      }
+    ],
+    &quot;global_filters&quot;: [
+      {
+        &quot;field&quot;: &quot;SalesTerritoryCountry&quot;,
+        &quot;operator&quot;: &quot;=&quot;,
+        &quot;value&quot;: null,
+        &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+      },
+      {
+        &quot;field&quot;: &quot;ModelName&quot;,
+        &quot;operator&quot;: &quot;=&quot;,
+        &quot;value&quot;: null,
+        &quot;column&quot;: &quot;ModelName&quot;
+      }
+    ],
+    &quot;theme&quot;: {
+      &quot;name&quot;: &quot;tableau-imported&quot;
+    }
+  },
+  &quot;semantic_model&quot;: {
+    &quot;entities&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;source_name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;ModelName&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TaxAmt&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;measures&quot;: [
+      {
+        &quot;name&quot;: &quot;Sum SalesAmount&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesAmount])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesAmount&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum SalesTerritoryCountry&quot;,
+        &quot;expression&quot;: &quot;SUM([SalesTerritoryCountry])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;SalesTerritoryCountry&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum TaxAmt&quot;,
+        &quot;expression&quot;: &quot;SUM([TaxAmt])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;TaxAmt&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Sum OrderQuantity&quot;,
+        &quot;expression&quot;: &quot;SUM([OrderQuantity])&quot;,
+        &quot;rdl_expression&quot;: &quot;&quot;,
+        &quot;source_columns&quot;: [],
+        &quot;pattern&quot;: &quot;&quot;,
+        &quot;template_args&quot;: {},
+        &quot;tableau_expression&quot;: &quot;OrderQuantity&quot;
+      }
+    ],
+    &quot;dimensions&quot;: [
+      {
+        &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;column&quot;: &quot;SalesTerritoryCountry&quot;
+      },
+      {
+        &quot;table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;column&quot;: &quot;ModelName&quot;
+      }
+    ],
+    &quot;hierarchies&quot;: [],
+    &quot;relationships&quot;: [],
+    &quot;glossary&quot;: [],
+    &quot;fact_table&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+    &quot;grain&quot;: &quot;row&quot;
+  },
+  &quot;data_lineage&quot;: {
+    &quot;tables&quot;: [
+      {
+        &quot;id&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+        &quot;source_name&quot;: &quot;AdventureworksDW2022&quot;,
+        &quot;schema&quot;: &quot;dbo&quot;,
+        &quot;columns&quot;: [
+          {
+            &quot;name&quot;: &quot;SalesAmount&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;ModelName&quot;,
+            &quot;pbi_type&quot;: &quot;text&quot;,
+            &quot;role&quot;: &quot;dimension&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;TaxAmt&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          },
+          {
+            &quot;name&quot;: &quot;OrderQuantity&quot;,
+            &quot;pbi_type&quot;: &quot;decimal&quot;,
+            &quot;role&quot;: &quot;measure&quot;,
+            &quot;is_hidden&quot;: false,
+            &quot;label&quot;: &quot;&quot;
+          }
+        ],
+        &quot;is_date_table&quot;: false,
+        &quot;row_count&quot;: 0
+      }
+    ],
+    &quot;joins&quot;: [],
+    &quot;columns_used&quot;: [],
+    &quot;measures&quot;: [],
+    &quot;filters_applied&quot;: [],
+    &quot;transformations&quot;: [],
+    &quot;visual_column_map&quot;: {}
+  },
+  &quot;rdl_datasets&quot;: [
+    {
+      &quot;name&quot;: &quot;federated.1v3o2r30w2rgsv1aei9is1e9duvo&quot;,
+      &quot;query&quot;: &quot;SELECT st.SalesTerritoryCountry AS SalesTerritoryCountry, p.ModelName AS ModelName, f.SalesAmount AS SalesAmount, f.TaxAmt AS TaxAmt, f.OrderQuantity AS OrderQuantity FROM dbo.FactInternetSales AS f INNER JOIN dbo.DimSalesTerritory AS st ON f.SalesTerritoryKey = st.SalesTerritoryKey INNER JOIN dbo.DimProduct AS p ON f.ProductKey = p.ProductKey&quot;,
+      &quot;connection_ref&quot;: &quot;DataSource1&quot;,
+      &quot;fields&quot;: [
+        {
+          &quot;name&quot;: &quot;SalesAmount&quot;,
+          &quot;data_field&quot;: &quot;SalesAmount&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;data_field&quot;: &quot;SalesTerritoryCountry&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;ModelName&quot;,
+          &quot;data_field&quot;: &quot;ModelName&quot;,
+          &quot;rdl_type&quot;: &quot;String&quot;
+        },
+        {
+          &quot;name&quot;: &quot;TaxAmt&quot;,
+          &quot;data_field&quot;: &quot;TaxAmt&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        },
+        {
+          &quot;name&quot;: &quot;OrderQuantity&quot;,
+          &quot;data_field&quot;: &quot;OrderQuantity&quot;,
+          &quot;rdl_type&quot;: &quot;Decimal&quot;
+        }
+      ]
+    }
+  ],
+  &quot;build_log&quot;: [
+    {
+      &quot;level&quot;: &quot;info&quot;,
+      &quot;message&quot;: &quot;AbstractSpec v2 built&quot;,
+      &quot;timestamp&quot;: &quot;2026-04-03T08:32:39.089320+00:00&quot;
+    }
+  ],
+  &quot;warnings&quot;: []
+}</pre>
+    </section>
+  </div>
+</body>
+</html>

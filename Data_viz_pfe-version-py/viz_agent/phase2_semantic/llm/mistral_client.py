@@ -2,18 +2,10 @@ from __future__ import annotations
 
 import json
 import logging
-import os
 from dataclasses import dataclass
 from typing import Any, Dict
 
-import requests
-
 logger = logging.getLogger(__name__)
-
-API_KEY = os.getenv("MISTRAL_API_KEY", "")
-MISTRAL_URL = "https://api.mistral.ai/v1/chat/completions"
-MODEL_NAME = "mistral-small-latest"
-
 
 @dataclass
 class LLMResponse:
@@ -38,27 +30,13 @@ def _fallback(prompt: str) -> LLMResponse:
 
 
 def call_mistral(prompt: str, timeout: int = 10) -> LLMResponse:
-    api_key = os.getenv("MISTRAL_API_KEY", API_KEY).strip()
-    if not api_key:
-        return _fallback(prompt)
-
-    headers = {"Authorization": f"Bearer {api_key}"}
-    payload = {
-        "model": MODEL_NAME,
-        "messages": [
-            {"role": "system", "content": "You return JSON only."},
-            {"role": "user", "content": prompt},
-        ],
-        "temperature": 0,
-        "response_format": {"type": "json_object"},
-    }
-
+    _ = timeout
     try:
-        resp = requests.post(MISTRAL_URL, headers=headers, json=payload, timeout=timeout)
-        resp.raise_for_status()
-        data = resp.json()
-        content = data["choices"][0]["message"]["content"]
-        parsed = json.loads(content)
+        from viz_agent.phase2_semantic.llm_fallback_client import LLMFallbackClient, load_llm_keys_from_file
+
+        load_llm_keys_from_file()
+        llm_client = LLMFallbackClient.from_env()
+        parsed = llm_client.chat_json(system_prompt="You return JSON only.", user_prompt=prompt)
         return LLMResponse(
             column=parsed.get("column"),
             possible_meaning=parsed.get("possible_meaning"),
@@ -68,5 +46,5 @@ def call_mistral(prompt: str, timeout: int = 10) -> LLMResponse:
             error=None,
         )
     except Exception as exc:  # pragma: no cover - network dependent
-        logger.error("Mistral call failed: %s", exc)
+        logger.error("LLM fallback chain failed: %s", exc)
         return _fallback(prompt)

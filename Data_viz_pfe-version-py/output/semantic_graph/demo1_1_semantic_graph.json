@@ -1,0 +1,221 @@
+{
+  "input": "input\\demo1.1.twbx",
+  "phase0_mode": "live_sql",
+  "graph": {
+    "nodes": [
+      {
+        "id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "type": "Table",
+        "name": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "schema": "dbo"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "Column",
+        "name": "SalesAmount",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "measure",
+        "pbi_type": "decimal"
+      },
+      {
+        "id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "Measure",
+        "name": "SalesAmount",
+        "expression": "SUM([SalesAmount])"
+      },
+      {
+        "id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "Column",
+        "name": "SalesTerritoryCountry",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "role": "dimension",
+        "pbi_type": "text"
+      },
+      {
+        "id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "Dimension",
+        "name": "SalesTerritoryCountry",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+      },
+      {
+        "id": "measure:Sum_SalesAmount",
+        "type": "Measure",
+        "name": "Sum SalesAmount",
+        "expression": "SUM([SalesAmount])"
+      },
+      {
+        "id": "measure:Sum_SalesTerritoryCountry",
+        "type": "Measure",
+        "name": "Sum SalesTerritoryCountry",
+        "expression": "SUM([SalesTerritoryCountry])"
+      },
+      {
+        "id": "visual:Feuille_1",
+        "type": "Visual",
+        "name": "Feuille 1",
+        "subtype": "bar"
+      },
+      {
+        "id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "Dimension",
+        "name": "SalesAmount",
+        "table": "federated.1v3o2r30w2rgsv1aei9is1e9duvo"
+      },
+      {
+        "id": "term:Sales",
+        "type": "BusinessTerm",
+        "name": "Sales"
+      }
+    ],
+    "relationships": [
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "IS_MEASURE"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "measure:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "AGGREGATED_AS",
+        "agg": "SUM"
+      },
+      {
+        "source_id": "table:federated.1v3o2r30w2rgsv1aei9is1e9duvo",
+        "target_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "HAS_COLUMN"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "target_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "type": "IS_DIMENSION"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "type": "IS_DIMENSION"
+      },
+      {
+        "source_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "visual:Feuille_1",
+        "type": "GROUPED_BY"
+      },
+      {
+        "source_id": "dimension:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "target_id": "visual:Feuille_1",
+        "type": "GROUPED_BY"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "measure:Sum_SalesAmount",
+        "type": "IS_MEASURE"
+      },
+      {
+        "source_id": "measure:Sum_SalesAmount",
+        "target_id": "visual:Feuille_1",
+        "type": "USED_IN"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesAmount",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      },
+      {
+        "source_id": "column:federated.1v3o2r30w2rgsv1aei9is1e9duvo.SalesTerritoryCountry",
+        "target_id": "term:Sales",
+        "type": "MAPPED_TO",
+        "confidence": 0.9,
+        "method": "heuristic"
+      }
+    ],
+    "persisted": false,
+    "error": ""
+  },
+  "mappings": [
+    {
+      "column": "SalesAmount",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    },
+    {
+      "column": "SalesTerritoryCountry",
+      "mapped_business_term": "Sales",
+      "confidence": 0.9,
+      "method": "heuristic",
+      "details": {
+        "heuristic": {
+          "term": "Sales",
+          "score": 0.9
+        },
+        "embedding": {
+          "term": "Sales",
+          "score": 0.0
+        },
+        "llm": {
+          "term": null,
+          "score": 0.0
+        }
+      }
+    }
+  ],
+  "orchestration": {
+    "selected_path": "cache",
+    "llm_provider": "none",
+    "llm_selection_order": [
+      "mistral_api",
+      "gemini_api",
+      "ollama_local"
+    ],
+    "threshold": 0.75,
+    "confidence": 0.76,
+    "confidence_components": {
+      "heuristic_score": 0.9,
+      "profiling_score": 0.5,
+      "ontology_score": 0.9,
+      "llm_score": 0.0
+    },
+    "confidence_detail": {
+      "final": 0.76,
+      "heuristic": 0.9,
+      "profiling": 0.5,
+      "ontology": 0.9,
+      "llm": 0.0,
+      "path": "fast"
+    },
+    "cached_from": "fast",
+    "cache_key": "e42a624a7ff44c1c8c609c8142f58cff54e41433f66cc6fbd2fe2e36bda85a3e"
+  },
+  "ontology_terms": [
+    "Sales",
+    "Product",
+    "Customer",
+    "Geography",
+    "Time",
+    "Revenue",
+    "Quantity",
+    "Profit",
+    "Discount",
+    "Tax"
+  ]
+}

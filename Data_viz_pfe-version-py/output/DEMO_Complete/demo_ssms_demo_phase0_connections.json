@@ -1,0 +1,11 @@
+{
+  "connections": [
+    {
+      "name": "localhost\\SQLEXPRESS",
+      "class": "sqlserver",
+      "server": "localhost\\SQLEXPRESS",
+      "database": "AdventureWorksDW2022",
+      "schema": ""
+    }
+  ]
+}
